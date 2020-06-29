@@ -1,0 +1,83 @@
+.Restaurant {
+  cursor: pointer;
+  text-align: start;
+  font-size: 1.3rem;
+  border-radius: 5px;
+}
+
+.Restaurant_Figure {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.Restaurant_Image {
+  width: 100%;
+  display: block;
+  transition: .5s all;
+}
+
+.Restaurant_Image:hover {
+  transform: scale(1.02);
+}
+
+.Restaurant_Name {
+  padding: 2px;
+}
+
+.RestaurantAmount {
+  padding: 2px;
+}
+
+.Restaurant_Figcaption {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  left: 0;
+  border: var(--border-dark);
+  border-radius: 5px;
+  background-color: white;
+  height: 35%;
+  width: 100%;
+}
+
+.Restaurant_Info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60%;
+  padding: 0rem 1rem;
+}
+
+.Restaurant_Description {
+  max-width: 70%;
+}
+
+.Restaurant_Name {
+  font-size: 1.75rem;
+}
+
+.Restaurant_Paragraph {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: .1rem;
+}
+
+.Restaurant_PickUp {
+  background: rgba(150, 227, 253, 0.356);
+  padding: .5rem;
+  border-radius: 6px;
+}
+
+.Restaurant_Categories {
+  display: flex;
+  align-items: center;
+  height: 30%;
+  border-top: .1px dotted rgba(0, 0, 0, 0.384);
+  padding: 0rem 1rem;
+  font-weight: 200;
+}

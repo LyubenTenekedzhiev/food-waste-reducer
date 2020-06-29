@@ -1,0 +1,29 @@
+.FoodCategories_Category {
+  cursor: pointer;
+  text-align: start;
+  font-size: 1.3rem;
+}
+
+.FoodCategories_CategoryFigure {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.FoodCategories_CategoryImage {
+  width: 100%;
+  display: block;
+  transition: .5s all;
+}
+
+.FoodCategories_CategoryImage:hover {
+  transform: scale(1.02);
+}
+
+.FoodCategories_CategoryRestaurant {
+  padding: 2px;
+}
+
+.FoodCategories_CategoryAmount {
+  padding: 2px;
+}
