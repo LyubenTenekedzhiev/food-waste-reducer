@@ -1,0 +1,24 @@
+:root {
+  --text-color-primary: rgb(0, 0, 0);
+
+  --heading-size-restaurant: 6.5rem;
+  --heading-size-primary: 3rem;
+  --heading-size-secondary: 2.5rem;
+  --heading-size-tertiary: 2rem;
+
+  --border-dark: 0.1px solid rgba(85, 85, 85, 0.252);
+  --border-light: 0.1px solid rgba(255, 255, 255, 0.489);
+
+  --padding-borderBottom: 1rem;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+}

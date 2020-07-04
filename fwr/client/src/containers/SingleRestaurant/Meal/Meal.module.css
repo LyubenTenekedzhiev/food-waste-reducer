@@ -1,0 +1,49 @@
+.Meal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  padding: 1rem 0rem;
+  margin: 1rem 0rem;
+  text-align: start;
+  border-top: var(--border-dark);
+  border-bottom: var(--border-dark);
+}
+
+.Meal_Figure {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  width: 50%;
+}
+
+.Meal_Info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-self: stretch;
+}
+
+.Meal_Image {
+  width: 100%;
+  display: block;
+  transition: .5s all;
+}
+
+.Meal_Image:hover {
+  transform: scale(1.02);
+}
+
+.Meal_Name {
+  font-size: var(--heading-size-tertiary);
+}
+
+.Meal_Description {
+  font-size: 1.4rem;
+  width: 90%;
+}
+
+.Meal_Price {
+  font-size: 1.5rem;
+  color: rgba(0, 78, 114, 0.856);
+}
