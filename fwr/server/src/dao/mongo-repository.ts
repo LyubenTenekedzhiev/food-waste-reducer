@@ -1,4 +1,3 @@
-import { Post } from "../model/post.model";
 import { Indentifiable, IdType, ResourceType } from "../model/shared-types";
 import { MongoClient, Db, ObjectID } from "mongodb";
 import { Repository } from "./repository";
@@ -41,7 +40,7 @@ export class MongoRepository<T extends Indentifiable> implements Repository<T> {
   async deleteById(id: IdType): Promise<T> {
     const found = await this.findById(id);
     if (!found) {
-      throw new AppError(404, `${this.entityType.typeId} ID="${id} does not exist and can not be modified.`);
+      throw new AppError(404, `${this.entityType.typeId} ID="${id} does not exist and cannot be modified.`);
     }
     const res = await this.db.collection(this.collection).deleteOne({ _id: new ObjectID(id) });
     if (res.result.ok && res.deletedCount === 1) {
@@ -65,8 +64,6 @@ export class MongoRepository<T extends Indentifiable> implements Repository<T> {
     return this.db.collection(this.collection).count();
   }
 }
-
-export class PostRepository extends MongoRepository<Post> {}
 
 export class UserRepository extends MongoRepository<User> {
   async findByUsername(username: string) {

@@ -1,4 +1,3 @@
-import { Post } from '../model/post.model';
 import { Indentifiable, IdType } from '../model/shared-types';
 import { MongoClient } from 'mongodb';
 

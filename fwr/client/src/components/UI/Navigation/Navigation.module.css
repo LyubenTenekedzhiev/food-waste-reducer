@@ -38,6 +38,26 @@
   color:inherit;
 }
 
+.Navigation_Login,
+.Navigation_LoginVissible {
+  opacity: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  padding-top: 1.25rem;
+  transition: .4s all;
+}
+
+.Navigation_Login span,
+.Navigation_LoginVissible span{
+  padding: .5rem 0rem;
+}
+
+.Navigation_LoginVissible {
+  opacity: 1;
+}
+
 /* ********* PSEUDO CLASSES ********* */
 .Navigation_LinkHomePage:before,
 .Navigation_Link:before {

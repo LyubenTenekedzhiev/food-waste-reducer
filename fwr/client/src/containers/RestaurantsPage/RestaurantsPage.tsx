@@ -31,7 +31,7 @@ function RestaurantsPage({ location }: Props): ReactElement {
   };
 
   const showRestaurantHandler = (restaurantName: string) => {
-    history.push(`/${restaurantName}`, { restaurantName: restaurantName });
+    history.push(`/restaurant/${restaurantName}`, { restaurantName: restaurantName });
   };
 
   const restaurants = MOCK_RESTAURANTS.map((restaurant) => {

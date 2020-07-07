@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Zucchini and Prosciutto",
+    "description": "Mixed leaves with prosciutto, zucchini, parmigiano, hazelnuts, capers and lemon dressing",
+    "imageUrl": "https://ik.imagekit.io/pyvwhvv76v/asian_LGVyVtEyYbu.jpg",
+    "price": 2,
+    "restaurantId": "3"
+  },
+  {
+    "name": "Zucchini and Prosciutto",
+    "description": "Mixed leaves with prosciutto, zucchini, parmigiano, hazelnuts, capers and lemon dressing",
+    "imageUrl": "https://ik.imagekit.io/pyvwhvv76v/asian_LGVyVtEyYbu.jpg",
+    "price": 2,
+    "restaurantId": "4"
+  },
+  {
+    "name": "Pizza without pizza",
+    "description": "Mixed leaves with prosciutto, zucchini, parmigiano, hazelnuts, capers and lemon dressing",
+    "imageUrl": "https://ik.imagekit.io/pyvwhvv76v/asian_LGVyVtEyYbu.jpg",
+    "price": 2,
+    "restaurantId": "3"
+  },
+  {
+    "name": "Meatballs",
+    "description": "Mixed leaves with prosciutto, zucchini, parmigiano, hazelnuts, capers and lemon dressing",
+    "imageUrl": "https://ik.imagekit.io/pyvwhvv76v/asian_LGVyVtEyYbu.jpg",
+    "price": 2,
+    "restaurantId": "3"
+  },
+  {
+    "name": "Zucchini and Prosciutto",
+    "description": "Mixed leaves with prosciutto, zucchini, parmigiano, hazelnuts, capers and lemon dressing",
+    "imageUrl": "https://ik.imagekit.io/pyvwhvv76v/asian_LGVyVtEyYbu.jpg",
+    "price": 2,
+    "restaurantId": "4"
+  }
+]

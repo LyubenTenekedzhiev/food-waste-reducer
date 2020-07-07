@@ -12,14 +12,12 @@
 import * as express from "express";
 import { Request, Response, NextFunction } from "express";
 import * as path from "path";
-import postsRouter from "./routes/posts-router";
 import mealsRouter from "./routes/meals-router";
+import usersRouter from "./routes/users-router"
 import { MongoClient } from "mongodb";
-import { PostRepository, UserRepository, MealRepository } from "./dao/mongo-repository";
-import { Post } from "./model/post.model";
+import { UserRepository, MealRepository } from "./dao/mongo-repository";
 import { User } from "./model/user.model";
 import { Meal } from "./model/meal.model";
-import MOCK_MEALS from "./model/mock-meals";
 
 const POSTS_FILE = path.join(__dirname, "../posts.json");
 const DB_URL = "mongodb://localhost: 27017/";
@@ -32,11 +30,9 @@ async function start() {
   const app = express();
 
   const db = await initDb(DB_URL, DB_NAME);
-  const postRepo = new PostRepository(Post, db, "posts");
   const userRepo = new UserRepository(User, db, "users");
   const mealRepo = new MealRepository(Meal, db, "meals");
 
-  app.locals.postRepo = postRepo;
   app.locals.userRepo = userRepo;
   app.locals.mealRepo = mealRepo;
 
@@ -58,8 +54,8 @@ async function start() {
     next();
   });
 
-  app.use("/api/posts", postsRouter);
   app.use("/api/meals", mealsRouter);
+  app.use("/api/users", usersRouter);
 
   app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     if (res.headersSent) {

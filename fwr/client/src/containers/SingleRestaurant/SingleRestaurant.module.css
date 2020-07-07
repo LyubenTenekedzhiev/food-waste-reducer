@@ -4,3 +4,60 @@
   background-color: black;
   height: 100vh;
 } */
+
+.SingleRestaurant_Main {
+  display: flex;
+  justify-content: space-between;
+  width: 70vw;
+  margin: 10rem auto;
+}
+
+.SingleRestaurant_Info {
+  width: 25%;
+  text-align: start;
+}
+
+.SingleRestaurant_InfoTitle,
+.SingleRestaurant_InformationTitle {
+  font-size: var(--heading-size-tertiary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.SingleRestaurant_InformationTitle {
+  /* margin-bottom: 3rem; */
+}
+
+.SingleRestaurant_Address {
+  margin: 4rem 0 3rem 0;
+}
+
+.SingleRestaurant_Address p {
+  margin: .5rem 0rem;
+  font-size: 1.4rem;
+}
+
+.SingleRestaurant_Address a {
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: rgb(0, 157, 230);
+}
+
+.SingleRestaurant_Opening {
+  margin: 3rem 0;
+}
+
+.SingleRestaurant_Hours {
+  display: flex;
+  justify-content: space-between;
+}
+.SingleRestaurant_Hours span {
+  font-size: 1.3rem;
+  padding: .4rem 0;
+}
+
+.SingleRestaurant_Contact span{
+  display: block;
+  font-size: 1.3rem;
+  padding: .4rem 0;
+}

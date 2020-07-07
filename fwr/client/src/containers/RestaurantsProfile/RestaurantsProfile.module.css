@@ -1,0 +1,7 @@
+.EditRestaurant_Buttons {
+  width: 70vw;
+  margin: 10rem auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+

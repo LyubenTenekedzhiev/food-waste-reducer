@@ -1,4 +1,4 @@
-import { Indentifiable, IdType } from "./shared-types";
+import { Indentifiable, IdType } from "../shared-types/shared-types";
 
 export interface IUser extends Indentifiable {
   email: string;
