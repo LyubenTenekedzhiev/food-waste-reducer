@@ -43,15 +43,11 @@
   color: rgb(0, 157, 230);
 }
 
-.SingleRestaurant_Opening {
+.SingleRestaurant_PickUp {
   margin: 3rem 0;
 }
 
-.SingleRestaurant_Hours {
-  display: flex;
-  justify-content: space-between;
-}
-.SingleRestaurant_Hours span {
+.SingleRestaurant_PickUp span {
   font-size: 1.3rem;
   padding: .4rem 0;
 }

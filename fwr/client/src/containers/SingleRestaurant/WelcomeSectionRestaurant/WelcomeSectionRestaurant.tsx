@@ -1,22 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../../app/rootReducer";
 
 import classes from "./WelcomeSectionRestaurant.module.css";
-import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
-import ThumbDownAltRoundedIcon from "@material-ui/icons/ThumbDownAltRounded";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Input from "@material-ui/core/Input";
+import SearchIcon from "@material-ui/icons/Search";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import Navigation from "../../../components/UI/Navigation/Navigation";
-import { useHistory } from "react-router-dom";
+import { fetchRestaurantsByRole } from "../../../features/restaurants/restaurantsSlice";
 
-interface LocationState {
-  state: {
-    restaurantName: string | undefined;
-  };
-}
 interface Props {
-  location: LocationState;
+  id: string;
+  // buildSearchQueryHandler?: (e: string) => void; 
 }
 
-const WelcomeSectionRestaurant = ({ location }: Props) => {
+const WelcomeSectionRestaurant = ({ id }: Props) => {
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const restaurant = useSelector((state: RootState) => state.restaurants.restaurants).filter((restaurant) => restaurant._id === id)[0];
+
+  useEffect(() => {
+    dispatch(fetchRestaurantsByRole(0));
+  }, []);
+
+  const searchByKeywordHandler = (keyword: string) => {
+    history.push(`/restaurants/${keyword?.toLowerCase()}`, {
+      foodCategory: keyword,
+    });
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  };
+
+  const buildQueryHandler = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    // if(!buildSearchQueryHandler) return;
+    // buildSearchQueryHandler(event.target.value)
+  }
 
   return (
     <div className={classes.WelcomeSectionRestaurant}>
@@ -25,29 +46,35 @@ const WelcomeSectionRestaurant = ({ location }: Props) => {
           <Navigation />
         </div>
         <div className={classes.WelcomeSectionRestaurant_TextContainer}>
-          <h1 className={classes.WelcomeSectionRestaurant_Text}>{location.state.restaurantName}</h1>
-          <p className={classes.WelcomeSectionRestaurant_Description}>For real pizza lovers!</p>
+          <h1 className={classes.WelcomeSectionRestaurant_Text}>{restaurant ? restaurant.username : ""}</h1>
+          <p className={classes.WelcomeSectionRestaurant_Description}>{restaurant ? restaurant.description : ""}</p>
           <div className={classes.WelcomeSectionRestaurant_Keywords}>
-            <span>pizza</span>
-            <span>salad</span>
-            <span>brunch</span>
+            {restaurant
+              ? restaurant.keywords?.split(",").map((keyword, index) => (
+                  <span key={index} onClick={() => searchByKeywordHandler(keyword)}>
+                    {keyword}
+                  </span>
+                ))
+              : ""}
           </div>
         </div>
-        <div className={classes.WelcomeSectionRestaurant_Rating}>
-          <div className={classes.WelcomeSectionRestaurant_Votes}>
-            <p className={classes.WelcomeSectionRestaurant_VotesAmount}>
-              {" "}
-              <span>&#128522; 9,6</span> out of 10
-            </p>
-            <span onClick={() => history.push(`/edit/${location.state.restaurantName}`, { restaurantName: location.state.restaurantName })}>
-              edit
-            </span>
-            <div className={classes.WelcomeSectionRestaurant_Likes}>
-              <ThumbUpAltRoundedIcon className={classes.WelcomeSectionRestaurant_Like} />
-              <ThumbDownAltRoundedIcon className={classes.WelcomeSectionRestaurant_Like} />
-            </div>
+        <div className={classes.WelcomeSectionRestaurant_Favourites}>
+          <p className={classes.WelcomeSectionRestaurant_AddToFavourites}>
+            {" "}
+            <FavoriteBorderIcon className={classes.WelcomeSectionRestaurant_Like} /> Add to favourites
+          </p>
+          <div className={classes.WelcomeSectionRestaurant_Search}>
+            <Input
+              id='input-with-icon-adornment'
+              className={classes.WelcomeSectionRestaurant_SearchBar}
+              onChange={buildQueryHandler}
+              startAdornment={
+                <InputAdornment position='start'>
+                  <SearchIcon className={classes.WelcomeSectionRestaurant_SearchIcon} />
+                </InputAdornment>
+              }
+            />
           </div>
-          <input type='text' placeholder='Search' className={classes.WelcomeSectionRestaurant_Search} />
         </div>
       </div>
     </div>

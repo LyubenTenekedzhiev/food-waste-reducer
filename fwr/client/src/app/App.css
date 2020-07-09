@@ -22,3 +22,21 @@
   text-align: center;
   font-family: "Nunito", sans-serif;
 }
+
+
+.MuiInputBase-input {
+  font-size: 1.3rem;
+  margin: 5px 0px;
+}
+.MuiInputBase-root {
+  margin-bottom: 2rem;
+}
+
+.MuiFormHelperText-root {
+  font-size: 1rem;
+  margin-top: -1.5rem;
+}
+
+.MuiFormLabel-root {
+  font-size: 1.3rem;
+}

@@ -5,12 +5,15 @@ import styles from "./RestaurantColumn.module.css";
 
 interface Props {
   name: string;
-  image: string;
+  image: string | undefined;
+  description: string | undefined;
+  pickUp: string | undefined;
+  keywords: string | undefined;
   gridLayout: boolean;
   showRestaurant: () => void;
 }
 
-function Restaurant({ name, image, gridLayout, showRestaurant }: Props): ReactElement {
+function Restaurant({ name, image, gridLayout, description, pickUp, keywords, showRestaurant }: Props): ReactElement {
   const style = gridLayout ? classes : styles;
 
   return (
@@ -21,12 +24,12 @@ function Restaurant({ name, image, gridLayout, showRestaurant }: Props): ReactEl
           <div className={style.Restaurant_Info}>
             <div className={style.Restaurant_Description}>
               <h3 className={style.Restaurant_Name}>{name}</h3>
-              <p className={style.Restaurant_Paragraph}>Short description of the restaurantAAAAAAAAAA</p>
+              <p className={style.Restaurant_Paragraph}>{description}</p>
             </div>
-            <h4 className={style.Restaurant_PickUp}>{gridLayout ? "1:00 - 2:00" : "Pick up time: 1:00 - 2:00"}</h4>
+            <h4 className={style.Restaurant_PickUp}>{gridLayout ? pickUp : `Pick up time: ${pickUp}`}</h4>
           </div>
           <div className={style.Restaurant_Categories}>
-            <p>9,6 &#128522; - bagguetes, healthy</p>
+            <p>{keywords}</p>
           </div>
         </div>
       </figure>

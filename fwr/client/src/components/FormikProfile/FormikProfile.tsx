@@ -10,48 +10,22 @@ import Icon from "@material-ui/core/Icon/Icon";
 import { RootState } from "../../app/rootReducer";
 import { User, Role } from "./../../models/user.model";
 import { createRestaurant, updateRestaurant, fetchRestaurantsByRole } from "./../../features/restaurants/restaurantsSlice";
+import { FormValuesEdit } from "../../containers/RestaurantsProfile/EditProfile/EditProfile";
 
-export interface FormValuesRegister {
-  _id: string;
-  email: string;
-  username: string;
-  password: string;
-  roles: Role;
-  description?: string;
-  keywords?: string[];
-  imageUrl?: string;
-  raiting?: number | 0;
-  street?: string;
-  zipCode?: string;
-  city?: string;
-  phone?: string;
-  pickUp?: string;
+interface Props {
+  initialValues: FormValuesEdit;
+  id: string;
 }
 
-interface Props {}
-
-function FormikComponent(props: Props): ReactElement {
+function FormikComponent({ initialValues, id }: Props): ReactElement {
   const dispatch = useDispatch();
 
-  const initialValues: FormValuesRegister = {
-    _id: "",
-    email: "",
-    username: "",
-    password: "",
-    roles: Role.RESTAURANT,
-    description: "",
-    keywords: [""],
-    imageUrl: "",
-    raiting: 0,
-    street: "",
-    zipCode: "",
-    city: "",
-    phone: "",
-    pickUp: "",
-  };
-
-  const emails = useSelector((state: RootState) => state.restaurants.restaurants).map((restaurant) => restaurant.email);
-  const usernames = useSelector((state: RootState) => state.restaurants.restaurants).map((restaurant) => restaurant.username);
+  const emails = useSelector((state: RootState) => state.restaurants.restaurants)
+    .filter((restaurant) => restaurant._id !== id)
+    .map((restaurant) => restaurant.email);
+  const usernames = useSelector((state: RootState) => state.restaurants.restaurants)
+    .filter((restaurant) => restaurant._id !== id)
+    .map((restaurant) => restaurant.username);
 
   useEffect(() => {
     dispatch(fetchRestaurantsByRole(0));
@@ -67,28 +41,17 @@ function FormikComponent(props: Props): ReactElement {
           email: values.email,
           username: values.username,
           password: values.password,
-          roles: values.roles,
           description: values.description,
           keywords: values.keywords,
           imageUrl: values.imageUrl,
-          raiting: 0,
           street: values.street,
           zipCode: values.zipCode,
           city: values.city,
           phone: values.phone,
           pickUp: values.pickUp,
         } as User;
-        if (result._id) {
-          //Edit
-          dispatch(updateRestaurant(result));
-          resetForm({});
-          // setId("");
-        } else {
-          //Create
-          dispatch(createRestaurant(result));
-          resetForm({});
-          // setId("");
-        }
+        dispatch(updateRestaurant(result));
+        resetForm({});
       }}
       validateOnChange
       validationSchema={Yup.object().shape({
@@ -119,7 +82,7 @@ function FormikComponent(props: Props): ReactElement {
 
 export default FormikComponent;
 
-const PostFormInternal: (props: FormikProps<FormValuesRegister>) => ReactElement = ({
+const PostFormInternal: (props: FormikProps<FormValuesEdit>) => ReactElement = ({
   values,
   handleChange,
   dirty,
@@ -129,8 +92,6 @@ const PostFormInternal: (props: FormikProps<FormValuesRegister>) => ReactElement
   setSubmitting,
   handleReset,
 }) => {
-  console.log(values.email);
-
   const loading = useSelector((state: RootState) => {
     return state.meals.loading;
   });

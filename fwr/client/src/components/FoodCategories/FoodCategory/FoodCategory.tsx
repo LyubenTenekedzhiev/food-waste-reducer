@@ -4,7 +4,7 @@ import classes from "./FoodCategory.module.css";
 
 interface Props {
   name: string;
-  restaurants: number;
+  restaurants?: number;
   imageURL: string;
   showRestaurants: () => void;
 }

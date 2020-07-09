@@ -1,26 +1,58 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useState, useEffect } from "react";
 
-import { MOCK_CATEGORIES } from "./../../models/mock-categories";
 import FoodCategory from "./FoodCategory/FoodCategory";
-import classes from "./FoodCategories.module.css";
 import { withRouter, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchFoodCategories } from "../../features/foodCategories/foodCategorySlice";
+import { RootState } from "../../app/rootReducer";
+import { fetchRestaurantsByRole } from "../../features/restaurants/restaurantsSlice";
+import classes from "./FoodCategories.module.css";
 
 interface Props {}
 
 function FoodCategories({}: Props): ReactElement {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [firstCategory, setFirstCategory] = useState(0);
+  let restaurantsCount = 0;
+
+  const restaurants = useSelector((state: RootState) => state.restaurants.restaurants);
+  const allFoodCategories = useSelector((state: RootState) => state.foodCategories.foodCategories);
+  const foodCategories = allFoodCategories.slice(firstCategory, firstCategory + itemsPerPage).map((category) => {
+    restaurantsCount = 0;
+    restaurants.map((restaurant) => {
+      if (restaurant.keywords?.includes(category.name.toLowerCase())) {
+        restaurantsCount++;
+      }
+    });
+    return (
+      <FoodCategory
+        key={category._id}
+        name={category.name}
+        restaurants={restaurantsCount}
+        imageURL={category.imageUrl}
+        showRestaurants={() => showRestaurantsHandler(category.name)}
+      />
+    );
+  });
+
+  
+  useEffect(() => {
+    dispatch(fetchRestaurantsByRole(0));
+    dispatch(fetchFoodCategories());
+  }, []);
 
   // "Pagination"
   const nextPageClickHandler = () => {
-    // if (firstCategory + itemsPerPage >= MOCK_CATEGORIES.length - itemsPerPage) {
-    //   setItemsPerPage(MOCK_CATEGORIES.length - firstCategory);
-    // }
-    setFirstCategory(Math.min(firstCategory + itemsPerPage, MOCK_CATEGORIES.length - itemsPerPage));
+    if (allFoodCategories.length - itemsPerPage < firstCategory + itemsPerPage) {
+      if (firstCategory + itemsPerPage > allFoodCategories.length) return;
+      setFirstCategory(Math.max(firstCategory + itemsPerPage, allFoodCategories.length - itemsPerPage)); 
+    } else {
+      setFirstCategory(Math.min(firstCategory + itemsPerPage, allFoodCategories.length - itemsPerPage)); 
+    }
   };
-
   const prevPageClickHandler = () => {
     setFirstCategory(Math.max(firstCategory - itemsPerPage, 0));
   };
@@ -30,18 +62,6 @@ function FoodCategories({}: Props): ReactElement {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   };
-
-  const foodCategories = MOCK_CATEGORIES.slice(firstCategory, firstCategory + itemsPerPage).map((category) => {
-    return (
-      <FoodCategory
-        key={category.id}
-        name={category.name}
-        restaurants={category.restaurants}
-        imageURL={category.imageURL}
-        showRestaurants={() => showRestaurantsHandler(category.name)}
-      />
-    );
-  });
 
   return (
     <div className={classes.FoodCategories} id='FoodCategories'>

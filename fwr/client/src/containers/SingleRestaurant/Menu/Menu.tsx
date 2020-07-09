@@ -1,13 +1,14 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import classes from "./Menu.module.css";
 import MealComponent from "../Meal/Meal";
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../app/rootReducer";
 import { fetchMeals } from "./../../../features/meals/mealsSlice";
 import { IdType } from "../../../shared-types/shared-types";
 
 interface Props {
+  id: string;
   editMenu?: boolean | undefined;
   previewMenu?: boolean | undefined;
   editMealHandler?: (_id: IdType) => void;
@@ -15,19 +16,20 @@ interface Props {
   selectMealHandler?: (_id: IdType) => void;
 }
 
-function Menu({ editMenu, previewMenu, editMealHandler, deleteMealHandler, selectMealHandler }: Props): ReactElement {
+function Menu({ id, editMenu, previewMenu, editMealHandler, deleteMealHandler, selectMealHandler }: Props): ReactElement {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchMeals("3")); // needs to be passed via the logged restaurant
+    dispatch(fetchMeals(id));
   }, [dispatch]);
 
   const scrollIntoView = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     document.getElementById(event.currentTarget.innerHTML)?.scrollIntoView({ behavior: "smooth", inline: "nearest" });
-  }
+  };
 
+  const searchQuery = useSelector((state: RootState) => state.meals.searchQuery);
   const meals = useSelector((state: RootState) => state.meals.meals);
-
+  
   const allMeals = meals.map((meal) => {
     return (
       <MealComponent
@@ -48,13 +50,18 @@ function Menu({ editMenu, previewMenu, editMealHandler, deleteMealHandler, selec
   });
 
   const activeMeals = meals
-    .filter((meal) => meal.active === true)
+    .filter(
+      (meal) =>
+        (meal.active === true && meal.foodCategory.toLowerCase().includes(searchQuery)) || meal.name.toLowerCase().includes(searchQuery)
+    )
     .map((meal) => meal.foodCategory)
     .filter((category, index, array) => array.indexOf(category) === index)
     .map((category, index) => {
       return (
         <div key={index} className={classes.Menu_CategoryContainer}>
-          <h4 className={classes.Menu_Category} id={category}>{category}</h4>
+          <h4 className={classes.Menu_Category} id={category}>
+            {category}
+          </h4>
           {meals
             .filter((meal) => meal.active === true)
             .map((meal) => {
@@ -86,7 +93,11 @@ function Menu({ editMenu, previewMenu, editMealHandler, deleteMealHandler, selec
     .map((meal) => meal.foodCategory)
     .filter((category, index, array) => array.indexOf(category) === index)
     .map((category, index) => {
-      return <li key={index} onClick={scrollIntoView} className={`${classes.link} ${classes.from_right}`}>{category}</li>;
+      return (
+        <li key={index} onClick={scrollIntoView} className={`${classes.link} ${classes.from_right}`}>
+          {category}
+        </li>
+      );
     });
 
   return (

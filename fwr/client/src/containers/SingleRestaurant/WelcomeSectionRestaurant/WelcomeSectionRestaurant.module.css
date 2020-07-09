@@ -2,6 +2,7 @@
   background-image: url("../../../assets/platter-2009590_1920.jpg");
   background-size: cover;
   background-color: black;
+  background-attachment: fixed;
   height: 100vh;
 }
 
@@ -42,7 +43,7 @@
 .WelcomeSectionRestaurant_Keywords {
   display: flex;
   justify-content: space-between;
-  width: 20%;
+  width: 40%;
 }
 .WelcomeSectionRestaurant_Keywords span {
   font-size: 1.75rem;
@@ -58,7 +59,7 @@
   background-color: rgba(0, 113, 165, 0.856);
 }
 
-.WelcomeSectionRestaurant_Rating {
+.WelcomeSectionRestaurant_Favourites {
   position: absolute;
   bottom: -65px;
   left: 50%;
@@ -74,46 +75,37 @@
   background-color: white;
 }
 
-.WelcomeSectionRestaurant_Votes {
+.WelcomeSectionRestaurant_AddToFavourites {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 30%;
-  padding-left: 2.5rem;
-}
-
-.WelcomeSectionRestaurant_VotesAmount {
-  font-size: calc(var(--heading-size-tertiary) - 5px);
-  font-weight: 200;
-}
-.WelcomeSectionRestaurant_VotesAmount span {
-  font-size: calc(var(--heading-size-tertiary) + 10px);
-  font-weight: 800;
-}
-
-.WelcomeSectionRestaurant_Likes {
-  display: flex;
-  justify-content: space-between;
-  width: 25%;
+  margin-left: 2.5rem;
+  font-size: calc(var(--heading-size-secondary) - 5px);
+  font-weight: 500;
 }
 
 .WelcomeSectionRestaurant_Like {
-  font-size: var(--heading-size-primary) !important;
-  color: rgba(0, 78, 114, 0.856) !important;
-  transition: .4s all !important;
+  font-size: var(--heading-size-primary);
+  color: rgba(0, 78, 114, 0.856);
+  transition: .4s all;
+  margin-right: 1rem;
   cursor: pointer;
 }
 
 .WelcomeSectionRestaurant_Like:hover {
-  color: rgba(0, 113, 165, 0.856) !important;
+  color: rgba(0, 113, 165, 0.856);
 }
 
 .WelcomeSectionRestaurant_Search {
-  border-radius: 4px;
-  outline: none;
-  border: var(--border-dark);
-  padding: .75rem;
   margin-right: 2.5rem;
-  font-size: 1.6rem;
-  background-color: #eee;
+}
+
+.WelcomeSectionRestaurant_SearchIcon {
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.WelcomeSectionRestaurant_SearchBar {
+  margin-bottom: 0;
+  width: 20vw;
 }

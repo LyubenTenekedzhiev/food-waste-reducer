@@ -17,6 +17,10 @@
   font-size: var(--heading-size-secondary);
 }
 
+.RestaurantsPage_Title::first-letter {
+  text-transform: uppercase;
+}
+
 .RestaurantsPage_TitleContainer {
   display: flex;
   justify-content: space-between;
@@ -44,9 +48,13 @@
   color: rgb(42, 202, 255) !important;
 }
 
+.RestaurantsPage_FilteredRestaurants {
+  margin-bottom: 5rem;
+}
+
 .RestaurantsPage_Grid {
   display: grid;
-  grid-template-rows: repeat(2, 3fr);
+  grid-template-rows: repeat(1, 3fr);
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
 }
@@ -61,4 +69,10 @@
 .RestaurantsPage_GridTitle {
   margin: 2rem 0rem 1rem 0rem;
   font-size: var(--heading-size-tertiary);
+}
+
+.RestaurantsPage_NoRestaurants {
+  text-align: center;
+  margin: 10rem 0;
+  font-size: var(--heading-size-secondary);
 }

@@ -22,9 +22,9 @@ router.get("/", (req, res, next) =>
 //   }
 // });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:role", async (req, res, next) => {
   try {
-    const found = await (<UserRepository>req.app.locals.userRepo).findById(req.params.id);
+    const found = await (<UserRepository>req.app.locals.userRepo).findByRole(+req.params.role);
     res.json(found); //200 OK with deleted post in the body
   } catch (err) {
     next(err);

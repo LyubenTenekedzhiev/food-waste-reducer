@@ -32,6 +32,7 @@
   position: relative;
   padding: 5px 10px;
   font-size: 1.3rem;
+  cursor: pointer;
 }
 
 .Navigation_Link {
@@ -56,6 +57,12 @@
 
 .Navigation_LoginVissible {
   opacity: 1;
+}
+
+.Navigation_RegisterLinks {
+  color: inherit;
+  padding: .5rem 0rem;
+  text-decoration: none;
 }
 
 /* ********* PSEUDO CLASSES ********* */

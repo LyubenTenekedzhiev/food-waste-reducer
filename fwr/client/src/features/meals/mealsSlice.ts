@@ -13,6 +13,7 @@ interface MealsState {
   loading: boolean;
   error: string | null;
   message: string | null;
+  searchQuery: string | "";
 }
 
 interface MealsLoaded {
@@ -25,6 +26,7 @@ const initialState: MealsState = {
   loading: false,
   error: null,
   message: null,
+  searchQuery: "",
 };
 
 const meals = createSlice({
@@ -48,6 +50,9 @@ const meals = createSlice({
     },
     selectMealById(state, action: PayloadAction<IdType>) {
       state.currentMealId = action.payload;
+    },
+    buildSearchQuery(state, action: PayloadAction<string>) {
+      state.searchQuery = action.payload;
     },
     getMealByIdStart(state, action: PayloadAction<IdType>) {
       state.currentMealId = action.payload;
@@ -116,6 +121,7 @@ export const {
   getMealsStart,
   getMealsSuccess,
   mealsFailure,
+  buildSearchQuery,
   selectMealById,
   getMealByIdStart,
   getMealByIdSuccess,
@@ -155,7 +161,7 @@ export const fetchMealById = (mealId: IdType): AppThunk => async (dispatch) => {
 };
 
 export const createMeal = (
-  meal: Meal,
+  meal: Meal
   // history: History<History.PoorMansUnknown>
   // setSubmitting: (isSubmitting: boolean) => void
 ): AppThunk => async (dispatch, getState) => {
@@ -173,7 +179,7 @@ export const createMeal = (
 };
 
 export const updateMeal = (
-  meal: Meal,
+  meal: Meal
   // history: History<History.PoorMansUnknown>
   // setSubmitting: (isSubmitting: boolean) => void
 ): AppThunk => async (dispatch) => {

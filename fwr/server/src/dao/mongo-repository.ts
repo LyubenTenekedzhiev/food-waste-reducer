@@ -4,6 +4,7 @@ import { Repository } from "./repository";
 import { AppError } from "../model/errors";
 import { User } from "../model/user.model";
 import { Meal } from "../model/meal.model";
+import { FoodCategory } from "../model/foodCategory.model";
 
 export class MongoRepository<T extends Indentifiable> implements Repository<T> {
   constructor(public entityType: ResourceType<T>, public db: Db, public collection: string) {}
@@ -66,11 +67,14 @@ export class MongoRepository<T extends Indentifiable> implements Repository<T> {
 }
 
 export class UserRepository extends MongoRepository<User> {
-  async findByUsername(username: string) {
+  async findByRole(role: number) {
     try {
-      return await this.db.collection(this.collection).findOne({ username: username });
+      return await this.db
+        .collection(this.collection)
+        .find<User>({ roles: role })
+        .toArray();
     } catch (err) {
-      throw new AppError(404, `User with username: "${username}" does not exist.`);
+      throw new AppError(404, `User with username: "${role}" does not exist.`);
     }
   }
 }
@@ -87,3 +91,5 @@ export class MealRepository extends MongoRepository<Meal> {
     }
   }
 }
+
+export class FoodCategoryRepository extends MongoRepository<FoodCategory> {}

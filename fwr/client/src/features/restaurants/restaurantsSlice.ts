@@ -10,6 +10,8 @@ import { User } from "../../models/user.model";
 interface RestaurantsState {
   currentRestaurantId: IdType | null;
   restaurants: User[];
+  username: string;
+  password: string;
   loading: boolean;
   error: string | null;
   message: string | null;
@@ -22,6 +24,8 @@ interface RestaurantsLoaded {
 const initialState: RestaurantsState = {
   currentRestaurantId: null,
   restaurants: [],
+  username: "",
+  password: "",
   loading: false,
   error: null,
   message: null,
@@ -31,7 +35,7 @@ const restaurants = createSlice({
   name: "restaurants",
   initialState,
   reducers: {
-    getRestaurantsStart(state, action: PayloadAction<IdType>) {
+    getRestaurantsStart(state, action: PayloadAction<number>) {
       state.loading = true;
       state.error = null;
     },
@@ -48,6 +52,12 @@ const restaurants = createSlice({
     },
     selectRestaurantById(state, action: PayloadAction<IdType>) {
       state.currentRestaurantId = action.payload;
+    },
+    setRestaurantsUsername(state, action: PayloadAction<string>) {
+      state.username = action.payload;
+    },
+    setRestaurantsPassword(state, action: PayloadAction<string>) {
+      state.password = action.payload;
     },
     getRestaurantByIdStart(state, action: PayloadAction<IdType>) {
       state.currentRestaurantId = action.payload;
@@ -117,6 +127,8 @@ export const {
   getRestaurantsSuccess,
   restaurantsFailure,
   selectRestaurantById,
+  setRestaurantsUsername,
+  setRestaurantsPassword,
   getRestaurantByIdStart,
   getRestaurantByIdSuccess,
   createRestaurantStart,
@@ -128,15 +140,15 @@ export const {
 } = restaurants.actions;
 export default restaurants.reducer;
 
-export const fetchRestaurants = (restaurantId: IdType): AppThunk => async (dispatch) => {
+export const fetchRestaurantsByRole = (role: number): AppThunk => async (dispatch) => {
   try {
-    dispatch(getRestaurantsStart(restaurantId));
+    dispatch(getRestaurantsStart(role));
     const localRestaurants = localStorage.getItem("restaurants");
     if (localRestaurants) {
-      console.log(localRestaurants);
+      // console.log(localRestaurants);
       dispatch(getRestaurantsSuccess({ restaurants: JSON.parse(localRestaurants) as User[] }));
     }
-    const restaurants = await RestaurantService.getAllUsers();
+    const restaurants = await RestaurantService.getUsersByRole(role);
     dispatch(getRestaurantsSuccess({ restaurants }));
     localStorage.setItem("restaurants", JSON.stringify(restaurants));
   } catch (err) {
@@ -144,18 +156,18 @@ export const fetchRestaurants = (restaurantId: IdType): AppThunk => async (dispa
   }
 };
 
-export const fetchRestaurantById = (restaurantId: IdType): AppThunk => async (dispatch) => {
-  try {
-    dispatch(getRestaurantByIdStart(restaurantId));
-    const restaurant = await RestaurantService.getUsersById(restaurantId);
-    dispatch(getRestaurantByIdSuccess(restaurant));
-  } catch (err) {
-    dispatch(restaurantsFailure(getErrorMessage(err)));
-  }
-};
+// export const fetchRestaurantById = (restaurantId: IdType): AppThunk => async (dispatch) => {
+//   try {
+//     dispatch(getRestaurantByIdStart(restaurantId));
+//     const restaurant = await RestaurantService.getUsersById(restaurantId);
+//     dispatch(getRestaurantByIdSuccess(restaurant));
+//   } catch (err) {
+//     dispatch(restaurantsFailure(getErrorMessage(err)));
+//   }
+// };
 
 export const createRestaurant = (
-  restaurant: User,
+  restaurant: User
   // history: History<History.PoorMansUnknown>
   // setSubmitting: (isSubmitting: boolean) => void
 ): AppThunk => async (dispatch, getState) => {
@@ -173,7 +185,7 @@ export const createRestaurant = (
 };
 
 export const updateRestaurant = (
-  restaurant: User,
+  restaurant: User
   // history: History<History.PoorMansUnknown>
   // setSubmitting: (isSubmitting: boolean) => void
 ): AppThunk => async (dispatch) => {

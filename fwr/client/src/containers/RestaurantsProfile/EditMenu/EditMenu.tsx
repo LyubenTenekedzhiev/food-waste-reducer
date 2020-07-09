@@ -21,11 +21,12 @@ export interface FormValues {
 }
 
 interface Props {
+  _id: string;
   editMenu?: boolean | undefined;
   previewMenu?: boolean | undefined;
 }
 
-function EditMenu({ editMenu, previewMenu }: Props): ReactElement {
+function EditMenu({ _id, editMenu, previewMenu }: Props): ReactElement {
   const [id, setId] = useState("");
   const dispatch = useDispatch();
 
@@ -37,7 +38,7 @@ function EditMenu({ editMenu, previewMenu }: Props): ReactElement {
     name: id ? meal?.name : "",
     description: id ? meal?.description : "",
     imageUrl: id ? meal?.imageUrl : "",
-    restaurantId: id ? meal?.restaurantId : "3",
+    restaurantId: id ? meal?.restaurantId : _id,
     foodCategory: id ? meal?.foodCategory : "",
     active: id ? meal?.active : false,
     price: id ? meal?.price : "",
@@ -75,6 +76,7 @@ function EditMenu({ editMenu, previewMenu }: Props): ReactElement {
     <main className={classes.EditMenu_Main}>
       <FormikComponent initialValues={initialValues} setId={setId} />
       <Menu
+        id={_id}
         editMenu={editMenu}
         previewMenu={previewMenu}
         editMealHandler={editMealHandler}

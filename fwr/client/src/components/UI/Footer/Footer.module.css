@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   height: 400px;
+  margin-top: 5rem;
   background-color: rgba(245, 245, 245, 0.281);
 }
 

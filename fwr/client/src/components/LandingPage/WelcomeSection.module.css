@@ -1,6 +1,7 @@
 .WelcomeSection {
   background-image: url("../../assets/platter-2009590_1920.jpg");
   background-size: cover;
+  background-attachment: fixed;
   background-color: black;
   height: 100vh;
 }

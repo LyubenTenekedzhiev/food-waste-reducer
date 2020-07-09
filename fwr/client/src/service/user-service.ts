@@ -13,9 +13,9 @@ class UserService {
         return handleErrorStausCodes<User[]>(resp);
     }
 
-    async getUsersById(id: IdType) {
-        const resp = await fetch(`${this.apiUrl}/users/${id}`);
-        return handleErrorStausCodes<User>(resp);
+    async getUsersByRole(role: number) {
+        const resp = await fetch(`${this.apiUrl}/users/${role}`);
+        return handleErrorStausCodes<User[]>(resp);
     }
 
     // async getUsersByRestaurantId(restaurantId: IdType) {
