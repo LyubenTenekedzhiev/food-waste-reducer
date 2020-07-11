@@ -27,6 +27,7 @@ function FormikComponent({ initialValues, id }: Props): ReactElement {
     .filter((restaurant) => restaurant._id !== id)
     .map((restaurant) => restaurant.username);
 
+
   useEffect(() => {
     dispatch(fetchRestaurantsByRole(0));
   }, []);

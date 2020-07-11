@@ -18,11 +18,6 @@ class UserService {
         return handleErrorStausCodes<User[]>(resp);
     }
 
-    // async getUsersByRestaurantId(restaurantId: IdType) {
-    //     const resp = await fetch(`${this.apiUrl}/users/${restaurantId}`);
-    //     return handleErrorStausCodes<User[]>(resp);
-    // }
-
     async createNewUser(user: User, authToken: string | undefined) {
         const resp = await fetch(`${this.apiUrl}/users`, {
             method: 'POST',

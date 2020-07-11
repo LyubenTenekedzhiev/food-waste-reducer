@@ -5,6 +5,8 @@ export interface IUser extends Indentifiable {
   username: string;
   password: string;
   roles: Role;
+  bookedMeals?: string[];
+  favouriteRestaurants?: string[];
   description?: string;
   keywords?: string;
   imageUrl?: string;
@@ -29,6 +31,8 @@ export class User implements IUser {
     public username: string,
     public password: string,
     public roles: Role,
+    public bookedMeals?: string[],
+    public favouriteRestaurants?: string[],
     public description?: string,
     public keywords?: string,
     public imageUrl?: string,

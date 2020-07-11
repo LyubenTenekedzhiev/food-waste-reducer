@@ -29,25 +29,27 @@ function Menu({ id, editMenu, previewMenu, editMealHandler, deleteMealHandler, s
 
   const searchQuery = useSelector((state: RootState) => state.meals.searchQuery);
   const meals = useSelector((state: RootState) => state.meals.meals);
-  
-  const allMeals = meals.map((meal) => {
-    return (
-      <MealComponent
-        key={meal._id}
-        _id={meal._id}
-        name={meal.name}
-        description={meal.description}
-        imageUrl={meal.imageUrl}
-        price={meal.price}
-        active={meal.active}
-        editMenu={editMenu}
-        previewMenu={previewMenu}
-        editMealHandler={editMealHandler}
-        deleteMealHandler={deleteMealHandler}
-        selectMealHandler={selectMealHandler}
-      />
-    );
-  });
+
+  const allMeals = meals
+    .filter((meal) => meal.foodCategory.toLowerCase().includes(searchQuery) || meal.name.toLowerCase().includes(searchQuery))
+    .map((meal) => {
+      return (
+        <MealComponent
+          key={meal._id}
+          _id={meal._id}
+          name={meal.name}
+          description={meal.description}
+          imageUrl={meal.imageUrl}
+          price={meal.price}
+          active={meal.active}
+          editMenu={editMenu}
+          previewMenu={previewMenu}
+          editMealHandler={editMealHandler}
+          deleteMealHandler={deleteMealHandler}
+          selectMealHandler={selectMealHandler}
+        />
+      );
+    });
 
   const activeMeals = meals
     .filter(
@@ -103,7 +105,9 @@ function Menu({ id, editMenu, previewMenu, editMealHandler, deleteMealHandler, s
   return (
     <div className={classes.Menu}>
       <ul className={classes.Menu_Categories}>{!editMenu && !previewMenu ? foodCategories : null}</ul>
-      <div className={classes.Menu_Meals}>{editMenu ? allMeals : activeMeals}</div>
+      <div className={classes.Menu_Meals}>
+        {editMenu ? allMeals : activeMeals.length > 0 ? activeMeals : <h2 className={classes.Menu_NoResult}>Nothing came up for "{searchQuery}".</h2>}
+      </div>
     </div>
   );
 }

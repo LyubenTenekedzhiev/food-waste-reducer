@@ -8,22 +8,30 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Input from "@material-ui/core/Input";
 import SearchIcon from "@material-ui/icons/Search";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import Navigation from "../../../components/UI/Navigation/Navigation";
 import { fetchRestaurantsByRole } from "../../../features/restaurants/restaurantsSlice";
+import { buildSearchQuery } from "../../../features/meals/mealsSlice";
+import { updateCustomer, fetchCustomersByRole } from "../../../features/customer/customerSlice";
 
 interface Props {
   id: string;
-  // buildSearchQueryHandler?: (e: string) => void; 
 }
 
 const WelcomeSectionRestaurant = ({ id }: Props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const username = localStorage.getItem("usernameCustomer");
+  const password = localStorage.getItem("passwordCustomer");
   const restaurant = useSelector((state: RootState) => state.restaurants.restaurants).filter((restaurant) => restaurant._id === id)[0];
+  const customer = useSelector((state: RootState) => state.customers.customers).filter(
+    (customer) => customer.username === username && customer.password === password
+  )[0];
 
   useEffect(() => {
     dispatch(fetchRestaurantsByRole(0));
+    dispatch(fetchCustomersByRole(1));
   }, []);
 
   const searchByKeywordHandler = (keyword: string) => {
@@ -35,12 +43,40 @@ const WelcomeSectionRestaurant = ({ id }: Props) => {
   };
 
   const buildQueryHandler = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // if(!buildSearchQueryHandler) return;
-    // buildSearchQueryHandler(event.target.value)
-  }
+    dispatch(buildSearchQuery(event.target.value));
+  };
+
+  const addToFavourites = () => {
+    dispatch(
+      updateCustomer({
+        _id: customer?._id,
+        email: customer?.email,
+        username: customer?.username,
+        password: customer?.password,
+        roles: customer?.roles,
+        favouriteRestaurants: customer?.favouriteRestaurants ? [...customer?.favouriteRestaurants, id] : customer?.favouriteRestaurants,
+      })
+    );
+  };
+
+  const removeFromFavourites = () => {
+    if (customer.favouriteRestaurants?.indexOf(id) === undefined) return;
+    const updatedFavourites = customer?.favouriteRestaurants.filter((_id) => _id !== id);
+    console.log(updatedFavourites);
+    dispatch(
+      updateCustomer({
+        _id: customer?._id,
+        email: customer?.email,
+        username: customer?.username,
+        password: customer?.password,
+        roles: customer?.roles,
+        favouriteRestaurants: customer?.favouriteRestaurants ? updatedFavourites : customer?.favouriteRestaurants,
+      })
+    );
+  };
 
   return (
-    <div className={classes.WelcomeSectionRestaurant}>
+    <div className={classes.WelcomeSectionRestaurant} style={{ backgroundImage: restaurant ? `url(${restaurant.imageUrl})` : "" }}>
       <div className={classes.WelcomeSectionRestaurant_Content}>
         <div className={classes.WelcomeSectionRestaurant_Header}>
           <Navigation />
@@ -60,13 +96,24 @@ const WelcomeSectionRestaurant = ({ id }: Props) => {
         </div>
         <div className={classes.WelcomeSectionRestaurant_Favourites}>
           <p className={classes.WelcomeSectionRestaurant_AddToFavourites}>
-            {" "}
-            <FavoriteBorderIcon className={classes.WelcomeSectionRestaurant_Like} /> Add to favourites
+            {customer &&
+              (customer.favouriteRestaurants?.includes(id) ? (
+                <>
+                  <FavoriteIcon className={classes.WelcomeSectionRestaurant_Like} onClick={removeFromFavourites} />{" "}
+                  <span>Remove from favourites</span>
+                </>
+              ) : (
+                <>
+                  <FavoriteBorderIcon className={classes.WelcomeSectionRestaurant_Like} onClick={addToFavourites} />{" "}
+                  <span>Add to favourites</span>{" "}
+                </>
+              ))}
           </p>
           <div className={classes.WelcomeSectionRestaurant_Search}>
             <Input
               id='input-with-icon-adornment'
               className={classes.WelcomeSectionRestaurant_SearchBar}
+              placeholder='Find your favourite meal'
               onChange={buildQueryHandler}
               startAdornment={
                 <InputAdornment position='start'>

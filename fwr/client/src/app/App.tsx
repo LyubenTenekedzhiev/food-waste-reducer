@@ -7,6 +7,7 @@ import RestaurantsPage from '../containers/RestaurantsPage/RestaurantsPage';
 import SingleRestaurant from '../containers/SingleRestaurant/SingleRestaurant';
 import EditRestaurant from '../containers/RestaurantsProfile/RestaurantsProfile';
 import RegisterPage from './../containers/RegisterPage/RegisterPage';
+import CustomersProfile from "./../containers/CustomersProfile/CustomersProfile"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/restaurant/:restaurantName" component={SingleRestaurant} exact />
         <Route path="/edit/:restaurantName" component={EditRestaurant} exact />
         <Route path="/register" component={RegisterPage} exact />
+        <Route path="/profile" component={CustomersProfile} exact />
         <Redirect from="/" to="/" />
       </Switch>
     </div>

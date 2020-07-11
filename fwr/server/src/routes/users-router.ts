@@ -57,13 +57,8 @@ router.put("/:id", async function (req, res, next) {
     }
     const found = await (<UserRepository>req.app.locals.userRepo).findById(req.params.id);
 
-    // if(user.authorId && user.authorId.length > 0 && found.authorId !== user.authorId) {
-    //     throw new AppError(400, `Can not change Post's author.`);
-    // }
-
     // _id and authorId are unmodifiable
     user._id = found._id;
-    // user.authorId =  found.authorId;
     const updated = await (<UserRepository>req.app.locals.userRepo).edit(user);
     res.json(updated); //200 OK with post in the body
   } catch (err) {

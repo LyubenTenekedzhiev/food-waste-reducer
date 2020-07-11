@@ -1,17 +1,31 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 
 import FormikRegister from "../../components/FormikRegister/FormikRegister";
+import FormikRegisterCustomer from "../../components/FormikRegister/FormikRegisterCustomer";
 import classes from "./RegisterPage.module.css";
 import Navigation from "../../components/UI/Navigation/Navigation";
+import { useHistory } from "react-router-dom";
 
-interface Props {}
+interface LocationState {
+  state: string;
+}
 
-function RegisterPage({}: Props): ReactElement {
+interface Props {
+  location: LocationState;
+}
+
+function RegisterPage({ location }: Props): ReactElement {
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!location.state) history.push("/");
+  }, []);
+
   return (
     <div className={classes.RegisterPage}>
       <Navigation />
       <div className={classes.RegisterPage_Form}>
-        <FormikRegister />
+        {location.state && location.state === "restaurant" ? <FormikRegister /> : <FormikRegisterCustomer />}
       </div>
     </div>
   );

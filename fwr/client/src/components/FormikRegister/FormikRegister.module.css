@@ -1,0 +1,23 @@
+.FormikRegister {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.FormikRegister_InputsRestaurant,
+.FormikRegister_InputsCustomer {
+  display: flex;
+  justify-content: space-between;
+  width: 70vw;
+}
+
+.FormikRegister_InputsCustomer {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.FormikRegister_Input {
+  width: 40%;
+}

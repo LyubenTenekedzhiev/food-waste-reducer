@@ -57,7 +57,7 @@ function Meal({
         <h3 className={classes.Meal_Name}>{name}</h3>
         <p className={classes.Meal_Description}>{description}</p>
         <div className={classes.Meal_PriceDetails}>
-          <p className={classes.Meal_Price}> &euro;{price}.00</p>
+          <p className={classes.Meal_Price}> &euro;{Number(price).toFixed(2)}</p>
           {!editMenu && !previewMenu && (
             <div className={classes.Meal_Bookmark}>
               <AddIcon  className={classes.Meal_BookmarkIcon} /> <RemoveIcon className={classes.Meal_BookmarkIcon}/>

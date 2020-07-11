@@ -32,8 +32,9 @@ function RestaurantsPage({ location }: Props): ReactElement {
   }, []);
 
   const restaurants = useSelector((state: RootState) => state.restaurants.restaurants);
-  const filteredRestaurants = restaurants.map((restaurant) => {
-    if (restaurant.keywords?.includes(location.state.foodCategory.toLowerCase())) {
+  const filteredRestaurants = restaurants
+    .filter((restaurant) => restaurant.keywords?.includes(location.state.foodCategory.toLowerCase()))
+    .map((restaurant) => {
       return (
         <Restaurant
           key={restaurant._id}
@@ -46,8 +47,7 @@ function RestaurantsPage({ location }: Props): ReactElement {
           showRestaurant={() => showRestaurantHandler(restaurant.username, restaurant._id)}
         />
       );
-    }
-  });
+    });
   const allRestaurants = restaurants.map((restaurant) => {
     return (
       <Restaurant

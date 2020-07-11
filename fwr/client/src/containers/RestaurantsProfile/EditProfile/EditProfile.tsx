@@ -30,7 +30,6 @@ function EditProfile({ _id }: Props): ReactElement {
   const dispatch = useDispatch();
 
   const restaurant = useSelector((state: RootState) => state.restaurants.restaurants).filter((restaurant) => restaurant._id === _id)[0];
-  console.log(restaurant);
 
   useEffect(() => {
     dispatch(fetchRestaurantsByRole(0));
