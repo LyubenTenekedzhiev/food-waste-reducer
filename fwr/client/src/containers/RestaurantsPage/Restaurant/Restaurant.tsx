@@ -9,8 +9,8 @@ interface Props {
   description: string | undefined;
   pickUp: string | undefined;
   keywords: string | undefined;
-  gridLayout: boolean;
-  showRestaurant: () => void;
+  gridLayout?: boolean;
+  showRestaurant?: () => void;
 }
 
 function Restaurant({ name, image, gridLayout, description, pickUp, keywords, showRestaurant }: Props): ReactElement {

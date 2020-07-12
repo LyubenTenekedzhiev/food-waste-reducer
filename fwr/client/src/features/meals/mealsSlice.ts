@@ -14,6 +14,7 @@ interface MealsState {
   error: string | null;
   message: string | null;
   searchQuery: string | "";
+  inputTouched: boolean;
 }
 
 interface MealsLoaded {
@@ -27,12 +28,23 @@ const initialState: MealsState = {
   error: null,
   message: null,
   searchQuery: "",
+  inputTouched: false,
 };
 
 const meals = createSlice({
   name: "meals",
   initialState,
   reducers: {
+    getAllMealsStart(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    getAllMealsSuccess(state, action: PayloadAction<MealsLoaded>) {
+      const { meals } = action.payload;
+      state.meals = meals;
+      state.loading = false;
+      state.error = null;
+    },
     getMealsStart(state, action: PayloadAction<IdType>) {
       state.loading = true;
       state.error = null;
@@ -53,6 +65,10 @@ const meals = createSlice({
     },
     buildSearchQuery(state, action: PayloadAction<string>) {
       state.searchQuery = action.payload;
+    },
+    setInputTouched(state) {
+      if (state.searchQuery) state.inputTouched = true;
+      if (!state.searchQuery) state.inputTouched = false;
     },
     getMealByIdStart(state, action: PayloadAction<IdType>) {
       state.currentMealId = action.payload;
@@ -118,10 +134,13 @@ const meals = createSlice({
 });
 
 export const {
+  getAllMealsStart,
+  getAllMealsSuccess,
   getMealsStart,
   getMealsSuccess,
   mealsFailure,
   buildSearchQuery,
+  setInputTouched,
   selectMealById,
   getMealByIdStart,
   getMealByIdSuccess,
@@ -133,6 +152,16 @@ export const {
   deleteMealByIdSuccess,
 } = meals.actions;
 export default meals.reducer;
+
+export const fetchAllMeals = (): AppThunk => async (dispatch) => {
+  try {
+    dispatch(getAllMealsStart());
+    const meals = await MealService.getAllMeals();
+    dispatch(getAllMealsSuccess({ meals }));
+  } catch (err) {
+    dispatch(mealsFailure(getErrorMessage(err)));
+  }
+};
 
 export const fetchMeals = (restaurantId: IdType): AppThunk => async (dispatch) => {
   try {

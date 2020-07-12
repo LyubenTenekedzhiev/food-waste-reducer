@@ -32,7 +32,7 @@
 .Meal_Image {
   width: 100%;
   display: block;
-  transition: .5s all;
+  transition: 0.5s all;
 }
 
 .Meal_Image:hover {
@@ -61,18 +61,35 @@
 
 .Meal_Bookmark {
   display: flex;
+  align-items: center;
+}
+
+.Meal_Count {
+  font-size: 1.5rem;
 }
 
 .Meal_BookmarkIcon {
   cursor: pointer;
   font-size: 2rem !important;
-  margin: 0rem .75rem !important;
+  margin: 0rem 0.75rem !important;
+}
+
+.Meal_BookmarkIcon:hover + .Meal_IconLabel {
+  opacity: 1;
+}
+
+.Meal_IconLabel {
+  opacity: 0;
+  position: absolute;
+  bottom: 5%;
+  left: 37.5%;
+  transition: 0.4s all;
 }
 
 .Meal_Edit {
   font-size: 2rem !important;
   position: absolute;
-  transition: .4s all !important;
+  transition: 0.4s all !important;
   top: 30%;
   right: -50px;
   cursor: pointer;
@@ -82,7 +99,7 @@
 .Meal_Delete {
   font-size: 2rem !important;
   position: absolute;
-  transition: .4s all !important;
+  transition: 0.4s all !important;
   top: 60%;
   right: -50px;
   cursor: pointer;
@@ -91,7 +108,7 @@
 
 .Meal_Select {
   position: absolute;
-  transition: .4s all !important;
+  transition: 0.4s all !important;
   top: 45%;
   right: -100px;
   color: rgba(0, 78, 114, 0.856);
@@ -102,7 +119,7 @@
   position: absolute;
   top: 48.5%;
   right: -140px;
-  transition: .4s all;
+  transition: 0.4s all;
 }
 .Meal_Select:hover + .Meal_SelectLabel {
   opacity: 1;

@@ -23,7 +23,9 @@ function RegisterPage({ location }: Props): ReactElement {
 
   return (
     <div className={classes.RegisterPage}>
-      <Navigation />
+      <div className={classes.RegisterPage_Header}>
+        <Navigation />
+      </div>
       <div className={classes.RegisterPage_Form}>
         {location.state && location.state === "restaurant" ? <FormikRegister /> : <FormikRegisterCustomer />}
       </div>

@@ -21,3 +21,7 @@
 .FormikRegister_Input {
   width: 40%;
 }
+
+.FormikRegister_Buttons {
+  margin-top: 2rem;
+}

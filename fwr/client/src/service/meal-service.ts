@@ -9,12 +9,12 @@ class MealService {
     constructor(private apiUrl: string) {}
 
     async getAllMeals() {
-        const resp = await fetch(`${this.apiUrl}/meals`);
+        const resp = await fetch(`${this.apiUrl}/meals/`);
         return handleErrorStausCodes<Meal[]>(resp);
     }
-
+    
     async getMealsById(id: IdType) {
-        const resp = await fetch(`${this.apiUrl}/meals/${id}`);
+        const resp = await fetch(`${this.apiUrl}/meals/allMeals/${id}`);
         return handleErrorStausCodes<Meal>(resp);
     }
 

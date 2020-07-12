@@ -28,6 +28,7 @@ function Menu({ id, editMenu, previewMenu, editMealHandler, deleteMealHandler, s
   };
 
   const searchQuery = useSelector((state: RootState) => state.meals.searchQuery);
+  const inputTouched = useSelector((state: RootState) => state.meals.inputTouched);
   const meals = useSelector((state: RootState) => state.meals.meals);
 
   const allMeals = meals
@@ -106,7 +107,15 @@ function Menu({ id, editMenu, previewMenu, editMealHandler, deleteMealHandler, s
     <div className={classes.Menu}>
       <ul className={classes.Menu_Categories}>{!editMenu && !previewMenu ? foodCategories : null}</ul>
       <div className={classes.Menu_Meals}>
-        {editMenu ? allMeals : activeMeals.length > 0 ? activeMeals : <h2 className={classes.Menu_NoResult}>Nothing came up for "{searchQuery}".</h2>}
+        {editMenu ? (
+          allMeals
+        ) : activeMeals.length > 0 ? (
+          activeMeals
+        ) : inputTouched ? (
+          <h2 className={classes.Menu_NoResult}>Nothing came up for "{searchQuery}".</h2>
+        ) : (
+          <h2 className={classes.Menu_NoMenu}>There isn't a menu yet.</h2>
+        )}
       </div>
     </div>
   );

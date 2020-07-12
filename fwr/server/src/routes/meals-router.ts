@@ -13,14 +13,14 @@ router.get("/", (req, res, next) =>
     .catch(next)
 );
 
-// router.get("/:id", async (req, res, next) => {
-//   try {
-//     const found = await (<MealRepository>req.app.locals.mealRepo).findById(req.params.id);
-//     res.json(found); //200 OK with deleted post in the body
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+router.get("/allMeals/:id", async (req, res, next) => {
+  try {
+    const found = await (<MealRepository>req.app.locals.mealRepo).findById(req.params.id);
+    res.json(found); //200 OK with deleted post in the body
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.get("/:restaurantId", async (req, res, next) => {
   try {

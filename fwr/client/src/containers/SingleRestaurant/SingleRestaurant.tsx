@@ -28,11 +28,9 @@ function SingleRestaurant({ location }: Props): ReactElement {
 
   useEffect(() => {
     if (!location.state) history.push("/");
-    // buildSearchQueryHandler();
     dispatch(fetchRestaurantsByRole(0));
   }, []);
 
-  // const buildSearchQueryHandler = () => {};
 
   return (
     <div>

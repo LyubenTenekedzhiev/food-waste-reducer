@@ -12,6 +12,7 @@ import { fetchRestaurantsByRole } from "./../../features/restaurants/restaurants
 import { updateCustomer, createCustomer } from "../../features/customer/customerSlice";
 import classes from "./FormikRegister.module.css";
 import { useHistory } from "react-router-dom";
+import ButtonTertiary from "../UI/Button/ButtonTertiary";
 
 export interface FormValuesRegister {
   _id: string;
@@ -19,6 +20,8 @@ export interface FormValuesRegister {
   username: string;
   password: string;
   roles: Role;
+  favouriteRestaurants: string[];
+  bookedMeals: string[];
 }
 
 interface Props {}
@@ -33,6 +36,8 @@ function FormikComponent(props: Props): ReactElement {
     username: "",
     password: "",
     roles: Role.CUSTOMER,
+    favouriteRestaurants: [],
+    bookedMeals: [],
   };
 
   const emails = useSelector((state: RootState) => state.restaurants.restaurants).map((restaurant) => restaurant.email);
@@ -53,6 +58,8 @@ function FormikComponent(props: Props): ReactElement {
           username: values.username,
           password: values.password,
           roles: values.roles,
+          favouriteRestaurants: values.favouriteRestaurants,
+          bookedMeals: values.bookedMeals,
         } as User;
         //Create
         dispatch(createCustomer(result));
@@ -107,20 +114,9 @@ const PostFormInternal: (props: FormikProps<FormValuesRegister>) => ReactElement
           <InputField name='password' label='Password*' type='password' />
         </div>
       </div>
-      <div className='PostForm-butons row'>
-        <Button
-          variant='contained'
-          color='primary'
-          type='submit'
-          name='action'
-          disabled={isSubmitting || !dirty || Object.values(errors).some((err) => !!err === true)}
-          endIcon={<Icon>send</Icon>}
-        >
-          Submit
-        </Button>
-        <Button variant='contained' color='primary' onClick={handleReset} disabled={!dirty || isSubmitting} endIcon={<Icon>reset</Icon>}>
-          Reset
-        </Button>
+      <div className={classes.FormikRegister_Buttons}>
+        <ButtonTertiary disabled={isSubmitting || !dirty || Object.values(errors).some((err) => !!err === true)}>Submit</ButtonTertiary>
+        <ButtonTertiary disabled={!dirty || isSubmitting} handleReset={handleReset} >Reset</ButtonTertiary>
       </div>
     </Form>
   );

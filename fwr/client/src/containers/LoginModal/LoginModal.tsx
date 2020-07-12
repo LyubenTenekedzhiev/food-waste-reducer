@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../app/rootReducer";
 import { setRestaurantsUsername, setRestaurantsPassword } from "../../features/restaurants/restaurantsSlice";
 import { setCustomersUsername, setCustomersPassword } from "../../features/customer/customerSlice";
+import ButtonTertiary from "../../components/UI/Button/ButtonTertiary";
 
 interface Props {
   openRestaurant: boolean;
@@ -99,6 +100,7 @@ export default function LoginModal({ openRestaurant, openCustomer, handleClose }
       handleClose();
       localStorage.setItem("usernameCustomer", usernameCustomer);
       localStorage.setItem("passwordCustomer", passwordCustomer);
+      window.location.reload();
     }
   };
 
@@ -139,10 +141,7 @@ export default function LoginModal({ openRestaurant, openCustomer, handleClose }
                 onChange={openRestaurant ? setPasswordRestaurant : setPasswordCustomer}
                 value={openRestaurant ? passwordRestaurant : passwordCustomer}
               />
-
-              <button className={`${classes.button} ${classes.from_right}`} disabled={usernameError || passwordError}>
-                Sign in
-              </button>
+              <ButtonTertiary disabled={usernameError || passwordError}>Sign In</ButtonTertiary>
             </form>
           </div>
         </Fade>

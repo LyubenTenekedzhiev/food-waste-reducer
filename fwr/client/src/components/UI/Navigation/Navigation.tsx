@@ -108,7 +108,7 @@ const Navigation = (props: Props): JSX.Element => {
                   className={classes.Navigation_Link}
                   to={{
                     pathname: `/profile`,
-                    // state: { username: username, password: password, id: restaurant ? restaurant._id : "" },
+                    state: { username: usernameCustomer, password: passwordCustomer },
                   }}
                 >
                   Your profile

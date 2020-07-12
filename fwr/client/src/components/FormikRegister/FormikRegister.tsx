@@ -11,6 +11,8 @@ import { User, Role } from "./../../models/user.model";
 import { createRestaurant, updateRestaurant, fetchRestaurantsByRole } from "./../../features/restaurants/restaurantsSlice";
 import classes from "./FormikRegister.module.css";
 import { useHistory } from "react-router-dom";
+import { fetchFoodCategories } from "../../features/foodCategories/foodCategorySlice";
+import ButtonTertiary from "./../UI/Button/ButtonTertiary";
 
 export interface FormValuesRegister {
   _id: string;
@@ -54,9 +56,14 @@ function FormikComponent(props: Props): ReactElement {
 
   const emails = useSelector((state: RootState) => state.restaurants.restaurants).map((restaurant) => restaurant.email);
   const usernames = useSelector((state: RootState) => state.restaurants.restaurants).map((restaurant) => restaurant.username);
+  const foodCategories = useSelector((state: RootState) =>
+    state.foodCategories.foodCategories.map((category) => category.name.toLowerCase())
+  );
+  console.log(foodCategories);
 
   useEffect(() => {
     dispatch(fetchRestaurantsByRole(0));
+    dispatch(fetchFoodCategories());
   }, []);
 
   return (
@@ -95,19 +102,22 @@ function FormikComponent(props: Props): ReactElement {
           .required()
           .min(2)
           .max(30)
-          .matches(/^(?![_.])[a-zA-Z0-9._]{2,}-[a-zA-Z0-9]+(?![_.+-;/])$/, "Enter a valid username.")
+          .matches(/^(?![_.])[a-zA-Z0-9._]{2,}[a-zA-Z0-9]+(?![_.+-;/])$/, "Enter a valid username.")
           .test("isn't taken", "Username already exists.", (value) => !usernames.includes(value)),
         password: Yup.string().required().min(6),
         description: Yup.string().required().min(2).max(45),
         keywords: Yup.string()
           .required()
-          .matches(/[a-zA-Z]/i, "Must be a string"),
+          .matches(/[a-zA-Z]/i, "Must be a string")
+          .test("does exist", "Category doesn't exist.", (value) => foodCategories.includes(value)),
         imageUrl: Yup.string().url().required(),
         street: Yup.string().required(),
         zipCode: Yup.string()
           .required()
           .matches(/^([1-9][0-9]*|0)([0-9]+)?$/i, "Must be a number"),
-        city: Yup.string().required(),
+        city: Yup.string()
+          .required()
+          .matches(/[a-zA-Z]/i, "Must be a string"),
         phone: Yup.string()
           .required()
           .matches(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im, "Enter a valid phone number."), // regex
@@ -148,30 +158,19 @@ const PostFormInternal: (props: FormikProps<FormValuesRegister>) => ReactElement
           <InputField name='password' label='Password*' type='password' />
           <InputField name='description' label='Short description*' />
           <InputField name='imageUrl' label='Image URL for your restaurant*' />
-          <InputField name='keywords' label='Keywords (maximum 5: eg. pizza, vegan, italian, burger, dessert)*' />
+          <InputField name='keywords' label='Keywords (maximum 4: eg. pizza, vegan, italian, burger)*' />
         </div>
         <div className={classes.FormikRegister_Input}>
           <InputField name='street' label='Street*' />
           <InputField name='zipCode' label='Zip Code*' />
           <InputField name='city' label='City*' />
           <InputField name='phone' label='Phone number*' />
-          <InputField name='pickUp' label='Pick up time for your meals*' />{" "}
+          <InputField name='pickUp' label='Pick up time for your meals* (eg. 13:30 - 15:00)' />{" "}
         </div>
       </div>
-      <div className='PostForm-butons row'>
-        <Button
-          variant='contained'
-          color='primary'
-          type='submit'
-          name='action'
-          disabled={isSubmitting || !dirty || Object.values(errors).some((err) => !!err === true)}
-          endIcon={<Icon>send</Icon>}
-        >
-          Submit
-        </Button>
-        <Button variant='contained' color='primary' onClick={handleReset} disabled={!dirty || isSubmitting} endIcon={<Icon>reset</Icon>}>
-          Reset
-        </Button>
+      <div className={classes.FormikRegister_Buttons}>
+        <ButtonTertiary disabled={isSubmitting || !dirty || Object.values(errors).some((err) => !!err === true)}>Submit</ButtonTertiary>
+        <ButtonTertiary disabled={!dirty || isSubmitting} handleReset={handleReset} >Reset</ButtonTertiary>
       </div>
     </Form>
   );

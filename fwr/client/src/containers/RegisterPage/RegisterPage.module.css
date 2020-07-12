@@ -7,3 +7,9 @@
   width: 50%;
   margin: 0 auto;
 }
+
+.RegisterPage_Header {
+  width: 70vw;
+  margin: 0 auto;
+  border-bottom: var(--border-dark);
+}

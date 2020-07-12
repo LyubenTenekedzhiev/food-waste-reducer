@@ -156,16 +156,6 @@ export const fetchRestaurantsByRole = (role: number): AppThunk => async (dispatc
   }
 };
 
-// export const fetchRestaurantById = (restaurantId: IdType): AppThunk => async (dispatch) => {
-//   try {
-//     dispatch(getRestaurantByIdStart(restaurantId));
-//     const restaurant = await RestaurantService.getUsersById(restaurantId);
-//     dispatch(getRestaurantByIdSuccess(restaurant));
-//   } catch (err) {
-//     dispatch(restaurantsFailure(getErrorMessage(err)));
-//   }
-// };
-
 export const createRestaurant = (
   restaurant: User
   // history: History<History.PoorMansUnknown>

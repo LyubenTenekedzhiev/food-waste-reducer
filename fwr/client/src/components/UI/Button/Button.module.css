@@ -1,4 +1,3 @@
-
 /* ********* Button Primary ************ */
 :root {
   --offset: 10px;
@@ -25,9 +24,10 @@
   transition: background 0.8s ease;
 }
 .button:hover {
-  background: rgba(100, 0, 0, .03);
+  background: rgba(100, 0, 0, 0.03);
 }
-.button__horizontal, .button__vertical {
+.button__horizontal,
+.button__vertical {
   position: absolute;
   top: var(--horizontal-offset, 0);
   right: var(--vertical-offset, 0);
@@ -36,8 +36,9 @@
   transition: transform 0.8s ease;
   will-change: transform;
 }
-.button__horizontal::before, .button__vertical::before {
-  content: '';
+.button__horizontal::before,
+.button__vertical::before {
+  content: "";
   position: absolute;
   border: inherit;
 }
@@ -70,65 +71,109 @@
   transform: scaleY(0);
 }
 
-
-
 /* ********* Button Secondary ************ */
 
-.btn {		
-	position: relative;	
-	padding: 1.4rem 4.2rem;
-	font-size: calc(var(--heading-size-tertiary) - .5rem);
-	color: inherit;
-  letter-spacing: .75rem;
+.btn {
+  position: relative;
+  padding: 1.4rem 4.2rem;
+  font-size: calc(var(--heading-size-tertiary) - 0.5rem);
+  color: inherit;
+  letter-spacing: 0.75rem;
   font-weight: 800;
+  text-transform: uppercase;
+  transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn:before,
+.btn:after {
+  content: "";
+  position: absolute;
+  transition: inherit;
+  z-index: -1;
+}
+
+.btn:hover {
+  color: white;
+  transition-delay: 0.5s;
+}
+
+.btn:hover:before {
+  transition-delay: 0s;
+}
+
+.btn:hover:after {
+  background: black;
+  transition-delay: 0.35s;
+}
+
+/* ********* Button Tertiary ************ */
+
+.ButtonTertiary {		
+  position: relative;	
+  list-style: none;
+	padding: 1rem 2.5rem;
+	font-size: calc(var(--heading-size-tertiary) - .25rem);
+	color: inherit;
+  letter-spacing: 2px;
+  font-weight: 200;
 	text-transform: uppercase;
 	transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);	
 	cursor: pointer;
-	user-select: none;
+  user-select: none;
+  border: none;
+  background-color: inherit;
+  z-index: 2;
 }
 
-.btn:before, .btn:after {
+.ButtonTertiary:before, .ButtonTertiary:after {
 	content: '';
 	position: absolute;	
 	transition: inherit;
 	z-index: -1;
 }
 
-.btn:hover {
+.ButtonTertiary:hover {
 	color: white;
-	transition-delay: .5s;
+  transition-delay: .5s;
+  z-index: 2;
 }
 
-.btn:hover:before {
+.ButtonTertiary:hover:before {
 	transition-delay: 0s;
 }
 
-.btn:hover:after {
+.ButtonTertiary:hover:after {
 	background: black;
 	transition-delay: .35s;
 }
 
+.ButtonTertiary_Disabled {
+  cursor: not-allowed;
+}
+
 /* From Right */
 
-.from_right:before, 
+.from_right:before,
 .from_right:after {
-	top: 0;
-	width: 0;
-	height: 100%;
+  top: 0;
+  width: 0;
+  height: 100%;
 }
 
 .from_right:before {
-	left: 0;
-	border: 1px solid currentColor;
-	border-left: 0;
-	border-right: 0;	
+  left: 0;
+  border: 1px solid currentColor;
+  border-left: 0;
+  border-right: 0;
 }
 
 .from_right:after {
-	right: 0;
+  right: 0;
 }
 
 .from_right:hover:before,
 .from_right:hover:after {
-	width: 100%;
+  width: 100%;
 }

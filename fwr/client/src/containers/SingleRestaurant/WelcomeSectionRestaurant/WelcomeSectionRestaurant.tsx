@@ -11,7 +11,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Navigation from "../../../components/UI/Navigation/Navigation";
 import { fetchRestaurantsByRole } from "../../../features/restaurants/restaurantsSlice";
-import { buildSearchQuery } from "../../../features/meals/mealsSlice";
+import { buildSearchQuery, setInputTouched } from "../../../features/meals/mealsSlice";
 import { updateCustomer, fetchCustomersByRole } from "../../../features/customer/customerSlice";
 
 interface Props {
@@ -44,6 +44,7 @@ const WelcomeSectionRestaurant = ({ id }: Props) => {
 
   const buildQueryHandler = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     dispatch(buildSearchQuery(event.target.value));
+    dispatch(setInputTouched());
   };
 
   const addToFavourites = () => {
@@ -62,7 +63,6 @@ const WelcomeSectionRestaurant = ({ id }: Props) => {
   const removeFromFavourites = () => {
     if (customer.favouriteRestaurants?.indexOf(id) === undefined) return;
     const updatedFavourites = customer?.favouriteRestaurants.filter((_id) => _id !== id);
-    console.log(updatedFavourites);
     dispatch(
       updateCustomer({
         _id: customer?._id,
@@ -105,9 +105,16 @@ const WelcomeSectionRestaurant = ({ id }: Props) => {
               ) : (
                 <>
                   <FavoriteBorderIcon className={classes.WelcomeSectionRestaurant_Like} onClick={addToFavourites} />{" "}
-                  <span>Add to favourites</span>{" "}
+                  <span>Add to favourites</span>
                 </>
               ))}
+            {!customer && !username && !password && (
+              <>
+                {" "}
+                <FavoriteBorderIcon className={classes.WelcomeSectionRestaurant_Like} />{" "}
+                <span>Sign in & add to favourites</span>
+              </>
+            )}
           </p>
           <div className={classes.WelcomeSectionRestaurant_Search}>
             <Input
