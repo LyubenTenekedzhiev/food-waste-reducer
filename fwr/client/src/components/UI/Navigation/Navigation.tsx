@@ -1,20 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import classes from "./Navigation.module.css";
 import LoginModal from "../../../containers/LoginModal/LoginModal";
-import { useDispatch, useSelector } from "react-redux";
 import { fetchRestaurantsByRole } from "../../../features/restaurants/restaurantsSlice";
 import { RootState } from "../../../app/rootReducer";
 import { fetchCustomersByRole } from "../../../features/customer/customerSlice";
+import SideDrawer from "../SideDrawer/SideDrawer";
 
-interface Props {}
-
-// interface RouteProps {
-
-// }
-
-const Navigation = (props: Props): JSX.Element => {
+const Navigation = (): JSX.Element => {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [openLogin, setOpenLogin] = useState(false);
   const [openRegister, setOpenRegister] = useState(false);
   const [openModalRestaurant, setOpenModalRestaurant] = React.useState(false);
@@ -28,6 +24,16 @@ const Navigation = (props: Props): JSX.Element => {
   const restaurant = useSelector((state: RootState) => state.restaurants.restaurants).filter(
     (restaurant) => restaurant.username === username && restaurant.password === password
   )[0];
+  const isAdmin = useSelector((state: RootState) => state.customers.isAdmin);
+
+  const updateWindowDimensions = useCallback(() => {
+    setScreenWidth(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", updateWindowDimensions);
+    return () => window.removeEventListener("resize", updateWindowDimensions);
+  }, [updateWindowDimensions]);
 
   const openLoginMenuHandler = () => {
     setOpenLogin(true);
@@ -70,67 +76,85 @@ const Navigation = (props: Props): JSX.Element => {
   return (
     <>
       <header className={classes.Header}>
-        <nav className={classes.Navigation}>
-          <NavLink className={classes.Navigation_Link} to={"/"}>
-            Home
-          </NavLink>
-          <NavLink className={classes.Navigation_Link} to={"/about"}>
-            About
-          </NavLink>
-        </nav>
-        <h3 className={classes.Navigation_Logo}>fwr</h3>
-        <nav className={classes.Navigation}>
-          {!username && !password && !usernameCustomer && !passwordCustomer ? (
-            <>
-              <p className={classes.Navigation_Link} onMouseOver={openRegisterMenuHandler} onMouseOut={closeRegisterMenuHandler}>
-                Register
-                <span className={openRegister ? classes.Navigation_LoginVissible : classes.Navigation_Login}>
-                  <NavLink to={{ pathname: "/register", state: "customer" }} className={classes.Navigation_RegisterLinks}>
-                    User
-                  </NavLink>
-                  <NavLink to={{ pathname: "/register", state: "restaurant" }} className={classes.Navigation_RegisterLinks}>
-                    Restaurant
-                  </NavLink>
-                </span>
-              </p>
-              <p className={classes.Navigation_Link} onMouseOver={openLoginMenuHandler} onMouseOut={closeLoginMenuHandler}>
-                Login
-                <span className={openLogin ? classes.Navigation_LoginVissible : classes.Navigation_Login}>
-                  <span onClick={handleOpenCustomer}>User</span>
-                  <span onClick={handleOpenRestaurant}>Restaurant</span>
-                </span>
-              </p>
-            </>
-          ) : (
-            <>
-              {usernameCustomer && passwordCustomer ? (
-                <NavLink
-                  className={classes.Navigation_Link}
-                  to={{
-                    pathname: `/profile`,
-                    state: { username: usernameCustomer, password: passwordCustomer },
-                  }}
-                >
-                  Your profile
-                </NavLink>
-              ) : (
-                <NavLink
-                  className={classes.Navigation_Link}
-                  to={{
-                    pathname: `/edit/${username?.toLowerCase()}`,
-                    state: { username: username, password: password, id: restaurant ? restaurant._id : "" },
-                  }}
-                >
-                  Your profile
-                </NavLink>
-              )}
-
-              <NavLink className={classes.Navigation_Link} to={"/"} onClick={logoutHandler}>
-                Logout
+        {screenWidth <= 600 ? (
+          <>
+            <h3 className={classes.Navigation_Logo}>fwr</h3>
+            <SideDrawer
+              handleOpenCustomer={handleOpenCustomer}
+              handleOpenRestaurant={handleOpenRestaurant}
+              usernameCustomer={usernameCustomer}
+              passwordCustomer={passwordCustomer}
+              username={username}
+              password={password}
+              isAdmin={isAdmin}
+              logoutHandler={logoutHandler}
+              id={restaurant ? restaurant._id : ""}
+            />
+          </>
+        ) : (
+          <>
+            <nav className={classes.Navigation}>
+              <NavLink className={classes.Navigation_Link} to={"/"}>
+                Home
               </NavLink>
-            </>
-          )}
-        </nav>
+              <NavLink className={classes.Navigation_Link} to={"/about"}>
+                About
+              </NavLink>
+            </nav>
+            <h3 className={classes.Navigation_Logo}>fwr</h3>
+            <nav className={classes.Navigation}>
+              {!username && !password && !usernameCustomer && !passwordCustomer ? (
+                <>
+                  <p className={classes.Navigation_Link} onMouseOver={openRegisterMenuHandler} onMouseOut={closeRegisterMenuHandler}>
+                    Register
+                    <span className={openRegister ? classes.Navigation_LoginVissible : classes.Navigation_Login}>
+                      <NavLink to={{ pathname: "/register", state: "customer" }} className={classes.Navigation_RegisterLinks}>
+                        User
+                      </NavLink>
+                      <NavLink to={{ pathname: "/register", state: "restaurant" }} className={classes.Navigation_RegisterLinks}>
+                        Restaurant
+                      </NavLink>
+                    </span>
+                  </p>
+                  <p className={classes.Navigation_Link} onMouseOver={openLoginMenuHandler} onMouseOut={closeLoginMenuHandler}>
+                    Login
+                    <span className={openLogin ? classes.Navigation_LoginVissible : classes.Navigation_Login}>
+                      <span onClick={handleOpenCustomer}>User</span>
+                      <span onClick={handleOpenRestaurant}>Restaurant</span>
+                    </span>
+                  </p>
+                </>
+              ) : (
+                <>
+                  {usernameCustomer && passwordCustomer ? (
+                    <NavLink
+                      className={classes.Navigation_Link}
+                      to={{
+                        pathname: isAdmin ? `/admin` : `/profile`,
+                        state: { username: usernameCustomer, password: passwordCustomer },
+                      }}
+                    >
+                      Your profile
+                    </NavLink>
+                  ) : (
+                    <NavLink
+                      className={classes.Navigation_Link}
+                      to={{
+                        pathname: `/edit/${username?.toLowerCase()}`,
+                        state: { username: username, password: password, id: restaurant ? restaurant._id : "" },
+                      }}
+                    >
+                      Your profile
+                    </NavLink>
+                  )}
+                  <NavLink className={classes.Navigation_Link} to={"/"} onClick={logoutHandler}>
+                    Logout
+                  </NavLink>
+                </>
+              )}
+            </nav>
+          </>
+        )}
       </header>
       <LoginModal openRestaurant={openModalRestaurant} openCustomer={openModalCustomer} handleClose={handleClose} />
     </>

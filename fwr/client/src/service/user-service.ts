@@ -51,6 +51,4 @@ class UserService {
 
 }
 
-
-
 export default new UserService(API_BASE);

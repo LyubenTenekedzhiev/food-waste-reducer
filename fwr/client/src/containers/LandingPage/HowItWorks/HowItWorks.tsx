@@ -5,9 +5,8 @@ import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import classes from "./HowItWorks.module.css";
 
-interface Props {}
 
-function HowItWorks({}: Props): ReactElement {
+function HowItWorks(): ReactElement {
   return (
     <div className={classes.HowItWorks}>
       <h2 className={classes.HowItWorks_Title}>How it works</h2>

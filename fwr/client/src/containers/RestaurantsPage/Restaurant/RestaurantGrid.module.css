@@ -1,21 +1,21 @@
 .Restaurant {
   cursor: pointer;
   text-align: start;
-  font-size: 1.3rem;
-  border-radius: 5px;
+  font-size: 1.7rem;
+  border-radius: 6px;
 }
 
 .Restaurant_Figure {
   position: relative;
   overflow: hidden;
   border-radius: 5px;
-  min-height: 500px;
+  min-height: 550px;
 }
 
 .Restaurant_Image {
   width: 100%;
   display: block;
-  transition: .5s all;
+  transition: 0.5s all;
 }
 
 .Restaurant_Image:hover {
@@ -58,19 +58,19 @@
 }
 
 .Restaurant_Name {
-  font-size: 1.75rem;
+  font-size: 2.3rem;
 }
 
 .Restaurant_Paragraph {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-left: .1rem;
+  padding-left: 0.1rem;
 }
 
 .Restaurant_PickUp {
   background: rgba(150, 227, 253, 0.356);
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 6px;
 }
 
@@ -78,7 +78,281 @@
   display: flex;
   align-items: center;
   height: 50%;
-  border-top: .1px dotted rgba(0, 0, 0, 0.384);
+  border-top: 0.1px dotted rgba(0, 0, 0, 0.384);
   padding: 0rem 1rem;
   font-weight: 200;
+}
+
+@media (max-width: 2400px) {
+  .Restaurant {
+    font-size: 1.3rem;
+    border-radius: 4px;
+  }
+  .Restaurant_Figure {
+    border-radius: 4px;
+    min-height: 500px;
+  }
+  .Restaurant_Image {
+    width: 100%;
+  }
+  .Restaurant_Name {
+    padding: 2px;
+    font-size: 1.7rem;
+  }
+  .RestaurantAmount {
+    padding: 2px;
+  }
+  .Restaurant_Figcaption {
+    border-radius: 2px;
+    height: 40%;
+    width: 100%;
+  }
+  .Restaurant_Info {
+    height: 90%;
+    padding: 0rem 1rem;
+  }
+  .Restaurant_Description {
+    max-width: 65%;
+  }
+  .Restaurant_Paragraph {
+    padding-left: 0.1rem;
+  }
+  .Restaurant_PickUp {
+    padding: 0.5rem;
+    border-radius: 6px;
+  }
+  .Restaurant_Categories {
+    height: 50%;
+    padding: 0rem 1rem;
+  }
+}
+
+@media (max-width: 1550px) {
+  .Restaurant {
+    font-size: 1rem;
+  }
+  .Restaurant_Figure {
+    min-height: 300px;
+  }
+  .Restaurant_Image {
+    width: 100%;
+  }
+  .Restaurant_Name {
+    padding: 2px;
+    font-size: 1.3rem;
+  }
+  .Restaurant_Figcaption {
+    border-radius: 3px;
+    width: 100%;
+  }
+  .Restaurant_Description {
+    max-width: 65%;
+  }
+  .Restaurant_Paragraph {
+    padding-left: 0.1rem;
+  }
+  .Restaurant_PickUp {
+    padding: 0.4rem;
+    font-size: 0.8rem;
+  }
+  .Restaurant_Categories {
+    height: 50%;
+    padding: 0rem 1rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .Restaurant {
+    font-size: 0.7rem;
+    border-radius: 2px;
+  }
+  .Restaurant_Figure {
+    min-height: 200px;
+    border-radius: 2px;
+  }
+  .Restaurant_Image {
+    width: 100%;
+  }
+  .Restaurant_Name {
+    padding: 2px;
+    font-size: 0.9rem;
+  }
+  .Restaurant_Figcaption {
+    border-radius: 2px;
+    width: 100%;
+  }
+  .Restaurant_Description {
+    max-width: 65%;
+  }
+  .Restaurant_Paragraph {
+    padding-left: 0.1rem;
+  }
+  .Restaurant_PickUp {
+    padding: 0.3rem;
+    border-radius: 4px;
+    font-size: 0.55rem;
+  }
+  .Restaurant_Categories {
+    height: 50%;
+    padding: 0rem 1rem;
+  }
+}
+
+@media (max-width: 970px) {
+  .Restaurant {
+    font-size: 0.8rem;
+    border-radius: 2px;
+  }
+  .Restaurant_Figure {
+    min-height: 250px;
+    border-radius: 2px;
+  }
+  .Restaurant_Image {
+    width: 100%;
+  }
+  .Restaurant_Name {
+    padding: 2px;
+    font-size: 0.95rem;
+  }
+  .Restaurant_Figcaption {
+    border-radius: 2px;
+    width: 100%;
+  }
+  .Restaurant_Description {
+    max-width: 65%;
+  }
+  .Restaurant_Paragraph {
+    padding-left: 0.1rem;
+  }
+  .Restaurant_PickUp {
+    padding: 0.3rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+  }
+  .Restaurant_Categories {
+    height: 50%;
+    padding: 0rem 1rem;
+  }
+}
+
+@media (max-width: 670px) {
+  .Restaurant {
+    font-size: 0.65rem;
+    border-radius: 2px;
+  }
+  .Restaurant_Figure {
+    min-height: 220px;
+    border-radius: 2px;
+  }
+  .Restaurant_Image {
+    width: 100%;
+  }
+  .Restaurant_Name {
+    padding: 2px;
+    font-size: 0.85rem;
+  }
+  .Restaurant_Figcaption {
+    border-radius: 2px;
+    width: 100%;
+  }
+  .Restaurant_Description {
+    max-width: 65%;
+  }
+  .Restaurant_Paragraph {
+    padding-left: 0.1rem;
+  }
+  .Restaurant_PickUp {
+    padding: 0.3rem;
+    border-radius: 4px;
+    font-size: 0.55rem;
+  }
+  .Restaurant_Categories {
+    height: 50%;
+    padding: 0rem 1rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .Restaurant {
+    font-size: 0.6rem;
+  }
+  .Restaurant_Figure {
+    min-height: 180px;
+  }
+  .Restaurant_Image {
+    width: 100%;
+  }
+  .Restaurant_Name {
+    padding: 0px;
+    font-size: 0.75rem;
+  }
+  .Restaurant_Figcaption {
+    border-radius: 2px;
+    width: 100%;
+  }
+  .Restaurant_Info {
+    padding: 0rem 0.5rem;
+  }
+  .Restaurant_Description {
+    max-width: 65%;
+  }
+  .Restaurant_Paragraph {
+    padding-left: 0rem;
+  }
+  .Restaurant_PickUp {
+    padding: 0.2rem;
+    border-radius: 4px;
+    font-size: 0.5rem;
+  }
+  .Restaurant_Categories {
+    height: 50%;
+    padding: 0rem 0.5rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .Restaurant {
+    font-size: 0.5rem;
+  }
+  .Restaurant_Figure {
+    min-height: 160px;
+  }
+}
+
+@media (max-width: 475px) {
+  .Restaurant_Name {
+    font-size: 0.65rem;
+  }
+  .Restaurant {
+    font-size: 0.45rem;
+  }
+  .Restaurant_Figure {
+    min-height: 150px;
+  }
+  .Restaurant_PickUp {
+    padding: 0.1rem;
+    font-size: 0.45rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .Restaurant_Name {
+    font-size: 0.75rem;
+  }
+  .Restaurant {
+    font-size: 0.6rem;
+  }
+  .Restaurant_Figure {
+    min-height: 130px;
+  }
+  .Restaurant_PickUp {
+    padding: 0.1rem;
+    font-size: 0.6rem;
+  }
+  .Restaurant_Categories {
+    padding: 0rem 0.3rem;
+  }
+  .Restaurant_Info {
+    padding: 0rem 0.3rem;
+  }
 }

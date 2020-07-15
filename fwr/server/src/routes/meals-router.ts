@@ -1,8 +1,6 @@
 import { Router } from "express";
 import { AppError } from "../model/errors";
-import { UserRepository, MealRepository } from "../dao/mongo-repository";
-import { ObjectId } from "mongodb";
-// import { Meal } from './../../../client/src/models/meal';
+import {  MealRepository } from "../dao/mongo-repository";
 
 const router = Router();
 
@@ -34,11 +32,6 @@ router.get("/:restaurantId", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const newMeal = req.body;
-    //TODO set correct author
-    // const defaultUser = await (<UserRepository>req.app.locals.userRepo).findByUsername("trayan");
-    // newMeal.authorId = defaultUser._id;
-
-    // Create new meal
     const created = await (<MealRepository>req.app.locals.mealRepo).add(newMeal);
 
     res.status(201).location(`/api/meals/${newMeal.id}`).json(created);
@@ -56,11 +49,6 @@ router.put("/:id", async function (req, res, next) {
       return;
     }
     const found = await (<MealRepository>req.app.locals.mealRepo).findById(req.params.id);
-
-    // if(meal.authorId && meal.authorId.length > 0 && found.authorId !== meal.authorId) {
-    //     throw new AppError(400, `Can not change Post's author.`);
-    // }
-
     // _id and authorId are unmodifiable
     meal._id = found._id;
     // meal.authorId =  found.authorId;

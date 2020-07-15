@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useEffect } from "react";
+import React, { ReactElement, useState } from "react";
 
 import classes from "./EditMenu.module.css";
 import FormikComponent from "../../../components/FormikMenu/FormikMenu";
@@ -6,7 +6,7 @@ import Menu from "../../SingleRestaurant/Menu/Menu";
 
 import { useDispatch, useSelector } from "react-redux";
 import { IdType } from "../../../shared-types/shared-types";
-import { selectMealById, deleteMeal, updateMeal, createMeal } from "../../../features/meals/mealsSlice";
+import { selectMealById, deleteMeal, updateMeal } from "../../../features/meals/mealsSlice";
 import { RootState } from "../../../app/rootReducer";
 
 export interface FormValues {
@@ -17,6 +17,8 @@ export interface FormValues {
   restaurantId: string;
   foodCategory: string;
   price: string;
+  amount: string;
+  initialAmount: string;
   active: boolean;
 }
 
@@ -40,6 +42,8 @@ function EditMenu({ _id, editMenu, previewMenu }: Props): ReactElement {
     imageUrl: id ? meal?.imageUrl : "",
     restaurantId: id ? meal?.restaurantId : _id,
     foodCategory: id ? meal?.foodCategory : "",
+    amount: id ? meal?.amount : "",
+    initialAmount: id ? meal?.initialAmount : "",
     active: id ? meal?.active : false,
     price: id ? meal?.price : "",
   };
@@ -65,6 +69,8 @@ function EditMenu({ _id, editMenu, previewMenu }: Props): ReactElement {
         imageUrl: activeMeal.imageUrl,
         restaurantId: activeMeal.restaurantId,
         foodCategory: activeMeal.foodCategory,
+        amount: activeMeal.amount,
+        initialAmount: activeMeal.initialAmount,
         price: activeMeal.price,
         active: !activeMeal.active,
       }
@@ -75,14 +81,16 @@ function EditMenu({ _id, editMenu, previewMenu }: Props): ReactElement {
   return (
     <main className={classes.EditMenu_Main}>
       <FormikComponent initialValues={initialValues} setId={setId} />
-      <Menu
-        id={_id}
-        editMenu={editMenu}
-        previewMenu={previewMenu}
-        editMealHandler={editMealHandler}
-        deleteMealHandler={deleteMealHandler}
-        selectMealHandler={selectMealHandler}
-      />
+      <div className={classes.EditMenu_Menu}>
+        <Menu
+          id={_id}
+          editMenu={editMenu}
+          previewMenu={previewMenu}
+          editMealHandler={editMealHandler}
+          deleteMealHandler={deleteMealHandler}
+          selectMealHandler={selectMealHandler}
+        />
+      </div>
     </main>
   );
 }

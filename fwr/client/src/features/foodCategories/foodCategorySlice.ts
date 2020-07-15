@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { History } from "history";
 
 import { AppThunk } from "../../app/store";
 import FoodCategorieService from "../../service/foodCategory-service";
@@ -133,7 +132,6 @@ export const fetchFoodCategories = (): AppThunk => async (dispatch) => {
     dispatch(getFoodCategoriesStart());
     const localFoodCategories = localStorage.getItem("foodCategories");
     if (localFoodCategories) {
-      // console.log(localFoodCategories);
       dispatch(getFoodCategoriesSuccess({ foodCategories: JSON.parse(localFoodCategories) as FoodCategory[] }));
     }
     const foodCategories = await FoodCategorieService.getAllFoodCategorys();
@@ -156,38 +154,26 @@ export const fetchFoodCategoryById = (foodCategoryId: IdType): AppThunk => async
 
 export const createFoodCategory = (
   foodCategory: FoodCategory,
-  // history: History<History.PoorMansUnknown>
-  // setSubmitting: (isSubmitting: boolean) => void
-): AppThunk => async (dispatch, getState) => {
+): AppThunk => async (dispatch) => {
   try {
     dispatch(createFoodCategoryStart(foodCategory));
-    // const authToken = getState().auth.token; // TODO
     const created = await FoodCategorieService.createNewFoodCategory(foodCategory, undefined);
     dispatch(createFoodCategorySuccess(created));
   } catch (err) {
     dispatch(foodCategoriesFailure(getErrorMessage(err)));
   }
-  // finally {
-  //   setSubmitting(false);
-  // }
 };
 
 export const updateFoodCategory = (
   foodCategory: FoodCategory,
-  // history: History<History.PoorMansUnknown>
-  // setSubmitting: (isSubmitting: boolean) => void
 ): AppThunk => async (dispatch) => {
   try {
     dispatch(updateFoodCategoryStart(foodCategory));
     const created = await FoodCategorieService.updateFoodCategory(foodCategory);
     dispatch(updateFoodCategorySuccess(created));
-    // history.push("/foodCategories");
   } catch (err) {
     dispatch(foodCategoriesFailure(getErrorMessage(err)));
   }
-  // finally {
-  //   setSubmitting(false);
-  // }
 };
 
 export const deleteFoodCategory = (foodCategoryId: IdType): AppThunk => async (dispatch) => {

@@ -1,8 +1,12 @@
-.FormikRegister {
+.FormikRegister,
+.FormikRegisterRestaurant {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.FormikRegisterRestaurant {
+  margin-top: 2rem;
 }
 
 .FormikRegister_InputsRestaurant,
@@ -22,6 +26,7 @@
   width: 40%;
 }
 
-.FormikRegister_Buttons {
+.FormikRegister_Buttons,
+.FormikProfile_Buttons { 
   margin-top: 2rem;
 }

@@ -1,15 +1,15 @@
 :root {
   --text-color-primary: rgb(0, 0, 0);
 
-  --heading-size-restaurant: 6.5rem;
-  --heading-size-primary: 3rem;
-  --heading-size-secondary: 2.5rem;
-  --heading-size-tertiary: 2rem;
+  --heading-size-restaurant: 8rem;
+  --heading-size-primary: 4.75rem;
+  --heading-size-secondary: 3.5rem;
+  --heading-size-tertiary: 3rem;
 
-  --border-dark: 0.1px solid rgba(85, 85, 85, 0.252);
-  --border-light: 0.1px solid rgba(255, 255, 255, 0.489);
+  --border-dark: 1.5px solid rgba(85, 85, 85, 0.252);
+  --border-light: 1.5px solid rgba(255, 255, 255, 0.789);
 
-  --padding-borderBottom: 1rem;
+  --padding-borderBottom: 2rem;
 }
 
 * {
@@ -23,9 +23,8 @@
   font-family: "Nunito", sans-serif;
 }
 
-
 .MuiInputBase-input {
-  font-size: 1.3rem;
+  font-size: 2rem;
   margin: 5px 0px;
 }
 .MuiInputBase-root {
@@ -33,10 +32,198 @@
 }
 
 .MuiFormHelperText-root {
-  font-size: 1rem;
+  font-size: 1.5rem;
   margin-top: -1.5rem;
 }
 
 .MuiFormLabel-root {
-  font-size: 1.3rem;
+  font-size: 1.6rem;
+}
+
+@media (max-width: 2400px) {
+  :root {
+    --heading-size-restaurant: 6rem;
+    --heading-size-primary: 3rem;
+    --heading-size-secondary: 2rem;
+    --heading-size-tertiary: 2rem;
+
+    --border-dark: 0.1px solid rgba(85, 85, 85, 0.252);
+    --border-light: 0.1px solid rgba(255, 255, 255, 0.489);
+
+    --padding-borderBottom: 1rem;
+  }
+
+  .MuiInputBase-input {
+    font-size: 1.3rem;
+    margin: 5px 0px;
+  }
+  .MuiInputBase-root {
+    margin-bottom: 2rem;
+  }
+  .MuiFormHelperText-root {
+    font-size: 1rem;
+    margin-top: -1.5rem;
+  }
+  .MuiFormLabel-root {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 1550px) {
+  :root {
+    --heading-size-restaurant: 5rem;
+    --heading-size-primary: 2rem;
+    --heading-size-secondary: 1.6rem;
+    --heading-size-tertiary: 1.25rem;
+
+    --border-dark: 0.1px solid rgba(85, 85, 85, 0.252);
+    --border-light: 0.1px solid rgba(255, 255, 255, 0.489);
+
+    --padding-borderBottom: 1rem;
+  }
+
+  .MuiInputBase-input {
+    font-size: 1rem;
+    margin: 5px 0px;
+  }
+  .MuiInputBase-root {
+    margin-bottom: 2rem;
+  }
+  .MuiFormHelperText-root {
+    font-size: 0.7rem;
+    margin-top: -1.5rem;
+  }
+  .MuiFormLabel-root {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 1250px) {
+  :root {
+    --heading-size-restaurant: 4rem;
+    --heading-size-primary: 1.8rem;
+    --heading-size-secondary: 1.4rem;
+    --heading-size-tertiary: 1.25rem;
+
+    --border-dark: 0.1px solid rgba(85, 85, 85, 0.252);
+    --border-light: 0.1px solid rgba(255, 255, 255, 0.489);
+
+    --padding-borderBottom: 1rem;
+  }
+
+  .MuiInputBase-input {
+    font-size: 0.8rem;
+    margin: 5px 0px;
+  }
+  .MuiInputBase-root {
+    margin-bottom: 1rem;
+  }
+  .MuiFormHelperText-root {
+    font-size: 0.65rem;
+    margin-top: -1rem;
+  }
+  .MuiFormLabel-root {
+    font-size: 0.7rem;
+  }
+  .MuiSvgIcon-root {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 850px) {
+  :root {
+    --heading-size-restaurant: 3.75rem;
+    --heading-size-primary: 1.6rem;
+    --heading-size-secondary: 1.1rem;
+    --heading-size-tertiary: 1rem;
+
+    --border-dark: 0.1px solid rgba(85, 85, 85, 0.252);
+    --border-light: 0.1px solid rgba(255, 255, 255, 0.489);
+
+    --padding-borderBottom: 1rem;
+  }
+  .MuiInputBase-input {
+    font-size: 0.65rem;
+    margin: 5px 0px;
+  }
+  .MuiInputBase-root {
+    margin-bottom: 1.3rem;
+  }
+  .MuiFormHelperText-root {
+    font-size: 0.55rem;
+    margin-top: -1.3rem;
+  }
+  .MuiFormLabel-root {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 700px) {
+  :root {
+    --heading-size-restaurant: 3.3rem;
+    --heading-size-primary: 1.45rem;
+    --heading-size-secondary: 1rem;
+    --heading-size-tertiary: 0.9rem;
+
+    --border-dark: 0.1px solid rgba(85, 85, 85, 0.252);
+    --border-light: 0.1px solid rgba(255, 255, 255, 0.489);
+
+    --padding-borderBottom: 1rem;
+  }
+}
+
+@media (max-width: 550px) {
+  :root {
+    --heading-size-restaurant: 3.15rem;
+    --heading-size-primary: 1.4rem;
+    --heading-size-secondary: 1rem;
+    --heading-size-tertiary: 0.9rem;
+
+    --border-dark: 0.1px solid rgba(85, 85, 85, 0.252);
+    --border-light: 0.1px solid rgba(255, 255, 255, 0.489);
+
+    --padding-borderBottom: 0.6rem;
+  }
+  .MuiInputBase-input {
+    font-size: 0.6rem;
+    margin: 3px 0px;
+  }
+  .MuiInputBase-root {
+    margin-bottom: 1rem;
+  }
+  .MuiFormHelperText-root {
+    font-size: 0.45rem;
+    margin-top: -0.8rem;
+  }
+  .MuiFormLabel-root {
+    font-size: 0.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  :root {
+    --heading-size-restaurant: 3rem;
+    --heading-size-primary: 1.2rem;
+    --heading-size-secondary: 0.8rem;
+    --heading-size-tertiary: 0.6rem;
+
+    --border-dark: 0.1px solid rgba(85, 85, 85, 0.252);
+    --border-light: 0.1px solid rgba(255, 255, 255, 0.489);
+
+    --padding-borderBottom: 0.5rem;
+  }
+  .MuiInputBase-input {
+    font-size: 0.45rem;
+    margin: 3px 0px;
+  }
+  .MuiInputBase-root {
+    margin-bottom: 0.75rem;
+  }
+  .MuiFormHelperText-root {
+    font-size: 0.4rem;
+    margin-top: -0.7rem;
+  }
+  .MuiFormLabel-root {
+    font-size: 0.45rem;
+  }
 }

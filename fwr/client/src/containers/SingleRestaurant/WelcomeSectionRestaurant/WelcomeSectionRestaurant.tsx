@@ -13,6 +13,7 @@ import Navigation from "../../../components/UI/Navigation/Navigation";
 import { fetchRestaurantsByRole } from "../../../features/restaurants/restaurantsSlice";
 import { buildSearchQuery, setInputTouched } from "../../../features/meals/mealsSlice";
 import { updateCustomer, fetchCustomersByRole } from "../../../features/customer/customerSlice";
+import debouncedSearch from "../../../shared-types/shared-functions";
 
 interface Props {
   id: string;
@@ -32,7 +33,7 @@ const WelcomeSectionRestaurant = ({ id }: Props) => {
   useEffect(() => {
     dispatch(fetchRestaurantsByRole(0));
     dispatch(fetchCustomersByRole(1));
-  }, []);
+  }, [dispatch]);
 
   const searchByKeywordHandler = (keyword: string) => {
     history.push(`/restaurants/${keyword?.toLowerCase()}`, {
@@ -42,9 +43,9 @@ const WelcomeSectionRestaurant = ({ id }: Props) => {
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   };
 
-  const buildQueryHandler = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    dispatch(buildSearchQuery(event.target.value));
+  const buildQueryHandler = () => {
     dispatch(setInputTouched());
+    return debouncedSearch((text) => dispatch(buildSearchQuery(text)));
   };
 
   const addToFavourites = () => {
@@ -74,6 +75,8 @@ const WelcomeSectionRestaurant = ({ id }: Props) => {
       })
     );
   };
+
+  const { inputText, setInputText } = buildQueryHandler();
 
   return (
     <div className={classes.WelcomeSectionRestaurant} style={{ backgroundImage: restaurant ? `url(${restaurant.imageUrl})` : "" }}>
@@ -111,8 +114,7 @@ const WelcomeSectionRestaurant = ({ id }: Props) => {
             {!customer && !username && !password && (
               <>
                 {" "}
-                <FavoriteBorderIcon className={classes.WelcomeSectionRestaurant_Like} />{" "}
-                <span>Sign in & add to favourites</span>
+                <FavoriteBorderIcon className={classes.WelcomeSectionRestaurant_Like} /> <span>Sign in & add to favourites</span>
               </>
             )}
           </p>
@@ -121,7 +123,8 @@ const WelcomeSectionRestaurant = ({ id }: Props) => {
               id='input-with-icon-adornment'
               className={classes.WelcomeSectionRestaurant_SearchBar}
               placeholder='Find your favourite meal'
-              onChange={buildQueryHandler}
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
               startAdornment={
                 <InputAdornment position='start'>
                   <SearchIcon className={classes.WelcomeSectionRestaurant_SearchIcon} />

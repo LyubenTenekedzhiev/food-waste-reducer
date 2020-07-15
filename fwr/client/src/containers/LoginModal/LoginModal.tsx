@@ -8,8 +8,9 @@ import classes from "./LoginModal.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../app/rootReducer";
 import { setRestaurantsUsername, setRestaurantsPassword } from "../../features/restaurants/restaurantsSlice";
-import { setCustomersUsername, setCustomersPassword } from "../../features/customer/customerSlice";
+import { setCustomersUsername, setCustomersPassword, setIsAdmin } from "../../features/customer/customerSlice";
 import ButtonTertiary from "../../components/UI/Button/ButtonTertiary";
+import debouncedSearch from "../../shared-types/shared-functions";
 
 interface Props {
   openRestaurant: boolean;
@@ -31,18 +32,18 @@ export default function LoginModal({ openRestaurant, openCustomer, handleClose }
   const usernameCustomer = useSelector((state: RootState) => state.customers.username);
   const passwordCustomer = useSelector((state: RootState) => state.customers.password);
 
-  const setUsernameRestaurant = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    dispatch(setRestaurantsUsername(e.target.value));
+  const setUsernameRestaurant = () => {
+    return debouncedSearch((text) => dispatch(setRestaurantsUsername(text)));
   };
-  const setPasswordRestaurant = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    dispatch(setRestaurantsPassword(e.target.value));
+  const setPasswordRestaurant = () => {
+    return debouncedSearch((text) => dispatch(setRestaurantsPassword(text)));
   };
 
-  const setUsernameCustomer = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    dispatch(setCustomersUsername(e.target.value));
+  const setUsernameCustomer = () => {
+    return debouncedSearch((text) => dispatch(setCustomersUsername(text)));
   };
-  const setPasswordCustomer = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    dispatch(setCustomersPassword(e.target.value));
+  const setPasswordCustomer = () => {
+    return debouncedSearch((text) => dispatch(setCustomersPassword(text)));
   };
 
   useEffect(() => {
@@ -83,6 +84,7 @@ export default function LoginModal({ openRestaurant, openCustomer, handleClose }
     }
     if (!usernameCustomer) setUsernameError(false);
     if (!passwordCustomer) setPasswordError(false);
+    dispatch(setIsAdmin());
   }, [usernameCustomer, passwordCustomer]);
 
   const submitFormRestaurant = (event: React.FormEvent<HTMLFormElement>) => {
@@ -103,6 +105,11 @@ export default function LoginModal({ openRestaurant, openCustomer, handleClose }
       window.location.reload();
     }
   };
+
+  const usernameRestaurantHandler = setUsernameRestaurant();
+  const passwordRestaurantHandler = setPasswordRestaurant();
+  const usernameCustomerHandler = setUsernameCustomer();
+  const passwordCustomerHandler = setPasswordCustomer();
 
   return (
     <div>
@@ -127,8 +134,12 @@ export default function LoginModal({ openRestaurant, openCustomer, handleClose }
                 helperText={usernameError ? "Username not found." : " "}
                 id='standard-required'
                 label='Username'
-                onChange={openRestaurant ? setUsernameRestaurant : setUsernameCustomer}
-                value={openRestaurant ? usernameRestaurant : usernameCustomer}
+                value={openRestaurant ? usernameRestaurantHandler.inputText : usernameCustomerHandler.inputText}
+                onChange={
+                  openRestaurant
+                    ? (e) => usernameRestaurantHandler.setInputText(e.target.value)
+                    : (e) => usernameCustomerHandler.setInputText(e.target.value)
+                }
               />
               <TextField
                 required
@@ -138,8 +149,12 @@ export default function LoginModal({ openRestaurant, openCustomer, handleClose }
                 helperText={passwordError ? "Wrong password." : " "}
                 id='standard-required'
                 label='Password'
-                onChange={openRestaurant ? setPasswordRestaurant : setPasswordCustomer}
-                value={openRestaurant ? passwordRestaurant : passwordCustomer}
+                value={openRestaurant ? passwordRestaurantHandler.inputText : passwordCustomerHandler.inputText}
+                onChange={
+                  openRestaurant
+                    ? (e) => passwordRestaurantHandler.setInputText(e.target.value)
+                    : (e) => passwordCustomerHandler.setInputText(e.target.value)
+                }
               />
               <ButtonTertiary disabled={usernameError || passwordError}>Sign In</ButtonTertiary>
             </form>

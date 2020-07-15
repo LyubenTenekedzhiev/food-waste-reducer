@@ -6,6 +6,8 @@ export interface IMeal extends Indentifiable {
   imageUrl: string;
   restaurantId: IdType;
   foodCategory: string;
+  amount: string;
+  initialAmount: string;
   active: boolean;
 }
 
@@ -19,6 +21,8 @@ export class Meal implements IMeal {
     public imageUrl: string,
     public restaurantId: IdType,
     public foodCategory: string,
+    public amount: string,
+    public initialAmount: string,
     public active: boolean
   ) {}
 }

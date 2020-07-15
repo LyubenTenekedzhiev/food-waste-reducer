@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { History } from "history";
 
 import { AppThunk } from "../../app/store";
 import RestaurantService from "../../service/user-service";
@@ -85,7 +84,6 @@ const restaurants = createSlice({
       state.restaurants.push(restaurant);
       state.loading = false;
       state.error = null;
-      // state.message = `Restaurant "${action.payload.name}" created successfully.`;
     },
     updateRestaurantStart(state, action: PayloadAction<User>) {
       state.currentRestaurantId = action.payload._id;
@@ -102,7 +100,6 @@ const restaurants = createSlice({
       }
       state.loading = false;
       state.error = null;
-      // state.message = `Restaurant "${action.payload.name}" updated successfully.`;
     },
     deleteRestaurantByIdStart(state, action: PayloadAction<IdType>) {
       state.currentRestaurantId = action.payload;
@@ -117,7 +114,6 @@ const restaurants = createSlice({
       }
       state.loading = false;
       state.error = null;
-      // state.message = `Restaurant "${action.payload.name}" deleted successfully.`;
     },
   },
 });
@@ -145,7 +141,6 @@ export const fetchRestaurantsByRole = (role: number): AppThunk => async (dispatc
     dispatch(getRestaurantsStart(role));
     const localRestaurants = localStorage.getItem("restaurants");
     if (localRestaurants) {
-      // console.log(localRestaurants);
       dispatch(getRestaurantsSuccess({ restaurants: JSON.parse(localRestaurants) as User[] }));
     }
     const restaurants = await RestaurantService.getUsersByRole(role);
@@ -158,38 +153,26 @@ export const fetchRestaurantsByRole = (role: number): AppThunk => async (dispatc
 
 export const createRestaurant = (
   restaurant: User
-  // history: History<History.PoorMansUnknown>
-  // setSubmitting: (isSubmitting: boolean) => void
-): AppThunk => async (dispatch, getState) => {
+): AppThunk => async (dispatch) => {
   try {
     dispatch(createRestaurantStart(restaurant));
-    // const authToken = getState().auth.token; // TODO
     const created = await RestaurantService.createNewUser(restaurant, undefined);
     dispatch(createRestaurantSuccess(created));
   } catch (err) {
     dispatch(restaurantsFailure(getErrorMessage(err)));
   }
-  // finally {
-  //   setSubmitting(false);
-  // }
 };
 
 export const updateRestaurant = (
   restaurant: User
-  // history: History<History.PoorMansUnknown>
-  // setSubmitting: (isSubmitting: boolean) => void
 ): AppThunk => async (dispatch) => {
   try {
     dispatch(updateRestaurantStart(restaurant));
     const created = await RestaurantService.updateUser(restaurant);
     dispatch(updateRestaurantSuccess(created));
-    // history.push("/restaurants");
   } catch (err) {
     dispatch(restaurantsFailure(getErrorMessage(err)));
   }
-  // finally {
-  //   setSubmitting(false);
-  // }
 };
 
 export const deleteRestaurant = (restaurantId: IdType): AppThunk => async (dispatch) => {

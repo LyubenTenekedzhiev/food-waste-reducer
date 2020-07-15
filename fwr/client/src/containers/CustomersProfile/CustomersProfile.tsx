@@ -3,20 +3,18 @@ import { useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchCustomersByRole } from "../../features/customer/customerSlice";
-import { RootState } from "../../app/rootReducer";
 import { fetchRestaurantsByRole } from "../../features/restaurants/restaurantsSlice";
 
 import classes from "./CustomersProfile.module.css";
+import { RootState } from "../../app/rootReducer";
+import { fetchAllMeals } from "../../features/meals/mealsSlice";
+import { IdType } from "../../shared-types/shared-types";
 import Restaurant from "../RestaurantsPage/Restaurant/Restaurant";
 import Navigation from "../../components/UI/Navigation/Navigation";
-import { IdType } from "../../shared-types/shared-types";
-import { fetchAllMeals } from "../../features/meals/mealsSlice";
 import Meal from "../SingleRestaurant/Meal/Meal";
 import Footer from "../../components/UI/Footer/Footer";
 
-interface Props {}
-
-function CustomersProfile({}: Props): ReactElement {
+function CustomersProfile(): ReactElement {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
@@ -51,6 +49,7 @@ function CustomersProfile({}: Props): ReactElement {
     .map((meal) => restaurants.filter((restaurant) => meal.restaurantId === restaurant._id).map((restaurant) => restaurant._id))
     .flat()
     .filter((category, index, array) => array.indexOf(category) === index);
+
   const matchingRestaurants = matchingIds
     .map((id) => restaurants.filter((restaurant) => restaurant._id === id))
     .flat()
@@ -60,24 +59,34 @@ function CustomersProfile({}: Props): ReactElement {
       <>
         <h2 className={classes.CustomersProfile_BookedMealsTitle}>From {restaurant.username}</h2>
         <div className={classes.CustomersProfile_BookedMeals}>
-          {meals.map((meal) => {
-            if (meal.restaurantId === restaurant._id) {
-              return (
-                <Meal
-                  key={meal ? meal._id : ""}
-                  _id={meal ? meal._id : ""}
-                  name={meal ? meal.name : ""}
-                  imageUrl={meal ? meal.imageUrl : ""}
-                  price={meal ? meal.price : ""}
-                  description={meal ? meal.description : ""}
-                  active={false}
-                  previewMenu={false}
-                  editMenu={false}
-                  customersProfile={true}
-                />
-              );
-            }
-          })}
+          {meals
+            .filter((meal) => meal.active === true)
+            .map((meal) => {
+              if (meal.restaurantId === restaurant._id) {
+                return (
+                  <>
+                    {meal ? (
+                      <Meal
+                        key={`${meal._id}-${meal.initialAmount}`}
+                        _id={meal._id}
+                        name={meal.name}
+                        imageUrl={meal.imageUrl}
+                        price={meal.price}
+                        description={meal.description}
+                        amount={meal.amount}
+                        initialAmount={meal.initialAmount}
+                        restaurantId={meal.restaurantId}
+                        foodCategory={meal.foodCategory}
+                        active={meal.active}
+                        previewMenu={false}
+                        editMenu={false}
+                        customersProfile={true}
+                      />
+                    ) : null}
+                  </>
+                );
+              }
+            })}
         </div>
       </>
     );
@@ -88,7 +97,7 @@ function CustomersProfile({}: Props): ReactElement {
     dispatch(fetchAllMeals());
     dispatch(fetchCustomersByRole(1));
     dispatch(fetchRestaurantsByRole(0));
-  }, []);
+  }, [dispatch, history, location.state]);
 
   const showRestaurantHandler = (restaurantName: string, id: IdType) => {
     history.push(`/restaurant/${restaurantName}`, { id: id });

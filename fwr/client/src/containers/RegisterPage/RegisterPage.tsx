@@ -19,7 +19,7 @@ function RegisterPage({ location }: Props): ReactElement {
 
   useEffect(() => {
     if (!location.state) history.push("/");
-  }, []);
+  }, [history, location.state]);
 
   return (
     <div className={classes.RegisterPage}>

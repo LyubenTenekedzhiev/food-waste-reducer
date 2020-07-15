@@ -15,8 +15,7 @@
   text-align: center;
   border-radius: 4px;
   background-color: rgb(236, 250, 255);
-  /* background-color: black; */
-  padding: 1.5rem;
+  padding: 5rem;
 }
 
 .Modal_Title {
@@ -33,3 +32,40 @@
   flex-grow: 1;
 }
 
+@media (max-width: 2400px) {
+  .Modal {
+    width: 40vw;
+    height: 45vh;
+    padding: 2.5rem;
+  }
+}
+
+@media (max-width: 1400px) {
+  .Modal {
+    padding: 1.4rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .Modal {
+    width: 50vw;
+    height: 45vh;
+    border-radius: 4px;
+    padding: 1.4rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .Modal {
+    width: 55vw;
+    height: 40vh;
+    border-radius: 4px;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .Modal_Title {
+    font-size: calc(var(--heading-size-secondary) - 0.1rem);
+  }
+}

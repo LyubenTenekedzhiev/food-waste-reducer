@@ -1,16 +1,16 @@
 import React, { ReactElement, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import classes from "./Meal.module.css";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import classes from "./Meal.module.css";
 import { IdType } from "../../../shared-types/shared-types";
 import Checkbox from "@material-ui/core/Checkbox/Checkbox";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../app/rootReducer";
 import { updateCustomer, fetchCustomersByRole } from "../../../features/customer/customerSlice";
-import Snackbar from "../../../components/UI/Snackbar/Snackbar";
+import { updateMeal } from "./../../../features/meals/mealsSlice";
 
 interface Props {
   _id: IdType;
@@ -19,6 +19,10 @@ interface Props {
   description: string;
   price: string;
   active: boolean;
+  amount: string;
+  initialAmount: string;
+  restaurantId: string;
+  foodCategory: string;
   editMenu: boolean | undefined;
   previewMenu: boolean | undefined;
   customersProfile?: boolean | undefined;
@@ -35,6 +39,10 @@ function Meal({
   price,
   editMenu,
   active,
+  amount,
+  initialAmount,
+  restaurantId,
+  foodCategory,
   previewMenu,
   customersProfile,
   editMealHandler,
@@ -81,6 +89,20 @@ function Meal({
         bookedMeals: customer?.bookedMeals ? [...customer?.bookedMeals, _id] : customer?.bookedMeals,
       })
     );
+    dispatch(
+      updateMeal({
+        _id: _id,
+        name: name,
+        imageUrl: imageUrl,
+        description: description,
+        price: price,
+        active: active,
+        amount: Number(amount) - 1 + "",
+        initialAmount: initialAmount,
+        restaurantId: restaurantId,
+        foodCategory: foodCategory,
+      })
+    );
   };
 
   const removeBookedMeal = () => {
@@ -98,8 +120,22 @@ function Meal({
         bookedMeals: customer?.bookedMeals ? updatedMeals : customer?.bookedMeals,
       })
     );
+    dispatch(
+      updateMeal({
+        _id: _id,
+        name: name,
+        imageUrl: imageUrl,
+        description: description,
+        price: price,
+        active: active,
+        initialAmount: initialAmount,
+        amount: Number(amount) + 1 + "",
+        restaurantId: restaurantId,
+        foodCategory: foodCategory,
+      })
+    );
   };
-
+  
   return (
     <div className={classes.Meal}>
       <div className={classes.Meal_Info}>
@@ -108,20 +144,28 @@ function Meal({
         <div className={classes.Meal_PriceDetails}>
           <p className={classes.Meal_Price}>
             {" "}
-            &euro;
             {!editMenu && !previewMenu && customersProfile && customer?.bookedMeals
               ? (customer?.bookedMeals?.filter((meal) => meal === _id).length * Number(price)).toFixed(2)
-              : Number(price).toFixed(2)}
+              : Number(price).toFixed(2)}{" "}
+            BGN
           </p>
           {!editMenu && !previewMenu && (
             <div className={classes.Meal_Bookmark}>
               <span className={classes.Meal_Count}>
                 {customersProfile && customer ? customer?.bookedMeals?.filter((meal) => meal === _id).length + "x" : ""}
               </span>
-              <AddIcon className={classes.Meal_BookmarkIcon} onClick={bookMeal} />{" "}
-              <label className={classes.Meal_IconLabel}>Book meal</label>
-              <RemoveIcon className={classes.Meal_BookmarkIcon} onClick={removeBookedMeal} />
-              <label className={classes.Meal_IconLabel}>Remove meal</label>
+              <AddIcon
+                className={classes.Meal_BookmarkIcon}
+                onClick={username && password && amount !== "0" ? () => bookMeal() : () => {}}
+                style={(!username && !password) || amount === "0" ? { cursor: "not-allowed" } : { cursor: "pointer" }}
+              />{" "}
+              <label className={classes.Meal_IconLabel}>{!username && !password ? "Sign in first" : "Book meal"}</label>
+              <RemoveIcon
+                className={classes.Meal_BookmarkIcon}
+                onClick={username && password && +amount < +initialAmount ? () => removeBookedMeal() : () => {}}
+                style={(!username && !password) || +amount === +initialAmount ? { cursor: "not-allowed" } : { cursor: "pointer" }}
+              />
+              <label className={classes.Meal_IconLabel}>{!username && !password ? "Sign in first" : "Remove meal"}</label>
             </div>
           )}
         </div>

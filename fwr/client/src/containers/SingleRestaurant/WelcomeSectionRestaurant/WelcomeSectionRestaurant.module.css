@@ -1,5 +1,4 @@
 .WelcomeSectionRestaurant {
-  /* background-image: url("../../../assets/platter-2009590_1920.jpg"); */
   background-size: cover;
   background-color: black;
   background-attachment: fixed;
@@ -37,7 +36,7 @@
 
 .WelcomeSectionRestaurant_Description {
   font-size: var(--heading-size-primary);
-  margin: 1rem 0rem 2rem 0rem;
+  margin: 2rem 0rem 3rem 0rem;
 }
 
 .WelcomeSectionRestaurant_Keywords {
@@ -46,14 +45,13 @@
   width: 40%;
 }
 .WelcomeSectionRestaurant_Keywords span {
-  font-size: 1.75rem;
+  font-size: 2.2rem;
   background-color: rgba(0, 78, 114, 0.856);
-  padding: .5rem;
+  padding: 0.75rem;
   border-radius: 6px;
   cursor: pointer;
-  transition: .4s all;
+  transition: 0.4s all;
 }
-
 
 .WelcomeSectionRestaurant_Keywords span:hover {
   background-color: rgba(0, 113, 165, 0.856);
@@ -61,12 +59,12 @@
 
 .WelcomeSectionRestaurant_Favourites {
   position: absolute;
-  bottom: -65px;
+  bottom: -90px;
   left: 50%;
   transform: translate(-50%);
   width: 70vw;
-  height: 130px;
-  box-shadow: 0px 0px 5px rgba(0,0,0,.4);
+  height: 180px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
@@ -87,7 +85,7 @@
 .WelcomeSectionRestaurant_Like {
   font-size: var(--heading-size-primary);
   color: rgba(0, 78, 114, 0.856);
-  transition: .4s all;
+  transition: 0.4s all;
   margin-right: 1rem;
   cursor: pointer;
 }
@@ -101,11 +99,212 @@
 }
 
 .WelcomeSectionRestaurant_SearchIcon {
-  font-size: 2.5rem;
+  font-size: 4rem;
   cursor: pointer;
 }
 
 .WelcomeSectionRestaurant_SearchBar {
   margin-bottom: 0;
-  width: 20vw;
+  width: 23vw;
+}
+
+@media (max-width: 2400px) {
+  .WelcomeSectionRestaurant_Description {
+    margin: 1rem 0rem 2rem 0rem;
+  }
+  .WelcomeSectionRestaurant_Keywords {
+    width: 40%;
+  }
+  .WelcomeSectionRestaurant_Keywords span {
+    font-size: 1.75rem;
+    padding: 0.5rem;
+    border-radius: 6px;
+  }
+  .WelcomeSectionRestaurant_Favourites {
+    bottom: -65px;
+    height: 130px;
+  }
+  .WelcomeSectionRestaurant_AddToFavourites {
+    margin-left: 2.5rem;
+    font-size: calc(var(--heading-size-secondary) - 5px);
+  }
+  .WelcomeSectionRestaurant_Like {
+    margin-right: 1rem;
+  }
+  .WelcomeSectionRestaurant_Search {
+    margin-right: 2.5rem;
+  }
+  .WelcomeSectionRestaurant_SearchIcon {
+    font-size: 2.5rem;
+  }
+  .WelcomeSectionRestaurant_SearchBar {
+    width: 20vw;
+  }
+}
+
+@media (max-width: 1550px) {
+  .WelcomeSectionRestaurant_Keywords {
+    width: 45%;
+  }
+  .WelcomeSectionRestaurant_Keywords span {
+    font-size: 1.3rem;
+    padding: 0.35rem;
+  }
+  .WelcomeSectionRestaurant_Favourites {
+    bottom: -40px;
+    height: 80px;
+  }
+  .WelcomeSectionRestaurant_AddToFavourites {
+    margin-left: 2.5rem;
+    font-size: calc(var(--heading-size-secondary) - 5px);
+  }
+  .WelcomeSectionRestaurant_Like {
+    margin-right: 1rem;
+  }
+  .WelcomeSectionRestaurant_Search {
+    margin-right: 2.5rem;
+  }
+  .WelcomeSectionRestaurant_SearchIcon {
+    font-size: 1.75rem;
+  }
+  .WelcomeSectionRestaurant_SearchBar {
+    width: 20vw;
+  }
+}
+
+@media (max-width: 1250px) {
+  .WelcomeSectionRestaurant_Keywords span {
+    font-size: 1rem;
+  }
+  .WelcomeSectionRestaurant_Favourites {
+    bottom: -40px;
+    height: 80px;
+  }
+  .WelcomeSectionRestaurant_AddToFavourites {
+    margin-left: 2.5rem;
+    font-size: calc(var(--heading-size-secondary) - 5px);
+  }
+  .WelcomeSectionRestaurant_Like {
+    margin-right: 1rem;
+  }
+  .WelcomeSectionRestaurant_Search {
+    margin-right: 2.5rem;
+  }
+  .WelcomeSectionRestaurant_SearchIcon {
+    font-size: 1.5rem;
+  }
+  .WelcomeSectionRestaurant_SearchBar {
+    width: 20vw;
+  }
+}
+
+@media (max-width: 850px) {
+  .WelcomeSectionRestaurant_Header {
+    width: 80vw;
+  }
+  .WelcomeSectionRestaurant_TextContainer {
+    width: 80vw;
+  }
+  .WelcomeSectionRestaurant_Keywords {
+    width: 45%;
+  }
+  .WelcomeSectionRestaurant_Keywords span {
+    font-size: 0.8rem;
+  }
+  .WelcomeSectionRestaurant_Favourites {
+    bottom: -30px;
+    height: 60px;
+    width: 80vw;
+  }
+  .WelcomeSectionRestaurant_AddToFavourites {
+    margin-left: 2rem;
+    font-size: calc(var(--heading-size-secondary) - 2px);
+  }
+  .WelcomeSectionRestaurant_Like {
+    margin-right: 1rem;
+  }
+  .WelcomeSectionRestaurant_Search {
+    margin-right: 2.5rem;
+  }
+  .WelcomeSectionRestaurant_SearchIcon {
+    font-size: 1.3rem;
+  }
+  .WelcomeSectionRestaurant_SearchBar {
+    width: 23vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .WelcomeSectionRestaurant_Keywords {
+    width: 55%;
+  }
+  .WelcomeSectionRestaurant_Keywords span {
+    font-size: 0.7rem;
+  }
+  .WelcomeSectionRestaurant_AddToFavourites {
+    margin-left: 1rem;
+    font-size: calc(var(--heading-size-secondary) - 2px);
+  }
+  .WelcomeSectionRestaurant_Like {
+    margin-right: .5rem;
+  }
+  .WelcomeSectionRestaurant_Search {
+    margin-right: 1.2rem;
+  }
+  .WelcomeSectionRestaurant_SearchIcon {
+    font-size: 1.3rem;
+  }
+  .WelcomeSectionRestaurant_SearchBar {
+    width: 27.5vw;
+  }
+}
+
+@media (max-width: 450px) {
+  .WelcomeSectionRestaurant_Keywords {
+    width: 70%;
+  }
+  .WelcomeSectionRestaurant_Keywords span {
+    font-size: 0.7rem;
+  }
+  .WelcomeSectionRestaurant_AddToFavourites {
+    margin-left: .5rem;
+    font-size: calc(var(--heading-size-secondary) - 4px);
+  }
+  .WelcomeSectionRestaurant_Like {
+    margin-right: .5rem;
+  }
+  .WelcomeSectionRestaurant_Search {
+    margin-right: 1rem;
+  }
+  .WelcomeSectionRestaurant_SearchIcon {
+    font-size: 1.1rem;
+  }
+  .WelcomeSectionRestaurant_SearchBar {
+    width: 27.5vw;
+  }
+}
+
+@media (max-width: 375px) {
+  .WelcomeSectionRestaurant_Keywords {
+    width: 85%;
+  }
+  .WelcomeSectionRestaurant_Keywords span {
+    font-size: 0.55rem;
+  }
+  .WelcomeSectionRestaurant_AddToFavourites {
+    margin-left: .5rem;
+    font-size: calc(var(--heading-size-secondary) - 4px);
+  }
+  .WelcomeSectionRestaurant_Like {
+    margin-right: .5rem;
+  }
+  .WelcomeSectionRestaurant_Search {
+    margin-right: .8rem;
+  }
+  .WelcomeSectionRestaurant_SearchIcon {
+    font-size: 1rem;
+  }
+  .WelcomeSectionRestaurant_SearchBar {
+    width: 30vw;
+  }
 }

@@ -21,7 +21,7 @@ function Menu({ id, editMenu, previewMenu, editMealHandler, deleteMealHandler, s
 
   useEffect(() => {
     dispatch(fetchMeals(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const scrollIntoView = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     document.getElementById(event.currentTarget.innerHTML)?.scrollIntoView({ behavior: "smooth", inline: "nearest" });
@@ -43,6 +43,10 @@ function Menu({ id, editMenu, previewMenu, editMealHandler, deleteMealHandler, s
           imageUrl={meal.imageUrl}
           price={meal.price}
           active={meal.active}
+          amount={meal.amount}
+          initialAmount={meal.initialAmount}
+          restaurantId={meal.restaurantId}
+          foodCategory={meal.foodCategory}
           editMenu={editMenu}
           previewMenu={previewMenu}
           editMealHandler={editMealHandler}
@@ -78,6 +82,10 @@ function Menu({ id, editMenu, previewMenu, editMealHandler, deleteMealHandler, s
                     imageUrl={meal.imageUrl}
                     price={meal.price}
                     active={meal.active}
+                    amount={meal.amount}
+                    initialAmount={meal.initialAmount}
+                    restaurantId={meal.restaurantId}
+                    foodCategory={meal.foodCategory}
                     editMenu={editMenu}
                     previewMenu={previewMenu}
                     editMealHandler={editMealHandler}

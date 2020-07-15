@@ -1,4 +1,10 @@
 .EditProfile {
-  width: 50vw;
+  width: 70vw;
   margin: 0 auto;
+}
+
+@media(max-width: 850px) {
+  .EditProfile {
+    width: 80vw;
+  }
 }

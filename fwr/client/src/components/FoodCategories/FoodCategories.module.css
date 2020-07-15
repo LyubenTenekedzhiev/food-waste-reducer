@@ -7,6 +7,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: var(--border-dark);
+  padding-bottom: var(--padding-borderBottom);
 }
 
 .FoodCategories_Title {
@@ -16,13 +18,13 @@
 
 .FoodCategories_Arrows span {
   display: inline-block;
-  font-size: 2rem;
-  padding: .25rem 1.5rem;
-  border: 1px solid rgba(112, 112, 112, 0.115);
+  font-size: 3rem;
+  padding: 0.5rem 2rem;
+  border: 1.5px solid rgba(112, 112, 112, 0.115);
   border-radius: 5px;
   cursor: pointer;
   color: rgb(112, 112, 112);
-  transition: .3s all;
+  transition: 0.3s all;
 }
 
 .FoodCategories_Arrows span:hover {
@@ -32,7 +34,66 @@
 .FoodCategories_Grid {
   display: grid;
   grid-template-rows: repeat(2, 3fr);
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1.5rem;
   margin-top: 2rem;
+}
+
+@media (max-width: 2400px) {
+  .FoodCategories_Arrows span {
+    font-size: 2rem;
+    padding: 0.25rem 1.5rem;
+    border: 1px solid rgba(112, 112, 112, 0.115);
+  }
+  .FoodCategories_Grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+  }
+}
+
+@media (max-width: 1550px) {
+  .FoodCategories_Arrows span {
+    font-size: 1.5rem;
+    padding: 0.2rem 1.25rem;
+  }
+  .FoodCategories_Grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+  }
+}
+
+@media (max-width: 1400px) {
+  .FoodCategories_Grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1.25rem;
+  }
+}
+
+@media (max-width: 1150px) {
+  .FoodCategories_Grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0.75rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .FoodCategories {
+    width: 80vw;
+    margin: 3rem auto;
+  }
+  .FoodCategories_Arrows span {
+    font-size: 1.2rem;
+    padding: 0.1rem 1.1rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .FoodCategories_Grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.75rem;
+  }
+  .FoodCategories_Arrows span {
+    font-size: 1rem;
+    padding: 0.1rem 1.1rem;
+  }
 }

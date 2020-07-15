@@ -8,10 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 
 import InputField from "../UI/InputField/InputField";
-import Button from "@material-ui/core/Button/Button";
-import Icon from "@material-ui/core/Icon/Icon";
 import { updateMeal, createMeal } from "../../features/meals/mealsSlice";
 import { RootState } from "../../app/rootReducer";
+import classes from "./FormikMenu.module.css";
+import ButtonTertiary from "../UI/Button/ButtonTertiary";
 
 interface Props {
   initialValues: FormValues;
@@ -34,6 +34,8 @@ function FormikComponent({ initialValues, setId }: Props): ReactElement {
           price: values.price,
           restaurantId: values.restaurantId,
           foodCategory: values.foodCategory,
+          amount: values.amount,
+          initialAmount: values.amount,
           active: values.active,
         } as Meal;
         if (result._id) {
@@ -58,6 +60,10 @@ function FormikComponent({ initialValues, setId }: Props): ReactElement {
           .trim()
           .matches(/^([1-9][0-9]*|0)(\.[0-9]+)?$/i, "Must be a number"),
         foodCategory: Yup.string().required(),
+        amount: Yup.string()
+          .required()
+          .trim()
+          .matches(/^([1-9]{1,})([0-9]+)?$/i, "Must be a number"),
       })}
     >
       {(props) => <PostFormInternal {...props} />}
@@ -86,28 +92,20 @@ const PostFormInternal: (props: FormikProps<FormValues>) => ReactElement = ({
   }, [loading, setSubmitting]);
 
   return (
-    <Form className='col s6'>
+    <Form className={classes.FormikMenu}>
       <div className='row' id='EditMenu'>
         <InputField name='name' label='Name*' />
         <InputField name='description' rowsMax={10} label='Short description*' />
         <InputField name='price' label='Price*' />
         <InputField name='imageUrl' label='Image URL for the meal*' />
         <InputField name='foodCategory' label='Food Category*' />
+        <InputField name='amount' label='Amount*' />
       </div>
       <div className='PostForm-butons row'>
-        <Button
-          variant='contained'
-          color='primary'
-          type='submit'
-          name='action'
-          disabled={isSubmitting || !dirty || Object.values(errors).some((err) => !!err === true)}
-          endIcon={<Icon>send</Icon>}
-        >
-          Submit
-        </Button>
-        <Button variant='contained' color='primary' onClick={handleReset} disabled={!dirty || isSubmitting} endIcon={<Icon>reset</Icon>}>
+        <ButtonTertiary disabled={isSubmitting || !dirty || Object.values(errors).some((err) => !!err === true)}>Submit</ButtonTertiary>
+        <ButtonTertiary handleReset={handleReset} disabled={!dirty || isSubmitting}>
           Reset
-        </Button>
+        </ButtonTertiary>
       </div>
     </Form>
   );

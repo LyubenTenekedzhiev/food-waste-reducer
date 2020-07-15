@@ -1,0 +1,70 @@
+.AdminPage {
+  width: 70vw;
+  margin: 0 auto;
+}
+
+.AdminPage_Header {
+  width: 70vw;
+  margin: 0 auto;
+  border-bottom: var(--border-dark);
+}
+
+.AdminPage_Title {
+  border-bottom: var(--border-dark);
+  padding-bottom: var(--padding-borderBottom);
+  font-size: var(--heading-size-secondary);
+  text-align: start;
+  margin: 2rem 0rem 3rem 0rem;
+}
+
+.AdminPage_RestaurantsSection,
+.AdminPage_CustomersSection {
+  display: flex;
+  justify-content: space-between;
+}
+
+.AdminPage_RestaurantsForm,
+.AdminPage_CustomersForm {
+  width: 30vw;
+}
+
+.AdminPage_Restaurants,
+.AdminPage_Customers {
+  width: 35vw;
+}
+
+.AdminPage_User {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 0rem;
+  text-align: start;
+}
+
+.AdminPage_UserInfo {
+  width: 40%;
+}
+
+.AdminPage_UserIcons {
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.AdminPage_Edit {
+  font-size: 2rem;
+  transition: 0.4s all;
+  cursor: pointer;
+  color: rgba(0, 78, 114, 0.856);
+}
+
+.AdminPage_Delete {
+  font-size: 2rem;
+  transition: 0.4s all;
+  cursor: pointer;
+  color: rgba(0, 78, 114, 0.856);
+}
+
+.AdminPage_Edit:hover,
+.AdminPage_Delete:hover {
+  color: rgba(0, 113, 165, 0.856);
+}

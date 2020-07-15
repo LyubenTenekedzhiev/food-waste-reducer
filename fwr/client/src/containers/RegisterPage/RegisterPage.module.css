@@ -13,3 +13,12 @@
   margin: 0 auto;
   border-bottom: var(--border-dark);
 }
+
+@media (max-width: 850px) {
+  .RegisterPage {
+    width: 80vw;
+  }
+  .RegisterPage_Header {
+    width: 80vw;
+  }
+}

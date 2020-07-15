@@ -1,8 +1,8 @@
 import React from "react";
 
 import classes from "./WelcomeSection.module.css";
-import Navigation from "../UI/Navigation/Navigation";
-import Button from "../UI/Button/ButtonPrimary";
+import Navigation from "../../../components/UI/Navigation/Navigation";
+import Button from "../../../components/UI/Button/ButtonPrimary";
 
 interface Props {}
 
@@ -17,7 +17,7 @@ const WelcomeSection = (props: Props) => {
       <div className={classes.WelcomeSection_Content}>
         <Navigation />
         <div className={classes.WelcomeSection_TextContainer}>
-          <h1 className={classes.WelcomeSection_Text}>Grab your favorite food on a special price.</h1>
+          <h1 className={classes.WelcomeSection_Text}>Grab your favourite food on a special price.</h1>
           <Button scrollIntoView={scrollToCategories}>Find food</Button>
         </div>
       </div>

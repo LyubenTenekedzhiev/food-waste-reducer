@@ -36,16 +36,16 @@
 }
 
 .RestaurantsPage_Icon {
-  font-size: 2.75rem !important;
+  font-size: 3.5rem;
   cursor: pointer;
-  transition: .4s all !important;
+  transition: 0.4s all;
 }
 .RestaurantsPage_IconActive {
-  color: rgb(124, 222, 255) !important;
+  color: rgb(124, 222, 255);
 }
 
 .RestaurantsPage_Icon:hover {
-  color: rgb(42, 202, 255) !important;
+  color: rgb(42, 202, 255);
 }
 
 .RestaurantsPage_FilteredRestaurants {
@@ -75,4 +75,175 @@
   text-align: center;
   margin: 10rem 0;
   font-size: var(--heading-size-secondary);
+}
+
+@media (max-width: 2400px) {
+  .RestaurantsPage_Icon {
+    font-size: 2.75rem;
+  }
+  .RestaurantsPage_Grid {
+    grid-template-rows: repeat(1, 3fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+  }
+  .RestaurantsPage_Column {
+    grid-template-rows: repeat(2, 3fr);
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1.5rem;
+  }
+  .RestaurantsPage_GridTitle {
+    margin: 2rem 0rem 1rem 0rem;
+  }
+  .RestaurantsPage_NoRestaurants {
+    margin: 10rem 0;
+  }
+}
+
+@media (max-width: 1550px) {
+  .RestaurantsPage_Restaurants {
+    width: 70vw;
+    margin-top: 7rem;
+  }
+  .RestaurantsPage_Icons {
+    width: 7%;
+  }
+  .RestaurantsPage_Icon {
+    font-size: 2rem;
+  }
+  .RestaurantsPage_FilteredRestaurants {
+    margin-bottom: 5rem;
+  }
+  .RestaurantsPage_Grid {
+    grid-template-rows: repeat(1, 3fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+  }
+  .RestaurantsPage_Column {
+    grid-template-rows: repeat(2, 3fr);
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1.5rem;
+  }
+  .RestaurantsPage_GridTitle {
+    margin: 2rem 0rem 1rem 0rem;
+    font-size: calc(var(--heading-size-tertiary) + 0.2rem);
+  }
+  .RestaurantsPage_NoRestaurants {
+    margin: 7.5rem 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  .RestaurantsPage_Icons {
+    width: 8%;
+  }
+  .RestaurantsPage_Icon {
+    font-size: 1.6rem;
+  }
+  .RestaurantsPage_FilteredRestaurants {
+    margin-bottom: 3rem;
+  }
+  .RestaurantsPage_Grid {
+    grid-template-rows: repeat(1, 3fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0.75rem;
+  }
+  .RestaurantsPage_Column {
+    grid-template-rows: repeat(2, 3fr);
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1rem;
+  }
+  .RestaurantsPage_GridTitle {
+    margin: 1.3rem 0rem 0.8rem 0rem;
+    font-size: calc(var(--heading-size-tertiary) + 0.1rem);
+  }
+  .RestaurantsPage_NoRestaurants {
+    margin: 5rem 0;
+  }
+}
+
+@media (max-width: 970px) {
+  .RestaurantsPage_Icons {
+    width: 8%;
+  }
+  .RestaurantsPage_Icon {
+    font-size: 1.6rem;
+  }
+  .RestaurantsPage_FilteredRestaurants {
+    margin-bottom: 3rem;
+  }
+  .RestaurantsPage_Grid {
+    grid-template-rows: repeat(1, 3fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.75rem;
+  }
+  .RestaurantsPage_Column {
+    grid-template-rows: repeat(2, 3fr);
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1rem;
+  }
+  .RestaurantsPage_GridTitle {
+    margin: 1.3rem 0rem 0.8rem 0rem;
+  }
+  .RestaurantsPage_NoRestaurants {
+    margin: 5rem 0;
+  }
+}
+
+@media (max-width: 850px) {
+  .RestaurantsPage_Header {
+    width: 80vw;
+  }
+  .RestaurantsPage_Restaurants {
+    width: 80vw;
+    margin-top: 5rem;
+  }
+  .RestaurantsPage_Icons {
+    width: 10%;
+  }
+}
+
+@media (max-width: 670px) {
+  .RestaurantsPage_Icon {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .RestaurantsPage_Restaurants {
+    margin-top: 3rem;
+  }
+  .RestaurantsPage_Icon {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 475px) {
+  .RestaurantsPage_Restaurants {
+    margin-top: 2rem;
+  }
+  .RestaurantsPage_Grid {
+    grid-gap: 0.4rem;
+  }
+  .RestaurantsPage_Column {
+    grid-gap: 0.7rem;
+  }
+  .RestaurantsPage_Icon {
+    font-size: 0.9rem;
+  }
+  .RestaurantsPage_Icons {
+    width: 11%;
+  }
+  .RestaurantsPage_GridTitle {
+    margin: 1rem 0rem 0.5rem 0rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .RestaurantsPage_Grid {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0.5rem;
+  }
+  .RestaurantsPage_GridTitle {
+    font-size: calc(var(--heading-size-tertiary) + 0.2rem);
+  }
 }

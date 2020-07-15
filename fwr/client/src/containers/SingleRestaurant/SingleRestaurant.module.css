@@ -1,10 +1,3 @@
-/* .SingleRestaurant {
-  background-image: url("../../assets/platter-2009590_1920.jpg");
-  background-size: cover;
-  background-color: black;
-  height: 100vh;
-} */
-
 .SingleRestaurant_Main {
   display: flex;
   justify-content: space-between;
@@ -24,21 +17,17 @@
   margin-bottom: 1rem;
 }
 
-.SingleRestaurant_InformationTitle {
-  /* margin-bottom: 3rem; */
-}
-
 .SingleRestaurant_Address {
   margin: 4rem 0 3rem 0;
 }
 
 .SingleRestaurant_Address p {
-  margin: .5rem 0rem;
-  font-size: 1.4rem;
+  margin: 0.5rem 0rem;
+  font-size: 2rem;
 }
 
 .SingleRestaurant_Address a {
-  font-size: 1.4rem;
+  font-size: 2rem;
   text-decoration: none;
   color: rgb(0, 157, 230);
 }
@@ -48,12 +37,176 @@
 }
 
 .SingleRestaurant_PickUp span {
-  font-size: 1.3rem;
-  padding: .4rem 0;
+  font-size: 2rem;
+  padding: 0.4rem 0;
 }
 
-.SingleRestaurant_Contact span{
+.SingleRestaurant_Contact span {
   display: block;
-  font-size: 1.3rem;
-  padding: .4rem 0;
+  font-size: 2rem;
+  padding: 0.4rem 0;
+}
+
+@media (max-width: 2400px) {
+  .SingleRestaurant_Main {
+    width: 70vw;
+    margin: 10rem auto;
+  }
+  .SingleRestaurant_Info {
+    width: 25%;
+  }
+  .SingleRestaurant_InfoTitle,
+  .SingleRestaurant_InformationTitle {
+    margin-bottom: 1rem;
+  }
+  .SingleRestaurant_Address {
+    margin: 4rem 0 3rem 0;
+  }
+  .SingleRestaurant_Address p {
+    margin: 0.5rem 0rem;
+    font-size: 1.4rem;
+  }
+  .SingleRestaurant_Address a {
+    font-size: 1.4rem;
+  }
+  .SingleRestaurant_PickUp {
+    margin: 3rem 0;
+  }
+  .SingleRestaurant_PickUp span {
+    font-size: 1.3rem;
+    padding: 0.4rem 0;
+  }
+  .SingleRestaurant_Contact span {
+    font-size: 1.3rem;
+    padding: 0.4rem 0;
+  }
+}
+
+@media (max-width: 1550px) {
+  .SingleRestaurant_Main {
+    width: 70vw;
+    margin: 8rem auto;
+  }
+  .SingleRestaurant_Info {
+    width: 25%;
+  }
+  .SingleRestaurant_InfoTitle,
+  .SingleRestaurant_InformationTitle {
+    margin-bottom: 1rem;
+  }
+  .SingleRestaurant_Address {
+    margin: 2.5rem 0 2.5rem 0;
+  }
+  .SingleRestaurant_Address p {
+    margin: 0.5rem 0rem;
+    font-size: 1rem;
+  }
+  .SingleRestaurant_Address a {
+    font-size: 1rem;
+  }
+  .SingleRestaurant_PickUp {
+    margin: 2.5em 0;
+  }
+  .SingleRestaurant_PickUp span {
+    font-size: 1rem;
+    padding: 0.4rem 0;
+  }
+  .SingleRestaurant_Contact span {
+    font-size: 1rem;
+    padding: 0.4rem 0;
+  }
+}
+
+@media (max-width: 1000px) {
+  .SingleRestaurant_Main {
+    width: 70vw;
+    margin: 4rem auto;
+  }
+  .SingleRestaurant_Info {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5rem;
+    width: 100%;
+  }
+  .SingleRestaurant_InfoTitle,
+  .SingleRestaurant_InformationTitle {
+    margin-bottom: 1rem;
+  }
+  .SingleRestaurant_Address {
+    margin: 0rem 0 0rem 0;
+  }
+  .SingleRestaurant_Address p {
+    margin: 0.5rem 0rem;
+    font-size: 1rem;
+  }
+  .SingleRestaurant_Address a {
+    font-size: 1rem;
+  }
+  .SingleRestaurant_PickUp {
+    margin: 0rem 0;
+  }
+  .SingleRestaurant_PickUp span {
+    font-size: 1rem;
+    padding: 0.4rem 0;
+  }
+  .SingleRestaurant_Contact span {
+    font-size: 1rem;
+    padding: 0.4rem 0;
+  }
+}
+
+@media (max-width: 850px) {
+  .SingleRestaurant_Main {
+    width: 80vw;
+  }
+  .SingleRestaurant_InfoTitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .SingleRestaurant_Main {
+    margin: 3rem auto;
+  }
+  .SingleRestaurant_Info {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 4rem;
+    width: 100%;
+  }
+  .SingleRestaurant_InfoTitle,
+  .SingleRestaurant_InformationTitle {
+    margin-bottom: 0.7rem;
+  }
+  .SingleRestaurant_Address {
+    margin: 0rem 0 0rem 0;
+  }
+  .SingleRestaurant_Address p {
+    margin: 0.5rem 0rem;
+    font-size: 0.7rem;
+  }
+  .SingleRestaurant_Address a {
+    font-size: 0.7rem;
+  }
+  .SingleRestaurant_PickUp {
+    margin: 0rem 0;
+  }
+  .SingleRestaurant_PickUp span {
+    font-size: 0.7rem;
+    padding: 0.4rem 0;
+  }
+  .SingleRestaurant_Contact span {
+    font-size: 0.7rem;
+    padding: 0.4rem 0;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .SingleRestaurant_Main {
+    margin: 2rem auto;
+  }
+  .SingleRestaurant_InfoTitle {
+    font-size: .9rem;
+  }
 }

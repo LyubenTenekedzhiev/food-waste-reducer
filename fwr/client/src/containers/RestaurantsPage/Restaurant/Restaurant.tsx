@@ -26,7 +26,7 @@ function Restaurant({ name, image, gridLayout, description, pickUp, keywords, sh
               <h3 className={style.Restaurant_Name}>{name}</h3>
               <p className={style.Restaurant_Paragraph}>{description}</p>
             </div>
-            <h4 className={style.Restaurant_PickUp}>{gridLayout ? pickUp : `Pick up time: ${pickUp}`}</h4>
+            <h4 className={style.Restaurant_PickUp}>{gridLayout ? pickUp : pickUp}</h4>
           </div>
           <div className={style.Restaurant_Categories}>
             <p>{keywords}</p>

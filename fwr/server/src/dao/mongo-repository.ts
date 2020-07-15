@@ -1,5 +1,5 @@
 import { Indentifiable, IdType, ResourceType } from "../model/shared-types";
-import { MongoClient, Db, ObjectID } from "mongodb";
+import {  Db, ObjectID } from "mongodb";
 import { Repository } from "./repository";
 import { AppError } from "../model/errors";
 import { User } from "../model/user.model";
@@ -31,7 +31,6 @@ export class MongoRepository<T extends Indentifiable> implements Repository<T> {
     const myquery = { _id: new ObjectID(entity._id) };
     const newvalues = { $set: entity };
     const updateRes = await this.db.collection(this.collection).updateOne(myquery, newvalues);
-    // console.log(updateRes);
     if (updateRes.result.ok && updateRes.modifiedCount === 1) {
       console.log(`${this.entityType.typeId} successfully updated: ${JSON.stringify(entity)}`);
       return entity;

@@ -1,5 +1,5 @@
 .WelcomeSection {
-  background-image: url("../../assets/platter-2009590_1920.jpg");
+  background-image: url("../../../assets/platter-2009590_1920.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-color: black;
@@ -24,4 +24,11 @@
 
 .WelcomeSection_Text {
   font-size: var(--heading-size-primary);
+}
+
+@media (max-width: 450px) {
+  .WelcomeSection_TextContainer {
+    width: 70%;
+    margin: 0 auto;
+  }
 }

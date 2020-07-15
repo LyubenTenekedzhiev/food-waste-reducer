@@ -1,26 +1,12 @@
-import React, { ReactElement, useState, useEffect } from "react";
+import React, { ReactElement, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 
 import FormikProfile from "../../../components/FormikProfile/FormikProfile";
-
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../app/rootReducer";
 import { fetchRestaurantsByRole } from "../../../features/restaurants/restaurantsSlice";
+import { RestaurantEditProfile } from "../../../shared-types/shared-types"
 import classes from "./EditProfile.module.css";
-
-export interface FormValuesEdit {
-  _id: string;
-  email: string;
-  username: string;
-  password: string;
-  description?: string;
-  keywords?: string;
-  imageUrl?: string;
-  street?: string;
-  zipCode?: string;
-  city?: string;
-  phone?: string;
-  pickUp?: string;
-}
 
 interface Props {
   _id: string;
@@ -33,9 +19,9 @@ function EditProfile({ _id }: Props): ReactElement {
 
   useEffect(() => {
     dispatch(fetchRestaurantsByRole(0));
-  }, []);
+  }, [dispatch]);
 
-  const initialValues: FormValuesEdit = {
+  const initialValues: RestaurantEditProfile = {
     _id: restaurant?._id,
     email: restaurant?.email,
     username: restaurant?.username,

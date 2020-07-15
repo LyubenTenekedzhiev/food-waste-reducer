@@ -36,3 +36,50 @@
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
 }
+
+@media (max-width: 1000px) {
+  .CustomersProfile_BookedMeals {
+    display: grid;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0.8rem;
+  }
+  .CustomersProfile_Grid {
+    display: grid;
+    grid-template-rows: repeat(1, 3fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .CustomersProfile {
+    width: 80vw;
+  }
+  .CustomersProfile_Header {
+    width: 80vw;
+  }
+}
+@media (max-width: 600px) {
+  .CustomersProfile_Title {
+    margin: 2rem 0rem 1rem 0rem;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .CustomersProfile_BookedMealsTitle {
+    margin: 0rem 0rem 0.5rem 0rem;
+    font-size: calc(var(--heading-size-tertiary) + 0.2rem);
+  }
+  .CustomersProfile_Title {
+    margin: 2rem 0rem 1.5rem 0rem;
+  }
+  .CustomersProfile_Grid {
+    display: grid;
+    grid-template-rows: repeat(1, 3fr);
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: .5rem;
+  }
+}
+

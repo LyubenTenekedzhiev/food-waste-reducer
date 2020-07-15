@@ -4,25 +4,14 @@ import * as Yup from "yup";
 import { Form, Formik, FormikProps } from "formik";
 
 import InputField from "../UI/InputField/InputField";
-import Button from "@material-ui/core/Button/Button";
-import Icon from "@material-ui/core/Icon/Icon";
 import { RootState } from "../../app/rootReducer";
 import { User, Role } from "./../../models/user.model";
 import { fetchRestaurantsByRole } from "./../../features/restaurants/restaurantsSlice";
-import { updateCustomer, createCustomer } from "../../features/customer/customerSlice";
+import { createCustomer } from "../../features/customer/customerSlice";
 import classes from "./FormikRegister.module.css";
 import { useHistory } from "react-router-dom";
 import ButtonTertiary from "../UI/Button/ButtonTertiary";
-
-export interface FormValuesRegister {
-  _id: string;
-  email: string;
-  username: string;
-  password: string;
-  roles: Role;
-  favouriteRestaurants: string[];
-  bookedMeals: string[];
-}
+import { CustomerRegister } from "../../shared-types/shared-types";
 
 interface Props {}
 
@@ -30,7 +19,7 @@ function FormikComponent(props: Props): ReactElement {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const initialValuesCustomer: FormValuesRegister = {
+  const initialValuesCustomer: CustomerRegister = {
     _id: "",
     email: "",
     username: "",
@@ -87,7 +76,7 @@ function FormikComponent(props: Props): ReactElement {
 
 export default FormikComponent;
 
-const PostFormInternal: (props: FormikProps<FormValuesRegister>) => ReactElement = ({
+const PostFormInternal: (props: FormikProps<CustomerRegister>) => ReactElement = ({
   values,
   handleChange,
   dirty,
@@ -98,7 +87,7 @@ const PostFormInternal: (props: FormikProps<FormValuesRegister>) => ReactElement
   handleReset,
 }) => {
   const loading = useSelector((state: RootState) => {
-    return state.meals.loading;
+    return state.customers.loading;
   });
 
   useEffect(() => {
@@ -116,7 +105,9 @@ const PostFormInternal: (props: FormikProps<FormValuesRegister>) => ReactElement
       </div>
       <div className={classes.FormikRegister_Buttons}>
         <ButtonTertiary disabled={isSubmitting || !dirty || Object.values(errors).some((err) => !!err === true)}>Submit</ButtonTertiary>
-        <ButtonTertiary disabled={!dirty || isSubmitting} handleReset={handleReset} >Reset</ButtonTertiary>
+        <ButtonTertiary disabled={!dirty || isSubmitting} handleReset={handleReset}>
+          Reset
+        </ButtonTertiary>
       </div>
     </Form>
   );

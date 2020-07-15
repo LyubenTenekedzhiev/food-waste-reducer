@@ -1,14 +1,12 @@
 import React, { ReactElement } from "react";
 
-import WelcomeSection from "./../../components/LandingPage/WelcomeSection";
+import WelcomeSection from "./WelcomeSection/WelcomeSection";
 import FoodCategories from "./../../components/FoodCategories/FoodCategories";
 import classes from "./LandingPage.module.css";
-import HowItWorks from "../../components/HowItWorks/HowItWorks";
+import HowItWorks from "./HowItWorks/HowItWorks";
 import Footer from "../../components/UI/Footer/Footer";
 
-interface Props {}
-
-function LandingPage({}: Props): ReactElement {
+function LandingPage(): ReactElement {
   return (
     <div className={classes.LandingPage}>
       <WelcomeSection />

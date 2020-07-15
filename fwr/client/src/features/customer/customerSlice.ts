@@ -12,6 +12,7 @@ interface CustomersState {
   username: string;
   password: string;
   loading: boolean;
+  isAdmin: boolean;
   error: string | null;
   message: string | null;
 }
@@ -26,6 +27,7 @@ const initialState: CustomersState = {
   username: "",
   password: "",
   loading: false,
+  isAdmin: false,
   error: null,
   message: null,
 };
@@ -58,6 +60,13 @@ const customers = createSlice({
     setCustomersPassword(state, action: PayloadAction<string>) {
       state.password = action.payload;
     },
+    setIsAdmin(state) {
+      if (state.username === "LyubenTenekedzhiev" && state.password === "adminadmin") {
+        state.isAdmin = true;
+      } else {
+        state.isAdmin = false;
+      }
+    },
     getCustomerByIdStart(state, action: PayloadAction<IdType>) {
       state.currentCustomerId = action.payload;
       state.loading = true;
@@ -84,7 +93,6 @@ const customers = createSlice({
       state.customers.push(customer);
       state.loading = false;
       state.error = null;
-      // state.message = `Customer "${action.payload.name}" created successfully.`;
     },
     updateCustomerStart(state, action: PayloadAction<User>) {
       state.currentCustomerId = action.payload._id;
@@ -101,7 +109,6 @@ const customers = createSlice({
       }
       state.loading = false;
       state.error = null;
-      // state.message = `Customer "${action.payload.name}" updated successfully.`;
     },
     deleteCustomerByIdStart(state, action: PayloadAction<IdType>) {
       state.currentCustomerId = action.payload;
@@ -116,7 +123,6 @@ const customers = createSlice({
       }
       state.loading = false;
       state.error = null;
-      // state.message = `Customer "${action.payload.name}" deleted successfully.`;
     },
   },
 });
@@ -127,6 +133,7 @@ export const {
   customersFailure,
   setCustomersUsername,
   setCustomersPassword,
+  setIsAdmin,
   getCustomerByIdStart,
   getCustomerByIdSuccess,
   createCustomerStart,
@@ -143,7 +150,6 @@ export const fetchCustomersByRole = (role: number): AppThunk => async (dispatch)
     dispatch(getCustomersStart(role));
     const localCustomers = localStorage.getItem("customers");
     if (localCustomers) {
-      // console.log(localCustomers);
       dispatch(getCustomersSuccess({ customers: JSON.parse(localCustomers) as User[] }));
     }
     const customers = await CustomerService.getUsersByRole(role);
@@ -156,38 +162,26 @@ export const fetchCustomersByRole = (role: number): AppThunk => async (dispatch)
 
 export const createCustomer = (
   customer: User
-  // history: History<History.PoorMansUnknown>
-  // setSubmitting: (isSubmitting: boolean) => void
-): AppThunk => async (dispatch, getState) => {
+): AppThunk => async (dispatch) => {
   try {
     dispatch(createCustomerStart(customer));
-    // const authToken = getState().auth.token; // TODO
     const created = await CustomerService.createNewUser(customer, undefined);
     dispatch(createCustomerSuccess(created));
   } catch (err) {
     dispatch(customersFailure(getErrorMessage(err)));
   }
-  // finally {
-  //   setSubmitting(false);
-  // }
 };
 
 export const updateCustomer = (
   customer: User
-  // history: History<History.PoorMansUnknown>
-  // setSubmitting: (isSubmitting: boolean) => void
 ): AppThunk => async (dispatch) => {
   try {
     dispatch(updateCustomerStart(customer));
     const created = await CustomerService.updateUser(customer);
     dispatch(updateCustomerSuccess(created));
-    // history.push("/customers");
   } catch (err) {
     dispatch(customersFailure(getErrorMessage(err)));
   }
-  // finally {
-  //   setSubmitting(false);
-  // }
 };
 
 export const deleteCustomer = (customerId: IdType): AppThunk => async (dispatch) => {

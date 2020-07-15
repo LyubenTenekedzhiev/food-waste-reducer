@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useEffect } from "react";
+import React, { ReactElement, useState, useEffect, useCallback } from "react";
 
 import FoodCategory from "./FoodCategory/FoodCategory";
 import { withRouter, useHistory } from "react-router-dom";
@@ -8,9 +8,7 @@ import { RootState } from "../../app/rootReducer";
 import { fetchRestaurantsByRole } from "../../features/restaurants/restaurantsSlice";
 import classes from "./FoodCategories.module.css";
 
-interface Props {}
-
-function FoodCategories({}: Props): ReactElement {
+function FoodCategories(): ReactElement {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -26,6 +24,7 @@ function FoodCategories({}: Props): ReactElement {
       if (restaurant.keywords?.includes(category.name.toLowerCase())) {
         restaurantsCount++;
       }
+      return restaurantsCount;
     });
     return (
       <FoodCategory
@@ -38,19 +37,35 @@ function FoodCategories({}: Props): ReactElement {
     );
   });
 
-  
+  // Adjusting the pagination according to the screen width
+  const updateWindowDimensions = useCallback(() => {
+    const width = window.innerWidth;
+    if (width < 650) {
+      setItemsPerPage(4);
+    } else if ((width >= 650 && width < 1400) || itemsPerPage < 7) {
+      setItemsPerPage(6);
+    } else if ((width >= 1400 && width < 2400) || itemsPerPage < 8) {
+      setItemsPerPage(8);
+    } else if (width >= 2400 || itemsPerPage === 8) {
+      setItemsPerPage(6);
+    }
+  }, [itemsPerPage]);
+
   useEffect(() => {
     dispatch(fetchRestaurantsByRole(0));
     dispatch(fetchFoodCategories());
-  }, []);
+    window.addEventListener("resize", updateWindowDimensions);
+    updateWindowDimensions();
+    return () => window.removeEventListener("resize", updateWindowDimensions);
+  }, [dispatch, updateWindowDimensions]);
 
   // "Pagination"
   const nextPageClickHandler = () => {
     if (allFoodCategories.length - itemsPerPage < firstCategory + itemsPerPage) {
       if (firstCategory + itemsPerPage > allFoodCategories.length) return;
-      setFirstCategory(Math.max(firstCategory + itemsPerPage, allFoodCategories.length - itemsPerPage)); 
+      setFirstCategory(Math.max(firstCategory + itemsPerPage, allFoodCategories.length - itemsPerPage));
     } else {
-      setFirstCategory(Math.min(firstCategory + itemsPerPage, allFoodCategories.length - itemsPerPage)); 
+      setFirstCategory(Math.min(firstCategory + itemsPerPage, allFoodCategories.length - itemsPerPage));
     }
   };
   const prevPageClickHandler = () => {

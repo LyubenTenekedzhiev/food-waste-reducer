@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { History } from "history";
 
 import { AppThunk } from "../../app/store";
 import MealService from "../../service/meal-service";
@@ -168,7 +167,6 @@ export const fetchMeals = (restaurantId: IdType): AppThunk => async (dispatch) =
     dispatch(getMealsStart(restaurantId));
     const localMeals = localStorage.getItem("meals");
     if (localMeals) {
-      console.log(localMeals);
       dispatch(getMealsSuccess({ meals: JSON.parse(localMeals) as Meal[] }));
     }
     const meals = await MealService.getMealsByRestaurantId(restaurantId);
@@ -191,38 +189,26 @@ export const fetchMealById = (mealId: IdType): AppThunk => async (dispatch) => {
 
 export const createMeal = (
   meal: Meal
-  // history: History<History.PoorMansUnknown>
-  // setSubmitting: (isSubmitting: boolean) => void
-): AppThunk => async (dispatch, getState) => {
+): AppThunk => async (dispatch, ) => {
   try {
     dispatch(createMealStart(meal));
-    // const authToken = getState().auth.token; // TODO
     const created = await MealService.createNewMeal(meal, undefined);
     dispatch(createMealSuccess(created));
   } catch (err) {
     dispatch(mealsFailure(getErrorMessage(err)));
   }
-  // finally {
-  //   setSubmitting(false);
-  // }
 };
 
 export const updateMeal = (
   meal: Meal
-  // history: History<History.PoorMansUnknown>
-  // setSubmitting: (isSubmitting: boolean) => void
 ): AppThunk => async (dispatch) => {
   try {
     dispatch(updateMealStart(meal));
     const created = await MealService.updateMeal(meal);
     dispatch(updateMealSuccess(created));
-    // history.push("/meals");
   } catch (err) {
     dispatch(mealsFailure(getErrorMessage(err)));
   }
-  // finally {
-  //   setSubmitting(false);
-  // }
 };
 
 export const deleteMeal = (mealId: IdType): AppThunk => async (dispatch) => {

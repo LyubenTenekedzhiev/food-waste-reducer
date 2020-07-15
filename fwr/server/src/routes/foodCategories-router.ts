@@ -1,8 +1,6 @@
 import { Router } from "express";
 import { AppError } from "../model/errors";
-import { UserRepository, FoodCategoryRepository } from "../dao/mongo-repository";
-import { ObjectId } from "mongodb";
-// import { FoodCategory } from './../../../client/src/models/foodCategory';
+import {  FoodCategoryRepository } from "../dao/mongo-repository";
 
 const router = Router();
 
@@ -22,23 +20,9 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-// router.get("/:restaurantId", async (req, res, next) => {
-//   try {
-//     const found = await (<FoodCategoryRepository>req.app.locals.foodCategoryRepo).findByRestaurantId(req.params.restaurantId);
-//     res.json(found); //200 OK with deleted post in the body
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
 router.post("/", async (req, res, next) => {
   try {
     const newFoodCategory = req.body;
-    //TODO set correct author
-    // const defaultUser = await (<UserRepository>req.app.locals.userRepo).findByUsername("trayan");
-    // newFoodCategory.authorId = defaultUser._id;
-
-    // Create new foodCategory
     const created = await (<FoodCategoryRepository>req.app.locals.foodCategoryRepo).add(newFoodCategory);
 
     res.status(201).location(`/api/foodCategorys/${newFoodCategory.id}`).json(created);
@@ -56,10 +40,6 @@ router.put("/:id", async function (req, res, next) {
       return;
     }
     const found = await (<FoodCategoryRepository>req.app.locals.foodCategoryRepo).findById(req.params.id);
-
-    // if(foodCategory.authorId && foodCategory.authorId.length > 0 && found.authorId !== foodCategory.authorId) {
-    //     throw new AppError(400, `Can not change Post's author.`);
-    // }
 
     // _id and authorId are unmodifiable
     foodCategory._id = found._id;

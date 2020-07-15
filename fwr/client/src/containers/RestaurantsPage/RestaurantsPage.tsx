@@ -29,7 +29,7 @@ function RestaurantsPage({ location }: Props): ReactElement {
   useEffect(() => {
     dispatch(fetchRestaurantsByRole(0));
     if (!location.state) history.push("/");
-  }, []);
+  }, [location.state, history, dispatch]);
 
   const restaurants = useSelector((state: RootState) => state.restaurants.restaurants);
   const filteredRestaurants = restaurants

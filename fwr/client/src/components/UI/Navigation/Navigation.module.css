@@ -4,14 +4,14 @@
   align-items: center;
   width: 70vw;
   margin: 0 auto;
-  padding: 1.5rem 0rem 1rem 0rem;
+  padding: 2.5rem 0rem 2rem 0rem;
   padding-bottom: var(--padding-borderBottom);
   border-bottom: var(--border-light);
 }
 
 .Navigation_Logo {
   text-transform: uppercase;
-  letter-spacing: 10px;
+  letter-spacing: 20px;
   font-size: var(--heading-size-secondary);
   font-family: "Roboto", sans-serif;
 }
@@ -19,6 +19,7 @@
 .Navigation {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 20vw;
   color: inherit;
 }
@@ -30,13 +31,13 @@
   text-transform: uppercase;
   transition: 0.5s all;
   position: relative;
-  padding: 5px 10px;
-  font-size: 1.3rem;
+  padding: 15px 20px;
+  font-size: 2rem;
   cursor: pointer;
 }
 
 .Navigation_Link {
-  color:inherit;
+  color: inherit;
 }
 
 .Navigation_Login,
@@ -46,13 +47,14 @@
   display: flex;
   flex-direction: column;
   text-align: start;
-  padding-top: 1.25rem;
-  transition: .4s all;
+  padding-top: 3rem;
+  z-index: 30;
+  transition: 0.4s all;
 }
 
 .Navigation_Login span,
-.Navigation_LoginVissible span{
-  padding: .5rem 0rem;
+.Navigation_LoginVissible span {
+  padding: 1rem 0rem;
 }
 
 .Navigation_LoginVissible {
@@ -61,7 +63,7 @@
 
 .Navigation_RegisterLinks {
   color: inherit;
-  padding: .5rem 0rem;
+  padding: 1rem 0rem;
   text-decoration: none;
 }
 
@@ -97,8 +99,8 @@
 .Navigation_Link:hover:before,
 .Navigation_LinkHomePage:hover:before {
   width: 100%;
-  border: 1px solid white;
-  border-width: 0px 0px 1px 1px;
+  border: 2px solid white;
+  border-width: 0px 0px 2px 2px;
   height: 100%;
   opacity: 1;
 }
@@ -107,8 +109,8 @@
 .Navigation_LinkHomePage:hover:after {
   width: 100%;
   height: 100%;
-  border: 1px solid white;
-  border-width: 1px 1px 0 0;
+  border: 2px solid white;
+  border-width: 2px 2px 0 0;
   opacity: 1;
 }
 
@@ -121,5 +123,83 @@
 .Navigation_Link:after,
 .Navigation_Link:before {
   color: inherit;
-  border-color:inherit;
+  border-color: inherit;
+}
+
+/* ******** Media ********* */
+
+@media (max-width: 2400px) {
+  .Header {
+    padding: 1.5rem 0rem 1rem 0rem;
+  }
+
+  .Navigation_Logo {
+    letter-spacing: 10px;
+  }
+
+  .Navigation_LinkHomePage,
+  .Navigation_Link {
+    padding: 5px 10px;
+    font-size: 1.3rem;
+  }
+
+  .Navigation_Login,
+  .Navigation_LoginVissible {
+    padding-top: 1.25rem;
+  }
+
+  .Navigation_Login span,
+  .Navigation_LoginVissible span {
+    padding: 0.5rem 0rem;
+  }
+
+  .Navigation_RegisterLinks {
+    padding: 0.5rem 0rem;
+  }
+
+  /* ******* HOVER ********* */
+  .Navigation_Link:hover:before,
+  .Navigation_LinkHomePage:hover:before {
+    border: 1px solid white;
+    border-width: 0px 0px 1px 1px;
+  }
+  .Navigation_Link:hover:after,
+  .Navigation_LinkHomePage:hover:after {
+    border: 1px solid white;
+    border-width: 1px 1px 0 0;
+  }
+  .Navigation_Link:hover:after,
+  .Navigation_Link:hover:before {
+    color: inherit;
+    border-color: inherit;
+  }
+  .Navigation_Link:after,
+  .Navigation_Link:before {
+    color: inherit;
+    border-color: inherit;
+  }
+}
+
+@media (max-width: 1550px) {
+  .Header {
+    padding: 0.8rem 0rem 0.6rem 0rem;
+  }
+  .Navigation_LinkHomePage,
+  .Navigation_Link {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .Header {
+    width: 80vw;
+    padding: 0.8rem 0rem 0.6rem 0rem;
+  }
+  .Navigation {
+    width: 23vw;
+  }
+  .Navigation_LinkHomePage,
+  .Navigation_Link {
+    font-size: 0.7rem;
+  }
 }

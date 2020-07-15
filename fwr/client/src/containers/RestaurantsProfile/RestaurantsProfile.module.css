@@ -1,7 +1,27 @@
 .EditRestaurant_Buttons {
   width: 70vw;
-  margin: 10rem auto;
+  margin: 8rem auto;
   display: flex;
   justify-content: space-evenly;
 }
 
+@media (max-width: 1250px) {
+  .EditRestaurant_Buttons {
+    width: 70vw;
+    margin: 6rem auto;
+  }
+}
+
+@media (max-width: 850px) {
+  .EditRestaurant_Buttons {
+    width: 80vw;
+    margin: 6rem auto;
+  }
+}
+
+@media (max-width: 850px) {
+  .EditRestaurant_Buttons {
+    width: 80vw;
+    margin: 5rem auto;
+  }
+}

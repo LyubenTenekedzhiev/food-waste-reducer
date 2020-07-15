@@ -1,8 +1,6 @@
 import { Router } from "express";
 import { AppError } from "../model/errors";
 import { UserRepository } from "../dao/mongo-repository";
-import { ObjectId } from "mongodb";
-// import { User } from './../../../client/src/models/user';
 
 const router = Router();
 
@@ -12,15 +10,6 @@ router.get("/", (req, res, next) =>
     .then((users) => res.json(users))
     .catch(next)
 );
-
-// router.get("/:id", async (req, res, next) => {
-//   try {
-//     const found = await (<UserRepository>req.app.locals.userRepo).findById(req.params.id);
-//     res.json(found); //200 OK with deleted post in the body
-//   } catch (err) {
-//     next(err);
-//   }
-// });
 
 router.get("/:role", async (req, res, next) => {
   try {
@@ -34,11 +23,6 @@ router.get("/:role", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const newUser = req.body;
-    //TODO set correct author
-    // const defaultUser = await (<UserRepository>req.app.locals.userRepo).findByUsername("trayan");
-    // newUser.authorId = defaultUser._id;
-
-    // Create new user
     const created = await (<UserRepository>req.app.locals.userRepo).add(newUser);
 
     res.status(201).location(`/api/users/${newUser.id}`).json(created);
