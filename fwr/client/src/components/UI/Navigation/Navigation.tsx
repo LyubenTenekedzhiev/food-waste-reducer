@@ -25,6 +25,7 @@ const Navigation = (): JSX.Element => {
     (restaurant) => restaurant.username === username && restaurant.password === password
   )[0];
   const isAdmin = useSelector((state: RootState) => state.customers.isAdmin);
+  console.log(isAdmin);
 
   const updateWindowDimensions = useCallback(() => {
     setScreenWidth(window.innerWidth);

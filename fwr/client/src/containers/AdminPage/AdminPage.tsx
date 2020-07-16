@@ -23,7 +23,7 @@ function AdminPage(): ReactElement {
   const history = useHistory();
 
   const isAdmin = useSelector((state: RootState) => state.customers.isAdmin);
-
+  
   const restaurants = useSelector((state: RootState) => state.restaurants.restaurants).map((restaurant) => {
     return (
       <div className={classes.AdminPage_User} key={restaurant._id}>

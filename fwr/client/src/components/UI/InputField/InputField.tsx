@@ -2,8 +2,6 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import { connect, Field, FieldProps } from "formik";
 
-import classes from "./InputField.module.css";
-
 interface InputFieldProps {
   name: string;
   label: string;

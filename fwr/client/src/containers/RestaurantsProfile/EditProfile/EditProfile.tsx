@@ -1,11 +1,10 @@
 import React, { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-
 import FormikProfile from "../../../components/FormikProfile/FormikProfile";
 import { RootState } from "../../../app/rootReducer";
 import { fetchRestaurantsByRole } from "../../../features/restaurants/restaurantsSlice";
-import { RestaurantEditProfile } from "../../../shared-types/shared-types"
+import { RestaurantEditProfile } from "../../../shared-types/shared-types";
 import classes from "./EditProfile.module.css";
 
 interface Props {

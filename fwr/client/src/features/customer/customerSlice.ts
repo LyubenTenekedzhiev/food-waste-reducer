@@ -61,7 +61,9 @@ const customers = createSlice({
       state.password = action.payload;
     },
     setIsAdmin(state) {
-      if (state.username === "LyubenTenekedzhiev" && state.password === "adminadmin") {
+      const usernameCustomer = localStorage.getItem("usernameCustomer");
+      const passwordCustomer = localStorage.getItem("passwordCustomer");
+      if (usernameCustomer === "LyubenTenekedzhiev" && passwordCustomer === "adminadmin") {
         state.isAdmin = true;
       } else {
         state.isAdmin = false;
@@ -160,9 +162,7 @@ export const fetchCustomersByRole = (role: number): AppThunk => async (dispatch)
   }
 };
 
-export const createCustomer = (
-  customer: User
-): AppThunk => async (dispatch) => {
+export const createCustomer = (customer: User): AppThunk => async (dispatch) => {
   try {
     dispatch(createCustomerStart(customer));
     const created = await CustomerService.createNewUser(customer, undefined);
@@ -172,9 +172,7 @@ export const createCustomer = (
   }
 };
 
-export const updateCustomer = (
-  customer: User
-): AppThunk => async (dispatch) => {
+export const updateCustomer = (customer: User): AppThunk => async (dispatch) => {
   try {
     dispatch(updateCustomerStart(customer));
     const created = await CustomerService.updateUser(customer);
