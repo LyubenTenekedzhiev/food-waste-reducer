@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../app/rootReducer";
 import { useHistory } from "react-router-dom";
 
-import classes from "./SingleRestaurant.module.css";
+import { fetchRestaurantsByRole } from "../../features/restaurants/restaurantsSlice";
+
 import Menu from "./Menu/Menu";
 import WelcomeSectionRestaurant from "./WelcomeSectionRestaurant/WelcomeSectionRestaurant";
 import Footer from "../../components/UI/Footer/Footer";
-import { fetchRestaurantsByRole } from "../../features/restaurants/restaurantsSlice";
+import classes from "./SingleRestaurant.module.css";
 
 interface LocationState {
   state: {

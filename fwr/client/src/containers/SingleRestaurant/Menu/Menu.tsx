@@ -1,11 +1,12 @@
 import React, { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import classes from "./Menu.module.css";
-import MealComponent from "../Meal/Meal";
 import { RootState } from "../../../app/rootReducer";
 import { fetchMeals } from "./../../../features/meals/mealsSlice";
 import { IdType } from "../../../shared-types/shared-types";
+
+import classes from "./Menu.module.css";
+import MealComponent from "../Meal/Meal";
 
 interface Props {
   id: string;

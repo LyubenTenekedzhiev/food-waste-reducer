@@ -1,16 +1,17 @@
 import React, { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import classes from "./Meal.module.css";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
 import { IdType } from "../../../shared-types/shared-types";
-import Checkbox from "@material-ui/core/Checkbox/Checkbox";
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
 import { RootState } from "../../../app/rootReducer";
 import { updateCustomer, fetchCustomersByRole } from "../../../features/customer/customerSlice";
 import { updateMeal } from "./../../../features/meals/mealsSlice";
+
+import Checkbox from "@material-ui/core/Checkbox/Checkbox";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+import classes from "./Meal.module.css";
 
 interface Props {
   _id: IdType;

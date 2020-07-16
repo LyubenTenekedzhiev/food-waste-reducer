@@ -1,10 +1,10 @@
 import React, { ReactElement, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import FormikRegister from "../../components/FormikRegister/FormikRegister";
 import FormikRegisterCustomer from "../../components/FormikRegister/FormikRegisterCustomer";
-import classes from "./RegisterPage.module.css";
 import Navigation from "../../components/UI/Navigation/Navigation";
-import { useHistory } from "react-router-dom";
+import classes from "./RegisterPage.module.css";
 
 interface LocationState {
   state: string;

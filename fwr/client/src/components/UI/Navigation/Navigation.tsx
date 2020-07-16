@@ -2,12 +2,13 @@ import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import classes from "./Navigation.module.css";
-import LoginModal from "../../../containers/LoginModal/LoginModal";
 import { fetchRestaurantsByRole } from "../../../features/restaurants/restaurantsSlice";
 import { RootState } from "../../../app/rootReducer";
 import { fetchCustomersByRole } from "../../../features/customer/customerSlice";
+
+import LoginModal from "../../../containers/LoginModal/LoginModal";
 import SideDrawer from "../SideDrawer/SideDrawer";
+import classes from "./Navigation.module.css";
 
 const Navigation = (): JSX.Element => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -25,7 +26,6 @@ const Navigation = (): JSX.Element => {
     (restaurant) => restaurant.username === username && restaurant.password === password
   )[0];
   const isAdmin = useSelector((state: RootState) => state.customers.isAdmin);
-  console.log(isAdmin);
 
   const updateWindowDimensions = useCallback(() => {
     setScreenWidth(window.innerWidth);

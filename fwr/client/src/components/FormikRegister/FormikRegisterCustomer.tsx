@@ -1,21 +1,20 @@
 import React, { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 import * as Yup from "yup";
 import { Form, Formik, FormikProps } from "formik";
-
-import InputField from "../UI/InputField/InputField";
 import { RootState } from "../../app/rootReducer";
 import { User, Role } from "./../../models/user.model";
 import { fetchRestaurantsByRole } from "./../../features/restaurants/restaurantsSlice";
 import { createCustomer } from "../../features/customer/customerSlice";
-import classes from "./FormikRegister.module.css";
-import { useHistory } from "react-router-dom";
-import ButtonTertiary from "../UI/Button/ButtonTertiary";
 import { CustomerRegister } from "../../shared-types/shared-types";
 
-interface Props {}
+import ButtonTertiary from "../UI/Button/ButtonTertiary";
+import InputField from "../UI/InputField/InputField";
+import classes from "./FormikRegister.module.css";
 
-function FormikComponent(props: Props): ReactElement {
+function FormikComponent(): ReactElement {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -65,8 +64,8 @@ function FormikComponent(props: Props): ReactElement {
           .required()
           .min(2)
           .max(30)
-          .test("isn't taken", "Username already exists.", (value) => !usernames.includes(value)), // regex
-        password: Yup.string().required().min(6), // regex
+          .test("isn't taken", "Username already exists.", (value) => !usernames.includes(value)),
+        password: Yup.string().required().min(6),
       })}
     >
       {(props) => <PostFormInternal {...props} />}
@@ -77,10 +76,7 @@ function FormikComponent(props: Props): ReactElement {
 export default FormikComponent;
 
 const PostFormInternal: (props: FormikProps<CustomerRegister>) => ReactElement = ({
-  values,
-  handleChange,
   dirty,
-  touched,
   errors,
   isSubmitting,
   setSubmitting,

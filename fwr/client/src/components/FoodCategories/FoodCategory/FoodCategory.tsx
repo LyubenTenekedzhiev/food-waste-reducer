@@ -13,7 +13,7 @@ function FoodCategory({ name, restaurants, imageURL, showRestaurants }: Props): 
   return (
     <div className={classes.FoodCategories_Category}>
       <figure className={classes.FoodCategories_CategoryFigure} onClick={showRestaurants}>
-        <img src={imageURL} alt='Asian food' className={classes.FoodCategories_CategoryImage} />
+        <img src={imageURL} alt={name} className={classes.FoodCategories_CategoryImage} />
       </figure>
       <h3 className={classes.FoodCategories_CategoryRestaurant}>{name}</h3>
       <h4 className={classes.FoodCategories_CategoryAmount}>{restaurants} Restaurants</h4>

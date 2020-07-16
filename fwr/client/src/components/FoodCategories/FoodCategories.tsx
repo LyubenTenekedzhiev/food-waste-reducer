@@ -1,11 +1,11 @@
 import React, { ReactElement, useState, useEffect, useCallback } from "react";
-
-import FoodCategory from "./FoodCategory/FoodCategory";
-import { withRouter, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { withRouter, useHistory } from "react-router-dom";
+
 import { fetchFoodCategories } from "../../features/foodCategories/foodCategorySlice";
 import { RootState } from "../../app/rootReducer";
 import { fetchRestaurantsByRole } from "../../features/restaurants/restaurantsSlice";
+import FoodCategory from "./FoodCategory/FoodCategory";
 import classes from "./FoodCategories.module.css";
 
 function FoodCategories(): ReactElement {

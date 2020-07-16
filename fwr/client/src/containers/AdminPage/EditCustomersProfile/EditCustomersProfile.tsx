@@ -1,10 +1,11 @@
 import React, { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import FormikProfileCustomer from "../../../components/FormikProfile/FormikProfileCustomer";
 import { RootState } from "../../../app/rootReducer";
 import { CustomerEditProfile } from "../../../shared-types/shared-types";
 import { fetchCustomersByRole } from "../../../features/customer/customerSlice";
+
+import FormikProfileCustomer from "../../../components/FormikProfile/FormikProfileCustomer";
 
 interface Props {
   _id: string;

@@ -14,7 +14,7 @@ function InputField({ name, label, rowsMax = 1, type }: InputFieldProps) {
     <Field name={name}>
       {({
         field, // { name, value, onChange, onBlur }
-        form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+        form: { touched, errors }, // dirty, isValid, status, etc.
         meta,
       }: FieldProps) => (
         <TextField

@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetchCustomersByRole } from "../../features/customer/customerSlice";
 import { fetchRestaurantsByRole } from "../../features/restaurants/restaurantsSlice";
-
-import classes from "./CustomersProfile.module.css";
 import { RootState } from "../../app/rootReducer";
 import { fetchAllMeals } from "../../features/meals/mealsSlice";
 import { IdType } from "../../shared-types/shared-types";
+
 import Restaurant from "../RestaurantsPage/Restaurant/Restaurant";
 import Navigation from "../../components/UI/Navigation/Navigation";
 import Meal from "../SingleRestaurant/Meal/Meal";
 import Footer from "../../components/UI/Footer/Footer";
+import classes from "./CustomersProfile.module.css";
 
 function CustomersProfile(): ReactElement {
   const dispatch = useDispatch();

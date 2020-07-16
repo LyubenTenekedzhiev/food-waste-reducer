@@ -1,16 +1,16 @@
 import React, { ReactElement, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Form, Formik, FormikProps } from "formik";
-import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 
-import classes from "../FormikRegister/FormikRegister.module.css";
-import InputField from "../UI/InputField/InputField";
 import { RootState } from "../../app/rootReducer";
-import ButtonTertiary from "../UI/Button/ButtonTertiary";
 import { FoodCategories } from "./../../shared-types/shared-types";
 import { FoodCategory } from "../../models/foodCategory.model";
 import { updateFoodCategory, createFoodCategory, fetchFoodCategories } from "../../features/foodCategories/foodCategorySlice";
+import ButtonTertiary from "../UI/Button/ButtonTertiary";
+import InputField from "../UI/InputField/InputField";
+import classes from "../FormikRegister/FormikRegister.module.css";
 
 interface Props {
   initialValues: FoodCategories;
@@ -25,7 +25,6 @@ function FormikComponent({ initialValues, id }: Props): ReactElement {
   useEffect(() => {
     dispatch(fetchFoodCategories());
   }, []);
-  console.log(foodCategories);
 
   return (
     <Formik
@@ -61,10 +60,7 @@ function FormikComponent({ initialValues, id }: Props): ReactElement {
 export default FormikComponent;
 
 const PostFormInternal: (props: FormikProps<FoodCategories>) => ReactElement = ({
-  values,
-  handleChange,
   dirty,
-  touched,
   errors,
   isSubmitting,
   setSubmitting,

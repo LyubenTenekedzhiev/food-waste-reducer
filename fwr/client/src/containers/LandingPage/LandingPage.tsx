@@ -2,9 +2,9 @@ import React, { ReactElement } from "react";
 
 import WelcomeSection from "./WelcomeSection/WelcomeSection";
 import FoodCategories from "./../../components/FoodCategories/FoodCategories";
-import classes from "./LandingPage.module.css";
 import HowItWorks from "./HowItWorks/HowItWorks";
 import Footer from "../../components/UI/Footer/Footer";
+import classes from "./LandingPage.module.css";
 
 function LandingPage(): ReactElement {
   return (

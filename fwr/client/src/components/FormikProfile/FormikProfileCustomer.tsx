@@ -1,16 +1,16 @@
 import React, { ReactElement, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Form, Formik, FormikProps } from "formik";
-import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
-
-import classes from "../FormikRegister/FormikRegister.module.css";
-import InputField from "../UI/InputField/InputField";
 import { RootState } from "../../app/rootReducer";
 import { User, Role } from "./../../models/user.model";
 import { CustomerEditProfile } from "../../shared-types/shared-types";
-import ButtonTertiary from "../UI/Button/ButtonTertiary";
 import { fetchCustomersByRole, updateCustomer, createCustomer } from "../../features/customer/customerSlice";
+
+import InputField from "../UI/InputField/InputField";
+import ButtonTertiary from "../UI/Button/ButtonTertiary";
+import classes from "../FormikRegister/FormikRegister.module.css";
 
 interface Props {
   initialValues: CustomerEditProfile;
@@ -75,10 +75,7 @@ function FormikComponent({ initialValues, id }: Props): ReactElement {
 export default FormikComponent;
 
 const PostFormInternal: (props: FormikProps<CustomerEditProfile>) => ReactElement = ({
-  values,
-  handleChange,
   dirty,
-  touched,
   errors,
   isSubmitting,
   setSubmitting,

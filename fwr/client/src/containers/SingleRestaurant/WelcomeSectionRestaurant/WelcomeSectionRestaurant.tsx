@@ -3,17 +3,18 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../app/rootReducer";
 
-import classes from "./WelcomeSectionRestaurant.module.css";
+import { fetchRestaurantsByRole } from "../../../features/restaurants/restaurantsSlice";
+import { buildSearchQuery, setInputTouched } from "../../../features/meals/mealsSlice";
+import { updateCustomer, fetchCustomersByRole } from "../../../features/customer/customerSlice";
+import debouncedSearch from "../../../shared-types/shared-functions";
+
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Input from "@material-ui/core/Input";
 import SearchIcon from "@material-ui/icons/Search";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Navigation from "../../../components/UI/Navigation/Navigation";
-import { fetchRestaurantsByRole } from "../../../features/restaurants/restaurantsSlice";
-import { buildSearchQuery, setInputTouched } from "../../../features/meals/mealsSlice";
-import { updateCustomer, fetchCustomersByRole } from "../../../features/customer/customerSlice";
-import debouncedSearch from "../../../shared-types/shared-functions";
+import classes from "./WelcomeSectionRestaurant.module.css";
 
 interface Props {
   id: string;

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import classes from "./RestaurantsProfile.module.css";
 import WelcomeSectionRestaurant from "../SingleRestaurant/WelcomeSectionRestaurant/WelcomeSectionRestaurant";
 import ButtonSecondary from "../../components/UI/Button/ButtonSecondary";
 import EditMenu from "./EditMenu/EditMenu";
 import EditProfile from "./EditProfile/EditProfile";
 import Footer from "../../components/UI/Footer/Footer";
+import classes from "./RestaurantsProfile.module.css";
 
 interface LocationState {
   state: {

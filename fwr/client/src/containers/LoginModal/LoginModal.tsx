@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { RootState } from "../../app/rootReducer";
+import { setRestaurantsUsername, setRestaurantsPassword } from "../../features/restaurants/restaurantsSlice";
+import { setCustomersUsername, setCustomersPassword, setIsAdmin } from "../../features/customer/customerSlice";
+import debouncedSearch from "../../shared-types/shared-functions";
+
+import ButtonTertiary from "../../components/UI/Button/ButtonTertiary";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import TextField from "@material-ui/core/TextField";
-
 import classes from "./LoginModal.module.css";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../app/rootReducer";
-import { setRestaurantsUsername, setRestaurantsPassword } from "../../features/restaurants/restaurantsSlice";
-import { setCustomersUsername, setCustomersPassword, setIsAdmin } from "../../features/customer/customerSlice";
-import ButtonTertiary from "../../components/UI/Button/ButtonTertiary";
-import debouncedSearch from "../../shared-types/shared-functions";
 
 interface Props {
   openRestaurant: boolean;

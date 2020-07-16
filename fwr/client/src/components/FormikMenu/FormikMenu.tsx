@@ -1,17 +1,16 @@
 import React, { ReactElement, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Meal } from "../../models/meal.model";
 import { FormValues } from "../../containers/RestaurantsProfile/EditMenu/EditMenu";
-
+import { updateMeal, createMeal } from "../../features/meals/mealsSlice";
 import { Form, Formik, FormikProps } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../app/rootReducer";
 import * as Yup from "yup";
 
 import InputField from "../UI/InputField/InputField";
-import { updateMeal, createMeal } from "../../features/meals/mealsSlice";
-import { RootState } from "../../app/rootReducer";
-import classes from "./FormikMenu.module.css";
 import ButtonTertiary from "../UI/Button/ButtonTertiary";
+import classes from "./FormikMenu.module.css";
 
 interface Props {
   initialValues: FormValues;
@@ -74,10 +73,7 @@ function FormikComponent({ initialValues, setId }: Props): ReactElement {
 export default FormikComponent;
 
 const PostFormInternal: (props: FormikProps<FormValues>) => ReactElement = ({
-  values,
-  handleChange,
   dirty,
-  touched,
   errors,
   isSubmitting,
   setSubmitting,

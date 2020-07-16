@@ -1,21 +1,21 @@
 import React, { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
-import { Form, Formik, FormikProps } from "formik";
 import { useHistory } from "react-router-dom";
 
-import InputField from "../UI/InputField/InputField";
+import * as Yup from "yup";
+import { Form, Formik, FormikProps } from "formik";
 import { RootState } from "../../app/rootReducer";
 import { User, Role } from "./../../models/user.model";
 import { createRestaurant, fetchRestaurantsByRole } from "./../../features/restaurants/restaurantsSlice";
-import classes from "./FormikRegister.module.css";
 import { fetchFoodCategories } from "../../features/foodCategories/foodCategorySlice";
-import ButtonTertiary from "./../UI/Button/ButtonTertiary";
 import { RestaurantRegister } from "../../shared-types/shared-types";
 
-interface Props {}
+import ButtonTertiary from "./../UI/Button/ButtonTertiary";
+import InputField from "../UI/InputField/InputField";
+import classes from "./FormikRegister.module.css";
 
-function FormikComponent(props: Props): ReactElement {
+
+function FormikComponent(): ReactElement {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -133,10 +133,7 @@ function FormikComponent(props: Props): ReactElement {
 export default FormikComponent;
 
 const PostFormInternal: (props: FormikProps<RestaurantRegister>) => ReactElement = ({
-  values,
-  handleChange,
   dirty,
-  touched,
   errors,
   isSubmitting,
   setSubmitting,

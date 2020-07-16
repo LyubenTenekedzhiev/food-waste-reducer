@@ -2,18 +2,19 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import classes from "./AdminPage.module.css";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
-import Navigation from "../../components/UI/Navigation/Navigation";
 import { fetchRestaurantsByRole, deleteRestaurant } from "../../features/restaurants/restaurantsSlice";
 import { RootState } from "../../app/rootReducer";
+import { fetchCustomersByRole, deleteCustomer } from "../../features/customer/customerSlice";
+import { fetchFoodCategories, deleteFoodCategory } from "../../features/foodCategories/foodCategorySlice";
+
 import EditCustomersProfile from "./EditCustomersProfile/EditCustomersProfile";
 import EditProfile from "../RestaurantsProfile/EditProfile/EditProfile";
 import EditFoodCategory from "./EditFoodCategory/EditFoodCategory";
-import { fetchCustomersByRole, deleteCustomer } from "../../features/customer/customerSlice";
-import { fetchFoodCategories, deleteFoodCategory } from "../../features/foodCategories/foodCategorySlice";
 import Footer from "../../components/UI/Footer/Footer";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import Navigation from "../../components/UI/Navigation/Navigation";
+import classes from "./AdminPage.module.css";
 
 function AdminPage(): ReactElement {
   const [restaurantsId, setRestaurantsId] = useState("");

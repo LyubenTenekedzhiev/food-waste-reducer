@@ -2,15 +2,16 @@ import React, { ReactElement, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import classes from "./RestaurantsPage.module.css";
+import { RootState } from "../../app/rootReducer";
+import { fetchRestaurantsByRole } from "../../features/restaurants/restaurantsSlice";
+import { IdType } from "../../shared-types/shared-types";
+
 import Navigation from "./../../components/UI/Navigation/Navigation";
 import AppsIcon from "@material-ui/icons/Apps";
 import ViewCompactIcon from "@material-ui/icons/ViewCompact";
 import Restaurant from "./Restaurant/Restaurant";
 import Footer from "../../components/UI/Footer/Footer";
-import { RootState } from "../../app/rootReducer";
-import { fetchRestaurantsByRole } from "../../features/restaurants/restaurantsSlice";
-import { IdType } from "../../shared-types/shared-types";
+import classes from "./RestaurantsPage.module.css";
 
 interface LocationState {
   state: {

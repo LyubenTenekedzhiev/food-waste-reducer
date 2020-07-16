@@ -1,13 +1,13 @@
 import React, { ReactElement, useState } from "react";
-
-import classes from "./EditMenu.module.css";
-import FormikComponent from "../../../components/FormikMenu/FormikMenu";
-import Menu from "../../SingleRestaurant/Menu/Menu";
-
 import { useDispatch, useSelector } from "react-redux";
+
 import { IdType } from "../../../shared-types/shared-types";
 import { selectMealById, deleteMeal, updateMeal } from "../../../features/meals/mealsSlice";
 import { RootState } from "../../../app/rootReducer";
+
+import FormikComponent from "../../../components/FormikMenu/FormikMenu";
+import Menu from "../../SingleRestaurant/Menu/Menu";
+import classes from "./EditMenu.module.css";
 
 export interface FormValues {
   _id: string;

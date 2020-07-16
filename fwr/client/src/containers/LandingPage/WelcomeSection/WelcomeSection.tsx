@@ -1,12 +1,10 @@
 import React from "react";
 
-import classes from "./WelcomeSection.module.css";
 import Navigation from "../../../components/UI/Navigation/Navigation";
 import Button from "../../../components/UI/Button/ButtonPrimary";
+import classes from "./WelcomeSection.module.css";
 
-interface Props {}
-
-const WelcomeSection = (props: Props) => {
+const WelcomeSection = () => {
 
   const scrollToCategories = () => {
     document.getElementById("FoodCategories")?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
