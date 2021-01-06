@@ -16,7 +16,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.1.5",
     "awesome-debounce-promise": "^2.1.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "formik": "^2.1.4",
     "materialize-css": "^1.0.0",
     "react": "^16.13.1",
